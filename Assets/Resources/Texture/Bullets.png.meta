@@ -1,0 +1,834 @@
+fileFormatVersion: 2
+guid: 941bf78010776ab40aab5a861380a793
+timeCreated: 1488117192
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Chicken_Bullet_Charge
+    21300002: Lion_Bullet_Charge_0
+    21300004: Lion_Bullet_Charge_Ant
+    21300006: Bullets_29
+    21300008: Bullets_30
+    21300010: Chicken_Bullet
+    21300012: Bullets_36
+    21300014: Lion_Bullet_0
+    21300016: Lion_Bullet_1
+    21300018: Lion_Bullet_2
+    21300020: Lion_Bullet_3
+    21300022: Bullets_51
+    21300024: Sheep_Bullet_Charge_0
+    21300026: Sheep_Bullet_Charge_1
+    21300028: Sheep_Bullet_Charge_2
+    21300030: Sheep_Bullet_Charge_3
+    21300032: Monkey_Bullet_Charge
+    21300034: Monkey_Bullet
+    21300036: Sheep_Bullet
+    21300038: Sheep_Bullet_Charge_4
+    21300040: Sheep_Bullet_Charge_5
+    21300042: Sheep_Bullet_Charge_6
+    21300044: Sheep_Bullet_Charge_7
+    21300046: Elepha_Bullet_Charge
+    21300048: Penguin_Bullet_Charge_0
+    21300050: Cat_Bullet_Charge_0
+    21300052: Cat_Bullet_Charge_1
+    21300054: Cat_Bullet_Charge_2
+    21300056: Elepha_Bullet
+    21300058: Penguin_Bullet_Charge_1
+    21300060: Penguin_Bullet_Charge_2
+    21300062: Cat_Bullet
+    21300064: Penguin_Bullet_Charge_3
+    21300066: Panda_Bullet_0
+    21300068: Panda_Bullet_Charge_1
+    21300070: Panda_Bullet_Charge_0
+    21300072: Bullets_196
+    21300074: Pig_Bullet
+    21300076: Penguin_Bullet_Charge_5
+    21300078: Pig_Bullet_Charge_0
+    21300080: Pig_Bullet_Charge_1
+    21300082: Pig_Bullet_Charge_2
+    21300084: Pig_Bullet_Charge_3
+    21300086: Panda_Bullet_1
+    21300088: Panda_Bullet_Charge_2
+    21300090: Penguin_Bullet_Charge_4
+    21300092: Penguin_Bullet_Charge_6
+    21300094: Penguin_Bullet_Charge_7
+    21300096: Panda_Bullet_Charge_3
+    21300098: Bullets_218
+    21300100: Panda_Bullet_Charge_4
+    21300102: Lion_Bullet_Charge_1
+    21300104: Lion_Bullet_Charge_2
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Chicken_Bullet_Charge
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 927
+        width: 128
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Lion_Bullet_Charge_0
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 889
+        width: 30
+        height: 101
+      alignment: 9
+      pivot: {x: 0.37785643, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Lion_Bullet_Charge_Ant
+      rect:
+        serializedVersion: 2
+        x: 2302
+        y: 810
+        width: 240
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bullets_29
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 997
+        width: 134
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bullets_30
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 989
+        width: 99
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Chicken_Bullet
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 974
+        width: 54
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bullets_36
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 970
+        width: 262
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Lion_Bullet_0
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 893
+        width: 76
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Lion_Bullet_1
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 892
+        width: 74
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Lion_Bullet_2
+      rect:
+        serializedVersion: 2
+        x: 1733
+        y: 892
+        width: 77
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Lion_Bullet_3
+      rect:
+        serializedVersion: 2
+        x: 1818
+        y: 892
+        width: 77
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bullets_51
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 905
+        width: 133
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sheep_Bullet_Charge_0
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 864
+        width: 216
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sheep_Bullet_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 3089
+        y: 870
+        width: 214
+        height: 208
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sheep_Bullet_Charge_2
+      rect:
+        serializedVersion: 2
+        x: 3318
+        y: 862
+        width: 220
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sheep_Bullet_Charge_3
+      rect:
+        serializedVersion: 2
+        x: 3562
+        y: 861
+        width: 214
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Monkey_Bullet_Charge
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 662
+        width: 205
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Monkey_Bullet
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 777
+        width: 106
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sheep_Bullet
+      rect:
+        serializedVersion: 2
+        x: 2753
+        y: 728
+        width: 45
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sheep_Bullet_Charge_4
+      rect:
+        serializedVersion: 2
+        x: 2846
+        y: 643
+        width: 216
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sheep_Bullet_Charge_5
+      rect:
+        serializedVersion: 2
+        x: 3080
+        y: 638
+        width: 217
+        height: 210
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sheep_Bullet_Charge_6
+      rect:
+        serializedVersion: 2
+        x: 3313
+        y: 633
+        width: 216
+        height: 213
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sheep_Bullet_Charge_7
+      rect:
+        serializedVersion: 2
+        x: 3574
+        y: 631
+        width: 217
+        height: 211
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Elepha_Bullet_Charge
+      rect:
+        serializedVersion: 2
+        x: 2175
+        y: 357
+        width: 308
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Penguin_Bullet_Charge_0
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 307
+        width: 113
+        height: 196
+      alignment: 9
+      pivot: {x: 0.18112636, y: 0.10933888}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cat_Bullet_Charge_0
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 431
+        width: 112
+        height: 177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cat_Bullet_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 435
+        width: 86
+        height: 180
+      alignment: 9
+      pivot: {x: 0.42143923, y: 0.5125112}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cat_Bullet_Charge_2
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 462
+        width: 159
+        height: 94
+      alignment: 9
+      pivot: {x: 0.485836, y: 0.5239576}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Elepha_Bullet
+      rect:
+        serializedVersion: 2
+        x: 1949
+        y: 447
+        width: 206
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Penguin_Bullet_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 310
+        width: 137
+        height: 178
+      alignment: 9
+      pivot: {x: 0.17123413, y: 0.12044156}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Penguin_Bullet_Charge_2
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 315
+        width: 153
+        height: 166
+      alignment: 9
+      pivot: {x: 0.16145673, y: 0.106570326}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cat_Bullet
+      rect:
+        serializedVersion: 2
+        x: 1305
+        y: 445
+        width: 61
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Penguin_Bullet_Charge_3
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 323
+        width: 170
+        height: 145
+      alignment: 9
+      pivot: {x: 0.10257999, y: 0.11171602}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Panda_Bullet_0
+      rect:
+        serializedVersion: 2
+        x: 2463
+        y: 315
+        width: 120
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Panda_Bullet_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 3397
+        y: 31
+        width: 155
+        height: 299
+      alignment: 9
+      pivot: {x: 0.11552892, y: 0.101383895}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Panda_Bullet_Charge_0
+      rect:
+        serializedVersion: 2
+        x: 3644
+        y: 31
+        width: 69
+        height: 328
+      alignment: 9
+      pivot: {x: 0.25324106, y: 0.089908205}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bullets_196
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 307
+        width: 76
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pig_Bullet
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 301
+        width: 40
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Penguin_Bullet_Charge_5
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 81
+        width: 196
+        height: 189
+      alignment: 9
+      pivot: {x: 0.10933888, y: 0.094869904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pig_Bullet_Charge_0
+      rect:
+        serializedVersion: 2
+        x: 1293
+        y: 72
+        width: 199
+        height: 205
+      alignment: 9
+      pivot: {x: 0.2849802, y: 0.1374755}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pig_Bullet_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 1559
+        y: 65
+        width: 199
+        height: 202
+      alignment: 9
+      pivot: {x: 0.2057627, y: 0.1320914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pig_Bullet_Charge_2
+      rect:
+        serializedVersion: 2
+        x: 1814
+        y: 45
+        width: 197
+        height: 222
+      alignment: 9
+      pivot: {x: 0.25993356, y: 0.15509205}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pig_Bullet_Charge_3
+      rect:
+        serializedVersion: 2
+        x: 2082
+        y: 52
+        width: 199
+        height: 208
+      alignment: 9
+      pivot: {x: 0.21707904, y: 0.14270423}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Panda_Bullet_1
+      rect:
+        serializedVersion: 2
+        x: 2463
+        y: 255
+        width: 139
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Panda_Bullet_Charge_2
+      rect:
+        serializedVersion: 2
+        x: 3108
+        y: 61
+        width: 245
+        height: 234
+      alignment: 9
+      pivot: {x: 0.103871375, y: 0.09980226}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Penguin_Bullet_Charge_4
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 93
+        width: 182
+        height: 127
+      alignment: 9
+      pivot: {x: 0.11640972, y: 0.1276143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Penguin_Bullet_Charge_6
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 80
+        width: 198
+        height: 174
+      alignment: 9
+      pivot: {x: 0.10191083, y: 0.11171595}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Penguin_Bullet_Charge_7
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 83
+        width: 203
+        height: 166
+      alignment: 9
+      pivot: {x: 0.11171599, y: 0.20153593}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Panda_Bullet_Charge_3
+      rect:
+        serializedVersion: 2
+        x: 2782
+        y: 102
+        width: 307
+        height: 139
+      alignment: 9
+      pivot: {x: 0.089586884, y: 0.14476874}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Bullets_218
+      rect:
+        serializedVersion: 2
+        x: 3091
+        y: 192
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Panda_Bullet_Charge_4
+      rect:
+        serializedVersion: 2
+        x: 2420
+        y: 105
+        width: 333
+        height: 70
+      alignment: 9
+      pivot: {x: 0.11651813, y: 0.6216178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Lion_Bullet_Charge_1
+      rect:
+        serializedVersion: 2
+        x: 2021
+        y: 864
+        width: 43
+        height: 154
+      alignment: 9
+      pivot: {x: 0.20174249, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Lion_Bullet_Charge_2
+      rect:
+        serializedVersion: 2
+        x: 2070
+        y: 823
+        width: 70
+        height: 233
+      alignment: 9
+      pivot: {x: 0.1488386, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
