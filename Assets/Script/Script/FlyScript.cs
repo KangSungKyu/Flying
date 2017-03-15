@@ -32,6 +32,7 @@ public class FlyScript : MonoBehaviour {
     public Text textMeter;
     public Text textSpeed;
     public Text printEat;
+    public Text textHeight;
     public SpriteRenderer renChar;
     public Button btnBAng;
     public Button btnBackMain;
@@ -400,7 +401,6 @@ public class FlyScript : MonoBehaviour {
         Destroy(redDot1);
         Destroy(redDot2);
         
-
     }
     public void WindButton()
     {
@@ -471,7 +471,6 @@ public class FlyScript : MonoBehaviour {
 
             if(C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter() >= 100)
             {
-
                 StartCoroutine(FeverTime());
                 break;
             }
@@ -499,9 +498,12 @@ public class FlyScript : MonoBehaviour {
             fVSpeed = fVSpeed + 2f * fRate;
             Color32 color = new Color(1 - fRate, 0, fRate, 1);
             imgWindMeter.color = color;
-            
+
             C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fSpeed);
             C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVSpeed);
+
+            Debug.Log(fVSpeed);
+            Debug.Log(GetComponent<Rigidbody2D>().velocity);
 
             yield return new WaitForSeconds(0.02f);
         }
@@ -540,6 +542,17 @@ public class FlyScript : MonoBehaviour {
 
             Color32 color = new Color(1 - fRate,fRate, 0);
             imgLifeMeter.color = color;
+
+            float h = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y;
+            if (h < 1000.0f)
+            {
+                textHeight.text = h + "m";
+            }
+            else
+            {
+                float fMet = h / 1000;
+                textHeight.text = fMet.ToString("N1") + "Km";
+            }
         }
     }
 
@@ -556,8 +569,18 @@ public class FlyScript : MonoBehaviour {
             float rad = Mathf.Acos(Vector2.Dot(ax, pos));
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Rad2Deg * rad);
             C_GAMEMANAGER.GetInstance().GetPlayer().SetRealForwardDir(pos);
-        }
 
+            if (Mathf.Rad2Deg * rad < 20.0f && 
+                C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < 500.0f)
+            {
+                float fSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed();
+                float fVSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed();
+
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fSpeed - fSpeed * 0.5f * Time.deltaTime);
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVSpeed - fVSpeed * 0.5f * Time.deltaTime);
+            }
+        }
+    
         if (C_GAMEMANAGER.GetInstance().GetPlayer().GetState() == E_PLAYERSTATE.E_PLAYERDIE)
         {
             StopAllCoroutines();
