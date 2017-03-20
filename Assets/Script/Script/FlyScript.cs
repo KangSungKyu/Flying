@@ -433,7 +433,7 @@ public class FlyScript : MonoBehaviour {
             float fWind = C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter();
             if (C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter() > 0)
             {
-                fWind = fWind - 0.5f;
+                //fWind = fWind - 0.5f;
                 C_GAMEMANAGER.GetInstance().GetPlayer().SetWindMeter(fWind);
             }
             else if (C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter() < 0)

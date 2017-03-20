@@ -85,7 +85,8 @@ using System.Collections.Generic;
             if (dontList.IndexOf(col.gameObject.name) == -1)
                 col.gameObject.SetActive(false);
 
-
+            GameObject.FindGameObjectWithTag("Player").GetComponent<FlyScript>().WindButton();
+            
             StopAllCoroutines();
             StartCoroutine(HitAction());
         }

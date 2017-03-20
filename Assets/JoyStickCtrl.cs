@@ -13,7 +13,7 @@ public class JoyStickCtrl : MonoBehaviour {
     float fRadius;
     Vector3 vecLastPos;
 
-    public bool bDrag;
+    public bool bStart = false;
     public Vector3 vecLastDir;
 
 	void Start () {
@@ -24,6 +24,11 @@ public class JoyStickCtrl : MonoBehaviour {
 
         fRadius *= ca;
 	}
+
+    public void Select()
+    {
+        bStart = true;
+    }
 
     public void StartDrag(BaseEventData _data)
     {
@@ -38,8 +43,6 @@ public class JoyStickCtrl : MonoBehaviour {
             transStick.position = vecFirstPos + vecDir * dist;
         else
             transStick.position = vecFirstPos + vecDir * fRadius;
-
-        bDrag = true;
     }
     public void EndDrag(BaseEventData _data)
     {
@@ -48,8 +51,8 @@ public class JoyStickCtrl : MonoBehaviour {
 
         transStick.position = vecFirstPos;
         vecDir = Vector3.zero;
-        
-        bDrag = false;
+
+        bStart = false;
     }
     
 }
