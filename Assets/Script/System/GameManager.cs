@@ -13,11 +13,21 @@ class C_GAMEMANAGER
     private Dictionary<string,int> m_dicID;
     private Dictionary<int, string> m_dicName;
     private Dictionary<int, int> m_dicMaxFromLevel; //cur max -> next max
-    private List<int> m_arrPeace;
     private List<int> m_arrMaxPeace;
-    private int m_nKey;
+    private s_datastruct m_PlayerData;
 
     bool m_bInit = false;
+
+    [System.Serializable]
+    private struct s_datastruct
+    {
+        public List<int> m_arrPeace;
+        public List<bool> m_arrCharOpened;
+        public int m_nKey;
+        public int m_Gold;
+        public int m_Jewel;
+
+    }
 
     #region ApplySingleton
     private static C_GAMEMANAGER m_cInstance;
@@ -54,19 +64,19 @@ class C_GAMEMANAGER
             m_dicMaxFromLevel[70] = 90;
         }
 
-        if (m_arrPeace == null)
+        if (m_PlayerData.m_arrPeace == null)
         {
-            m_arrPeace = new List<int>();
+            m_PlayerData.m_arrPeace = new List<int>();
 
             for (int i = 0; i < m_dicID.Count; ++i)
-                m_arrPeace.Add(0);
+                m_PlayerData.m_arrPeace.Add(0);
         }
         if (m_arrMaxPeace == null)
         {
             m_arrMaxPeace = new List<int>();
 
             for (int i = 0; i < m_dicID.Count; ++i)
-                m_arrMaxPeace.Add(m_dicMaxFromLevel[m_arrPeace[i]]);
+                m_arrMaxPeace.Add(m_dicMaxFromLevel[m_PlayerData.m_arrPeace[i]]);
         }
 
     }
@@ -108,22 +118,22 @@ class C_GAMEMANAGER
     }
     public void SetKeyCount(int _n)
     {
-        m_nKey = _n;
+        m_PlayerData.m_nKey = _n;
     }
     public int GetKeyCount()
     {
-        return m_nKey;
+        return m_PlayerData.m_nKey;
     }
     public void SetPeace(int _who, int _peace)
     {
-        if (0 <= _who && _who < m_arrPeace.Count)
+        if (0 <= _who && _who < m_PlayerData.m_arrPeace.Count)
         {
-            m_arrPeace[_who] = _peace;
+            m_PlayerData.m_arrPeace[_who] = _peace;
 
-            if (m_arrPeace[_who] >= m_arrMaxPeace[_who])
+            if (m_PlayerData.m_arrPeace[_who] >= m_arrMaxPeace[_who])
             {
-                m_arrMaxPeace[_who] = m_dicMaxFromLevel[m_arrPeace[_who]];
-                m_arrPeace[_who] = 0;
+                m_arrMaxPeace[_who] = m_dicMaxFromLevel[m_PlayerData.m_arrPeace[_who]];
+                m_PlayerData.m_arrPeace[_who] = 0;
             }
         }
     }
@@ -134,8 +144,8 @@ class C_GAMEMANAGER
     }
     public int GetPeace(int _who)
     {
-        if(0 <= _who && _who < m_arrPeace.Count)
-            return m_arrPeace[_who];
+        if(0 <= _who && _who < m_PlayerData.m_arrPeace.Count)
+            return m_PlayerData.m_arrPeace[_who];
         return 0;
     }
     public int GetMaxPeace(int _who)
@@ -143,6 +153,10 @@ class C_GAMEMANAGER
         if(0 <= _who && _who < m_arrMaxPeace.Count)
             return m_arrMaxPeace[_who];
         return 0;
+    }
+    public bool GetCharOpened(int _who)
+    {
+        return m_PlayerData.m_arrCharOpened[_who];
     }
     public string GetCharNameFromID(int _id)
     {
