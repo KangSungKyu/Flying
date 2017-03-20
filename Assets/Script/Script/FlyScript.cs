@@ -13,7 +13,6 @@ public class FlyScript : MonoBehaviour {
     float fChargeTimer;
     float fLauchPower;
     float faimAngle;
-    float fBulletShotAng;
     
     float fVerticalPower;
     float fHorizontalPower;
@@ -27,6 +26,7 @@ public class FlyScript : MonoBehaviour {
     //UI elements
     public GameObject ShotButton;
 	public GameObject PullButton;
+    public GameObject ToqButton;
     public Image imgWindMeter;
     public Image imgLifeMeter;
     public Text textMeter;
@@ -41,6 +41,7 @@ public class FlyScript : MonoBehaviour {
     Vector2 vBCtrl;
 
     public float fGravityScore;
+    public float fToqueCtrlDeg;
 
     Camera myCam;
 
@@ -75,6 +76,8 @@ public class FlyScript : MonoBehaviour {
         {
 			PullButton.SetActive (true);
 			ShotButton.SetActive (false);
+            ToqButton.SetActive(false);
+
             if(Input.GetMouseButton(0))
             {
                 AimEvent();
@@ -202,7 +205,6 @@ public class FlyScript : MonoBehaviour {
     public void UpdateChargeBullet()
     {
         if(fChargeTimer < C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletTime)
-        //if (fChargeTimer < 1.0f)
         {
             fChargeTimer += Time.deltaTime;
         }
@@ -211,7 +213,6 @@ public class FlyScript : MonoBehaviour {
     public void EndChargeBullet()
     {
         if(fChargeTimer < C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletTime)
-        //if (fChargeTimer < 1.0f)
         {
             ShotEvent();
         }
@@ -221,42 +222,6 @@ public class FlyScript : MonoBehaviour {
         }
 
         fChargeTimer = 0.0f;
-    }
-
-    public void BeginBulletAngle()
-    {
-        bBACheck = true;
-
-        if (vBCtrl == Vector2.zero)
-            vBCtrl = Input.mousePosition;
-    }
-    public void SettingBulletAngle()
-    {
-        if (bBACheck)
-        {
-            Vector2 vNew = Input.mousePosition;
-            Vector2 vOr = vBCtrl;
-
-            //vBCtrl = vNew;
-
-            vNew.Normalize();
-            vOr.Normalize();
-
-            float dot = Vector2.Dot(vNew, vOr);
-
-            if(vOr.y < vNew.y)
-                fBulletShotAng = Mathf.Rad2Deg * (Mathf.Acos(dot));
-            else
-                fBulletShotAng = 360.0f-Mathf.Rad2Deg * (Mathf.Acos(dot));
-
-
-            btnBAng.transform.rotation = Quaternion.Euler(0.0f, 0.0f, fBulletShotAng + transform.rotation.z);
-        }
-    }
-    public void EndBulletAngle()
-    {
-        bBACheck = false;
-        vBCtrl = Input.mousePosition;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -292,6 +257,7 @@ public class FlyScript : MonoBehaviour {
 
             PullButton.SetActive (false);
 			ShotButton.SetActive (true);
+            ToqButton.SetActive(true);
             StartCoroutine(SpeedReducer());
             StartCoroutine(WindReducer());
 
@@ -345,15 +311,22 @@ public class FlyScript : MonoBehaviour {
 
         BulletInstance.GetComponent<Transform>().position = transform.FindChild("ArrowSpot").transform.position;
         float fDegree = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fBulletDegree;
-        Vector2 vecBullet = new Vector2(90 - fDegree, fDegree);
         Vector3 dir = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealForwardDir();
+        float fBulletShotAng = 0.0f;
+
+        Vector2 jdir = (-ShotButton.GetComponent<JoyStickCtrl>().vecLastDir).normalized;
+
+        if(jdir.y > 0.0f)
+            fBulletShotAng = Mathf.Acos(Vector2.Dot(Vector2.right, jdir)) * Mathf.Rad2Deg;
+        else
+            fBulletShotAng = 360.0f-Mathf.Acos(Vector2.Dot(Vector2.right, jdir)) * Mathf.Rad2Deg;
 
         dir = Quaternion.Euler(0.0f, 0.0f, fBulletShotAng + fDegree) * dir;
 
+
         BulletInstance.transform.rotation = Quaternion.Euler(0.0f, 0.0f, transform.eulerAngles.z+ fBulletShotAng + fDegree);
         BulletInstance.GetComponent<Rigidbody2D>().velocity = dir.normalized * C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fBulletSpeed;
-        //Destroy(BulletInstance, 2.0f);
-        
+       
 	}
 
     public void ChargeShotEvent()
@@ -373,8 +346,15 @@ public class FlyScript : MonoBehaviour {
 
         ChargeInst.GetComponent<Transform>().position = transform.FindChild("ArrowSpot").transform.position;
         float fDegree = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletDegree;
-        Vector2 vecBullet = new Vector2(90 - fDegree, fDegree);
         Vector3 dir = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealForwardDir();
+        float fBulletShotAng = 0.0f;
+
+        Vector2 jdir = (-ShotButton.GetComponent<JoyStickCtrl>().vecLastDir).normalized;
+
+        if (jdir.y > 0.0f)
+            fBulletShotAng = Mathf.Acos(Vector2.Dot(Vector2.right, jdir)) * Mathf.Rad2Deg;
+        else
+            fBulletShotAng = 360.0f - Mathf.Acos(Vector2.Dot(Vector2.right, jdir)) * Mathf.Rad2Deg;
 
         dir = Quaternion.Euler(0.0f, 0.0f, fBulletShotAng+fDegree) * dir;
 
@@ -567,17 +547,19 @@ public class FlyScript : MonoBehaviour {
             pos.Normalize();
 
             float rad = Mathf.Acos(Vector2.Dot(ax, pos));
-            transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Rad2Deg * rad);
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Rad2Deg * rad + fToqueCtrlDeg);
             C_GAMEMANAGER.GetInstance().GetPlayer().SetRealForwardDir(pos);
 
-            if (Mathf.Rad2Deg * rad < 20.0f && 
+            float deg = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(Vector2.right, pos));
+
+            if (deg < 10.0f && 
                 C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < 500.0f)
             {
                 float fSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed();
                 float fVSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed();
 
-                C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fSpeed - fSpeed * 0.5f * Time.deltaTime);
-                C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVSpeed - fVSpeed * 0.5f * Time.deltaTime);
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fSpeed - fSpeed * 0.45f * Time.deltaTime);
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVSpeed - fVSpeed * 0.45f * Time.deltaTime);
             }
         }
     

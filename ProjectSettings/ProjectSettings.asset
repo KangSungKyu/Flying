@@ -10,7 +10,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: GeniusFactory
   productName: Flying
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Company.ProductName
+  bundleIdentifier: com.GeniusFactory.Flying
   bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
@@ -197,8 +197,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/Users/KangSungKyu/Desktop/Project/Store.keystore
+  AndroidKeyaliasName: flying
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 1
