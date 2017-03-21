@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.5.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -130,9 +132,9 @@
       <Project>{27E9C47F-130E-272A-EC3A-5DF7F4B7E27B}</Project>
       <Name>Flying Build 20170228.Plugins</Name>
     </ProjectReference>
-    <ProjectReference Include="Flying Build 20170228.csproj">
+    <ProjectReference Include="Flying Build 20170321.csproj">
       <Project>{940F9A38-25A4-DD31-833A-FD52735599AA}</Project>
-      <Name>Flying Build 20170228</Name>
+      <Name>Flying Build 20170321</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

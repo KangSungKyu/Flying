@@ -23,6 +23,10 @@ struct S_CHAR_STATS
     public int m_nMaxHp;//최대체력
     public int m_nHpReduce;//한번에 깎이는 체력.
 
+    public int m_nCurBulletCount; //현재 총알
+    public int m_nCurChargeCount; //현재 차징
+    public int m_nBulletCount; //일반 총알 갯수
+    public int m_nChargeCount; //차징 총알 갯수
 }
 struct S_PLANE_STATS
 {

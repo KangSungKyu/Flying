@@ -95,6 +95,10 @@ class C_CHARACTER : C_PLAYERITEM
         m_sStats.m_nMaxHp = intParseWord(strFileName, strID, strArrFiliter[11]);
         m_sStats.m_nHpReduce = intParseWord(strFileName, strID, strArrFiliter[12]);
         m_sStats.m_nCurHp = m_sStats.m_nMaxHp;
+        m_sStats.m_nBulletCount = intParseWord(strFileName, strID, strArrFiliter[13]);
+        m_sStats.m_nChargeCount = intParseWord(strFileName, strID, strArrFiliter[14]);
+        m_sStats.m_nCurBulletCount = m_sStats.m_nBulletCount;
+        m_sStats.m_nCurChargeCount = m_sStats.m_nChargeCount;
 
         Debug.Log("Type : Character \n"
             +"ID : " + strID+ "\n"
@@ -111,7 +115,9 @@ class C_CHARACTER : C_PLAYERITEM
         + "Charge Scale : " + m_sStats.m_fChargeBulletScale.ToString() + "\n"
         
         + "Max Health : " + m_sStats.m_nMaxHp.ToString() + "\n"
-        + "Health Reduce : " + m_sStats.m_nHpReduce.ToString());
+        + "Health Reduce : " + m_sStats.m_nHpReduce.ToString()
+        + "Bullet Count : " + m_sStats.m_nBulletCount.ToString()
+        + "Charge Bullet Count : " + m_sStats.m_nChargeCount.ToString());
 
 
 

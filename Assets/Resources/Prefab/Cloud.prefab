@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4295976268136910}
   - component: {fileID: 212486146483195328}
-  - component: {fileID: 114762057284198016}
   - component: {fileID: 60204535015744012}
+  - component: {fileID: 114334824948539608}
   m_Layer: 0
   m_Name: Cloud
   m_TagString: Obstacle
@@ -73,7 +73,7 @@ PolygonCollider2D:
       - {x: 0.61, y: -0.305}
       - {x: 0.64, y: -0.285}
       - {x: 0.5937137, y: -0.097129345}
---- !u!114 &114762057284198016
+--- !u!114 &114334824948539608
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -81,11 +81,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1973647826952890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab39354e519b8204b9de90a299948d07, type: 3}
+  m_Script: {fileID: 11500000, guid: 835af95ed70393d429fd4c45d3a33fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strObjectName: cloud
-  strObjectHitName: cloudHit
+  strObjectName: 
+  strObjectHitName: 
   sp: {fileID: 0}
   spHit: {fileID: 0}
 --- !u!212 &212486146483195328

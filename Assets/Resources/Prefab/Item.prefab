@@ -64,13 +64,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1283261065568194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28979bda79a572643b96c060744a6315, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cc6b9cf4f78aff488b2560b4748b856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   strObjectName: 
   strObjectHitName: 
   sp: {fileID: 0}
   spHit: {fileID: 0}
+  player: {fileID: 159120, guid: bca7a78833956b741bc3c1105a39a929, type: 2}
 --- !u!212 &212246409484430596
 SpriteRenderer:
   m_ObjectHideFlags: 1

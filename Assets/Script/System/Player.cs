@@ -116,6 +116,30 @@ class C_PLAYER
     {
         return m_sStats.m_nConHp;
     }
+    public void SetCurrentBulletCount(int _b)
+    {
+        m_sStats.m_nCurBulletCount = _b;
+    }
+    public void SetCurrentChargeBulletCount(int _cb)
+    {
+        m_sStats.m_nCurChargeCount = _cb;
+    }
+    public int GetCurrentBulletCount()
+    {
+        return m_sStats.m_nCurBulletCount;
+    }
+    public int GetCurrentChargeBulletCount()
+    {
+        return m_sStats.m_nCurChargeCount;
+    }
+    public int GetBulletCount()
+    {
+        return m_sStats.m_nBulletCount;
+    }
+    public int GetChargeBulletCount()
+    {
+        return m_sStats.m_nChargeCount;
+    }
     public void LoadCharacter(string strID)
     {
         m_cCharacter.LoadDataFromID(strID);
@@ -162,8 +186,12 @@ class C_PLAYER
         m_sStats.m_nCurHp = m_cCharacter.GetCharacterStats().m_nCurHp;
         m_sStats.m_nMaxHp = m_cCharacter.GetCharacterStats().m_nMaxHp;
         m_sStats.m_nConHp = m_cCharacter.GetCharacterStats().m_nHpReduce;
-        
-	}
+
+        m_sStats.m_nBulletCount = m_cCharacter.GetCharacterStats().m_nBulletCount;
+        m_sStats.m_nChargeCount = m_cCharacter.GetCharacterStats().m_nChargeCount;
+        m_sStats.m_nCurBulletCount = m_cCharacter.GetCharacterStats().m_nCurBulletCount;
+        m_sStats.m_nCurChargeCount = m_cCharacter.GetCharacterStats().m_nCurChargeCount;
+    }
 
 	public S_STATS GetPlayerStats()
 	{
@@ -221,6 +249,12 @@ struct S_STATS
     public int m_nCurHp;
     public int m_nMaxHp;
     public int m_nConHp;
+
+    //bullet count
+    public int m_nCurBulletCount;
+    public int m_nCurChargeCount;
+    public int m_nBulletCount;
+    public int m_nChargeCount;
 
 
     //OtherStats

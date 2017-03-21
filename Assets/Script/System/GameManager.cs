@@ -204,9 +204,17 @@ class C_GAMEMANAGER
 
         m_cSpriteMgr.InsertSprite("cloudHit", Resources.Load("Texture/cloudHit", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("cloud", Resources.Load("Texture/cloud1", typeof(Sprite)) as Sprite);
+
         m_cSpriteMgr.InsertSprite("ForwardWind", Resources.Load("Texture/ForwardWind", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("BackwardWind", Resources.Load("Texture/BackwardWind", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("RouletteKey", Resources.Load("Texture/RouletteKey", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("BulletGet", Resources.Load("Texture/BulletGet", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("ChargeGet", Resources.Load("Texture/ChargeGet", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("UpGo", Resources.Load("Texture/UpGo", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("DownGo", Resources.Load("Texture/DownGo", typeof(Sprite)) as Sprite);
+
+        m_cSpriteMgr.InsertSprite("나뭇잎_Plane", Resources.Load("Texture/Leaf1", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("단풍잎_Plane", Resources.Load("Texture/Leaf2", typeof(Sprite)) as Sprite);
 
         m_cDataMgr.InitMgr();
 

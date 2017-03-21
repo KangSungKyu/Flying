@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.5.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -87,41 +89,41 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BackMainScript.cs" />
-    <Compile Include="Assets\BulletMovementScript.cs" />
-    <Compile Include="Assets\CatChargeMovement.cs" />
-    <Compile Include="Assets\ChickenChargeMovement.cs" />
-    <Compile Include="Assets\CloudScript.cs" />
-    <Compile Include="Assets\JoyStickCtrl.cs" />
-    <Compile Include="Assets\Launcher.cs" />
-    <Compile Include="Assets\MonkeyBulletMovement.cs" />
-    <Compile Include="Assets\MonkeyChargeCtrl.cs" />
-    <Compile Include="Assets\PandaChargeMovement.cs" />
-    <Compile Include="Assets\PenguinChargeMovement.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\Normal\BulletMovementScript.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\Charge\CatChargeMovement.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\Charge\ChickenChargeMovement.cs" />
+    <Compile Include="Assets\Script\Script\Obs\CloudScript.cs" />
+    <Compile Include="Assets\Script\Script\UI\JoyStickCtrl.cs" />
+    <Compile Include="Assets\Script\Script\Launcher\Launcher.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\Normal\MonkeyBulletMovement.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\Charge\MonkeyChargeCtrl.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\Charge\PandaChargeMovement.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\Charge\PenguinChargeMovement.cs" />
     <Compile Include="Assets\Pixelplacement\iTweenPath\iTweenPath.cs" />
-    <Compile Include="Assets\Script\Script\AngleScript.cs" />
-    <Compile Include="Assets\Script\Script\ArrowGuid.cs" />
-    <Compile Include="Assets\Script\Script\BulletScript.cs" />
-    <Compile Include="Assets\Script\Script\CamScript.cs" />
-    <Compile Include="Assets\Script\Script\DeathCounterScript.cs" />
-    <Compile Include="Assets\Script\Script\FlyScript.cs" />
-    <Compile Include="Assets\Script\Script\GameSettingScript.cs" />
-    <Compile Include="Assets\Script\Script\ItemScript.cs" />
-    <Compile Include="Assets\Script\Script\ItemSpawn.cs" />
-    <Compile Include="Assets\Script\Script\LoadingScript.cs" />
-    <Compile Include="Assets\Script\Script\LogoLoading.cs" />
-    <Compile Include="Assets\Script\Script\MainToGame.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\BulletScript.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\MovingScript.cs" />
+    <Compile Include="Assets\Script\Script\Camera\CamScript.cs" />
     <Compile Include="Assets\Script\Script\MoveScript.cs" />
-    <Compile Include="Assets\Script\Script\MovingScript.cs" />
-    <Compile Include="Assets\Script\Script\ObstacleScript.cs" />
-    <Compile Include="Assets\Script\Script\PowerButtonScript.cs" />
-    <Compile Include="Assets\Script\Script\RouletteSetScript.cs" />
-    <Compile Include="Assets\Script\Script\SettCharSheet.cs" />
-    <Compile Include="Assets\Script\Script\SetupCharView.cs" />
-    <Compile Include="Assets\Script\Script\SpawnScript.cs" />
-    <Compile Include="Assets\Script\Script\TerrainVerticalMove.cs" />
-    <Compile Include="Assets\Script\Script\prefabLoader.cs" />
-    <Compile Include="Assets\Script\Script\ropeScript.cs" />
+    <Compile Include="Assets\Script\Script\Obs\ItemScript.cs" />
+    <Compile Include="Assets\Script\Script\Obs\ItemSpawn.cs" />
+    <Compile Include="Assets\Script\Script\Obs\ObstacleScript.cs" />
+    <Compile Include="Assets\Script\Script\Obs\SpawnScript.cs" />
+    <Compile Include="Assets\Script\Script\Player\FlyScript.cs" />
+    <Compile Include="Assets\Script\Script\Scene\CharSel\SettCharSheet.cs" />
+    <Compile Include="Assets\Script\Script\Scene\CharSel\SetupCharView.cs" />
+    <Compile Include="Assets\Script\Script\Scene\Game\BackMainScript.cs" />
+    <Compile Include="Assets\Script\Script\Scene\Game\ropeScript.cs" />
+    <Compile Include="Assets\Script\Script\Scene\Loading\LoadingScript.cs" />
+    <Compile Include="Assets\Script\Script\Scene\Loading\LogoLoading.cs" />
+    <Compile Include="Assets\Script\Script\Scene\Loading\prefabLoader.cs" />
+    <Compile Include="Assets\Script\Script\Scene\Main\MainToGame.cs" />
+    <Compile Include="Assets\Script\Script\Scene\Roulette\RouletteSetScript.cs" />
+    <Compile Include="Assets\Script\Script\Terrain\TerrainVerticalMove.cs" />
+    <Compile Include="Assets\Script\Script\Trash\AngleScript.cs" />
+    <Compile Include="Assets\Script\Script\Trash\ArrowGuid.cs" />
+    <Compile Include="Assets\Script\Script\Trash\DeathCounterScript.cs" />
+    <Compile Include="Assets\Script\Script\UI\GameSettingScript.cs" />
+    <Compile Include="Assets\Script\Script\UI\PowerButtonScript.cs" />
     <Compile Include="Assets\Script\System\DataStorage.cs" />
     <Compile Include="Assets\Script\System\Event.cs" />
     <Compile Include="Assets\Script\System\GameManager.cs" />
@@ -132,14 +134,15 @@
     <Compile Include="Assets\Script\System\SoundManager.cs" />
     <Compile Include="Assets\Script\System\SpriteManager.cs" />
     <Compile Include="Assets\Script\System\Stat.cs" />
-    <Compile Include="Assets\SheepChargeMovement.cs" />
-    <Compile Include="Assets\ShootCtrl.cs" />
-    <Compile Include="Assets\TogueCtrl.cs" />
+    <Compile Include="Assets\Script\Script\Bullet\Charge\SheepChargeMovement.cs" />
+    <Compile Include="Assets\Script\Script\UI\ShootCtrl.cs" />
+    <Compile Include="Assets\Script\Script\UI\TogueCtrl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Resources\TestText.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

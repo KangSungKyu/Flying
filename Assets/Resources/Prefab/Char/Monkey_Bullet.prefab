@@ -107,10 +107,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1334540686368580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb9feab66a03c64d8379dd851be7733, type: 3}
+  m_Script: {fileID: 11500000, guid: 715dc282be24a834b9db934ef0d4ef05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fZRotate: -36
 --- !u!212 &212369038282701958
 SpriteRenderer:
   m_ObjectHideFlags: 1
