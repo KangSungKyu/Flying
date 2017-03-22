@@ -32,11 +32,10 @@ public class GitMan : ScriptableWizard {
         if (Selection.objects == null)
             return;
 
-        string commit = "git commit -m \"" + commitmsg + "\"";
+        string commit = "git commit -m \"test!\"";// -m \"" + commitmsg + "\"";
 
-        Process bash = Process.Start(bashPath);
-
-        bash.StandardInput.Write(commit);
+        Process bash = Process.Start(bashPath,commit);
+        
     }
 
 }

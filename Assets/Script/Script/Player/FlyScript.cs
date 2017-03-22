@@ -37,6 +37,8 @@ public class FlyScript : MonoBehaviour {
     public Text textCBCount;
     public SpriteRenderer renChar;
     public SpriteRenderer renPlane;
+    public SpriteRenderer renHand;
+    public GameObject gobjHand;
     public Button btnBackMain;
     float fMeter;
 
@@ -68,6 +70,7 @@ public class FlyScript : MonoBehaviour {
         C_GAMEMANAGER.GetInstance().GetPlayer().InitPlayer(strCharName,strPlaneName,strLauncherName);
         ChangeCharSprite(strCharName);
         ChangePlaneSprite(strPlaneName);
+        ChangeHandSprite(strCharName);
         
 
 		GetComponent<BoxCollider2D> ().size = new Vector2 (C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fColliderScale,
@@ -108,6 +111,15 @@ public class FlyScript : MonoBehaviour {
         Sprite spPlane = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(strPlaneimage);
 
         renPlane.sprite = spPlane;
+    }
+    void ChangeHandSprite(string strHandName)
+    {
+        string strHandimage = strHandName + "_Hand";
+        Sprite spHand = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(strHandimage);
+
+        Debug.Log(spHand);
+
+        renHand.sprite = spHand;
     }
 
     void AimEvent()
@@ -220,9 +232,19 @@ public class FlyScript : MonoBehaviour {
         }
     }
 
+    IEnumerator HandDown()
+    {
+        float timer = 1.0f;
+        iTween.PunchRotation(gobjHand, new Vector3(0.0f, 0.0f, -120.0f), timer);
+
+        yield return new WaitForSeconds(timer);
+    }
+
     public void EndChargeBullet()
     {
-        if(fChargeTimer < C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletTime)
+        StartCoroutine(HandDown());
+
+        if (fChargeTimer < C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletTime)
         {
             ShotEvent();
         }
@@ -232,6 +254,7 @@ public class FlyScript : MonoBehaviour {
         }
 
         fChargeTimer = 0.0f;
+        
     }
 
     void OnTriggerEnter2D(Collider2D col)
