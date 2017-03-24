@@ -6,22 +6,26 @@ using UnityEngine.UI;
 public class SetupCharView : MonoBehaviour {
 
     public string id;
-    public Image imgCh;
-    public Text txtCh;
+    public Text txtPeace;
+    public GameObject gobj;
+
 	// Use this for initialization
 	void Start () {
 	}
 	
-    public void SettingChild(string _id,Vector2 _pos)
+    public void SettingChild(string _id)
     {
-        transform.position = _pos;
         id = _id;
-        imgCh = gameObject.GetComponentInChildren<Image>();
-        txtCh = gameObject.GetComponentInChildren<Text>();
     }
 	// Update is called once per frame
 	void Update () {
         int idx = C_GAMEMANAGER.GetInstance().GetIDFromCharName(id);
-        txtCh.text = C_GAMEMANAGER.GetInstance().GetPeace(idx) + " / " + C_GAMEMANAGER.GetInstance().GetMaxPeace(idx);
-	}
+        txtPeace.text = C_GAMEMANAGER.GetInstance().GetPeace(idx) + " / " + C_GAMEMANAGER.GetInstance().GetMaxPeace(idx);
+
+        Vector3 v = gobj.transform.position;
+
+        v.y += 2.5f;
+
+        txtPeace.transform.position = v;
+    }
 }

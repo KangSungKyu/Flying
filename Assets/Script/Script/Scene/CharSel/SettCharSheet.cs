@@ -15,32 +15,34 @@ public class SettCharSheet : MonoBehaviour {
     void Start ()
     {
         dicPage = new Dictionary<int, List<GameObject>>();
-
-        CreateView("치킨", new Vector2(100.0f, 400.0f),0);
-        CreateView("돼지", new Vector2(300.0f, 400.0f),0);
-        CreateView("펭귄", new Vector2(100.0f, 400.0f),1);
+        
+        CreateView("펭귄", new Vector2(000.0f, 000.0f),0);
     }
 	
     public void CreateView(string _name,Vector2 _pos,int _page)
     {
-        GameObject instCap = C_GAMEMANAGER.GetInstance().GetObjectMgr().GetObject("CharView");
-
+        GameObject instCap = C_GAMEMANAGER.GetInstance().GetObjectMgr().GetObject("CharSel_Man");
+        
         if (instCap == null)
             return;
 
-        GameObject inst = GameObject.Instantiate<GameObject>(instCap, canvChar.transform);
-        
-        inst.GetComponent<SetupCharView>().SettingChild(_name, _pos);
-        inst.SetActive(false);
+        GameObject inst = GameObject.Instantiate<GameObject>(instCap);
 
+        inst.transform.position = _pos;
         inst.name = _name+"_View";
-        inst.GetComponent<RectTransform>().localScale.Set(1.0f, 1.0f, 1.0f);
-        Image img = inst.GetComponent<SetupCharView>().imgCh;
-        Text txt = inst.GetComponent<SetupCharView>().txtCh;
 
-        txt.text = "0/30";
-        img.sprite = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(_name+"_Char");
-        
+        if(!C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveChar(_name))
+        {
+            Color c = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+            c /= 2.0f;
+            c.a = 1.0f;
+
+            inst.GetComponent<SpriteRenderer>().color = c;
+            inst.GetComponentsInChildren<SpriteRenderer>()[1].color = c;
+            inst.GetComponentsInChildren<SpriteRenderer>()[2].color = c;
+            inst.GetComponentsInChildren<SpriteRenderer>()[3].color = c;
+        }
         List<GameObject> li;
 
         dicPage.TryGetValue(_page, out li);
@@ -61,64 +63,13 @@ public class SettCharSheet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
  
-       
-        
 	}
 
     public void BeginDragView()
     {
-        if (Input.touchCount > 0)
-            start = Input.touches[0].position;
-        else
-            start = Input.mousePosition;
     }
     public void EndDragView()
     {
-        if (Input.touchCount > 0)
-        {
-            end = Input.touches[0].position;
-        }
-        else
-        {
-            end = Input.mousePosition;
-        }
-
-        Vector2 dir = end - start;
-
-        dir.Normalize();
-
-        if (dir.y < 0.0f)
-        {
-            curPage = curPage + 1;
-
-            if (curPage > maxPage)
-                curPage = maxPage;
-        }
-        else
-        {
-            curPage = curPage - 1;
-
-            if (curPage < 0)
-                curPage = 0;
-        }
-
-        for (int i = 0; i < maxPage; ++i)
-        {
-            if (i == curPage)
-            {
-                foreach (GameObject g in dicPage[curPage])
-                {
-                    g.SetActive(true);
-                }
-            }
-            else
-            {
-                foreach (GameObject g in dicPage[i])
-                {
-                    g.SetActive(false);
-                }
-            }
-        }
     }
 
     public void BackMain()

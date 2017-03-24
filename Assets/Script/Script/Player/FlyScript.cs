@@ -66,7 +66,11 @@ public class FlyScript : MonoBehaviour {
         string strText = C_GAMEMANAGER.GetInstance().GetDataMgr().GetData("Character", "돼지", "B.power");
         //float nDataTest = float.Parse(strText);
         //Debug.Log(nDataTest);
-        
+
+        strCharName = C_GAMEMANAGER.GetInstance().strSelectedCharName;
+        //strPlaneName = C_GAMEMANAGER.GetInstance().strSelectedPlaneName;
+        //strLauncherName = C_GAMEMANAGER.GetInstance().strSelectedLaunchName;
+
         C_GAMEMANAGER.GetInstance().GetPlayer().InitPlayer(strCharName,strPlaneName,strLauncherName);
         ChangeCharSprite(strCharName);
         ChangePlaneSprite(strPlaneName);
@@ -414,7 +418,7 @@ public class FlyScript : MonoBehaviour {
     public void LauchEvent()
     {
         
-		Vector3 vecPower = (vecAim - OriginPos) * C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fMaxPower * 0.7f;
+		Vector3 vecPower = (vecAim - OriginPos) * C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fMaxPower * 0.8f;
         fHorizontalPower = vecPower.x;
         fVerticalPower = vecPower.y;
         Debug.Log("HorizonPower : " + fHorizontalPower.ToString());

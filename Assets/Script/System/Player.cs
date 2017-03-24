@@ -13,6 +13,7 @@ class C_PLAYER
     private string m_strCurEat;
     private Vector3 m_vRealPos;
     private Vector3 m_vRealForwardDir;
+    private Dictionary<string,bool> m_dicIHaveChar;
 
     public C_PLAYER()
     {
@@ -21,7 +22,12 @@ class C_PLAYER
         m_cPlane = new C_PLANE();
         m_cLauncher = new C_LAUCHER();
 
+        m_dicIHaveChar = new Dictionary<string, bool>();
 
+        SetIHaveChar("펭귄", true);
+        SetIHaveChar("돼지", false);
+        SetIHaveChar("사자", false);
+        SetIHaveChar("치킨", false);
     }
 
 
@@ -79,6 +85,19 @@ class C_PLAYER
         m_sStats.m_fCurrentSpeed = fSpeed;
     }
 
+    public void SetIHaveChar(string _who,bool _have)
+    {
+        bool b = false;
+
+        if (m_dicIHaveChar.TryGetValue(_who, out b))
+            m_dicIHaveChar[_who] = _have;
+        else
+            m_dicIHaveChar.Add(_who, _have);
+    }
+    public bool GetIHaveChar(string _who)
+    {
+        return m_dicIHaveChar[_who];
+    }
 	public float SpeedReducer()
 	{
 		return m_sStats.m_fDecreaseSpeed;

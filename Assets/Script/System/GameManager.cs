@@ -19,6 +19,10 @@ class C_GAMEMANAGER
 
     bool m_bInit = false;
 
+    public string strSelectedCharName = "";
+    public string strSelectedPlaneName = "";
+    public string strSelectedLaunchName = "";
+
     #region ApplySingleton
     private static C_GAMEMANAGER m_cInstance;
     private C_GAMEMANAGER()
@@ -185,7 +189,8 @@ class C_GAMEMANAGER
         m_cObjectMgr.InsertObject("고양이_Bullet_Charge", Resources.Load("Prefab/Char/Cat_Bullet_Charge", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("양_Bullet_Charge", Resources.Load("Prefab/Char/Sheep_Bullet_Charge", typeof(GameObject)) as GameObject);
 
-        m_cObjectMgr.InsertObject("CharView", Resources.Load("Prefab/CharView", typeof(GameObject)) as GameObject);
+       
+        m_cObjectMgr.InsertObject("CharSel_Man", Resources.Load("Prefab/CharSel_Man", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("RouletteBoardPeace", Resources.Load("Prefab/BoardPeace", typeof(GameObject)) as GameObject);
 
         m_cObjectMgr.InsertObject("RedDot", Resources.Load("Prefab/RedDot", typeof(GameObject)) as GameObject);
