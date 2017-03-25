@@ -25,6 +25,8 @@ class C_PLAYER
         m_dicIHaveChar = new Dictionary<string, bool>();
 
         SetIHaveChar("펭귄", true);
+        SetIHaveChar("고양이", true);
+        SetIHaveChar("양", true);
         SetIHaveChar("돼지", false);
         SetIHaveChar("사자", false);
         SetIHaveChar("치킨", false);
@@ -86,17 +88,20 @@ class C_PLAYER
     }
 
     public void SetIHaveChar(string _who,bool _have)
-    {
-        bool b = false;
-
-        if (m_dicIHaveChar.TryGetValue(_who, out b))
+    {       
+        if (m_dicIHaveChar.ContainsKey(_who))
             m_dicIHaveChar[_who] = _have;
         else
             m_dicIHaveChar.Add(_who, _have);
     }
     public bool GetIHaveChar(string _who)
     {
-        return m_dicIHaveChar[_who];
+        bool b = false;
+
+        if (m_dicIHaveChar.TryGetValue(_who, out b))
+            return b;
+
+        return false;
     }
 	public float SpeedReducer()
 	{

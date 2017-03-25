@@ -287,6 +287,142 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440065148}
+--- !u!1 &541798776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 541798781}
+  - component: {fileID: 541798780}
+  - component: {fileID: 541798779}
+  - component: {fileID: 541798778}
+  - component: {fileID: 541798777}
+  m_Layer: 0
+  m_Name: Path
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &541798777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541798776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathName: CharSelMove4
+  pathColor: {r: 0, g: 1, b: 1, a: 1}
+  nodes:
+  - {x: -0.5199053, y: 1.7196865, z: 0}
+  - {x: -11.7578535, y: -0.19996363, z: 0}
+  - {x: 10.878016, y: -2.7195044, z: 0}
+  - {x: -2.1196136, y: -4.319213, z: 0}
+  - {x: -8.558439, y: 3.2394094, z: 0}
+  - {x: 2.1596065, y: 3.479366, z: 0}
+  - {x: -6.1588774, y: -4.6391535, z: 0}
+  - {x: 9.598251, y: 3.039446, z: 0}
+  nodeCount: 8
+  initialized: 1
+  initialName: New Path 3
+  pathVisible: 0
+--- !u!114 &541798778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541798776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathName: CharSelMove3
+  pathColor: {r: 0, g: 1, b: 1, a: 1}
+  nodes:
+  - {x: 0, y: 0, z: 0}
+  - {x: 7.998542, y: -4.3991976, z: 0}
+  - {x: -12.677689, y: -1.2797666, z: 0}
+  - {x: 5.279037, y: 4.3592052, z: 0}
+  - {x: 11.437915, y: -2.759497, z: 0}
+  - {x: -8.478454, y: -4.27922, z: 0}
+  - {x: -7.358659, y: 3.5993443, z: 0}
+  - {x: 11.477906, y: 2.3195767, z: 0}
+  nodeCount: 8
+  initialized: 1
+  initialName: New Path 2
+  pathVisible: 0
+--- !u!114 &541798779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541798776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathName: CharSelMove2
+  pathColor: {r: 0, g: 1, b: 1, a: 1}
+  nodes:
+  - {x: -0.31994167, y: -0.3199417, z: 0}
+  - {x: 10.158147, y: 3.7993073, z: 0}
+  - {x: 5.958913, y: -0.9198321, z: 0}
+  - {x: 11.477907, y: -4.6391544, z: 0}
+  - {x: -1.6397009, y: -3.1594243, z: 0}
+  - {x: -9.398286, y: -3.7193222, z: 0}
+  - {x: 2.4795473, y: 3.7193217, z: 0}
+  - {x: -10.718047, y: 2.279585, z: 0}
+  nodeCount: 8
+  initialized: 1
+  initialName: New Path 1
+  pathVisible: 0
+--- !u!114 &541798780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541798776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathName: CharSelMove1
+  pathColor: {r: 0, g: 1, b: 1, a: 1}
+  nodes:
+  - {x: 0, y: -0.07998547, z: 0}
+  - {x: 9.358294, y: -3.8393002, z: 0}
+  - {x: -9.758221, y: -2.919468, z: 0}
+  - {x: 9.518266, y: 1.4797301, z: 0}
+  - {x: 0.15997016, y: 3.8393002, z: 0}
+  - {x: -8.99836, y: 3.3593879, z: 0}
+  - {x: -0.6798758, y: -4.6791463, z: 0}
+  - {x: -9.838207, y: -1.0398104, z: 0}
+  nodeCount: 8
+  initialized: 1
+  initialName: New Path 1
+  pathVisible: 0
+--- !u!4 &541798781
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541798776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 400.5, y: 155.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1201688544
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +455,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvChar: {fileID: 1201688548}
-  txtOri: {fileID: 0}
 --- !u!114 &1201688546
 MonoBehaviour:
   m_ObjectHideFlags: 0

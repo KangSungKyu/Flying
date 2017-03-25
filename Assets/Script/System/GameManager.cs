@@ -46,6 +46,8 @@ class C_GAMEMANAGER
         AddID("치킨", 0);
         AddID("펭귄", 1);
         AddID("돼지", 2);
+        AddID("고양이", 3);
+        AddID("양", 4);
 
         if (m_dicMaxFromLevel != null)
             m_dicMaxFromLevel.Clear();
@@ -198,24 +200,30 @@ class C_GAMEMANAGER
 
 
         //char
-        //m_cSpriteMgr.InsertSprite("펭귄_Pack", Resources.Load("Texture/Character/Penguin_Pack", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("펭귄_Char", Resources.LoadAll("Texture/Character/Penguin_Char", typeof(Sprite))[0] as Sprite);
+        m_cSpriteMgr.InsertSprite("고양이_Char", Resources.LoadAll("Texture/Character/Cat_Char", typeof(Sprite))[0] as Sprite);
+        m_cSpriteMgr.InsertSprite("양_Char", Resources.LoadAll("Texture/Character/Sheep_Char", typeof(Sprite))[0] as Sprite);
         //hand
         m_cSpriteMgr.InsertSprite("펭귄_Hand", Resources.LoadAll("Texture/Character/Penguin_Char", typeof(Sprite))[2] as Sprite);
+        m_cSpriteMgr.InsertSprite("고양이_Hand", Resources.LoadAll("Texture/Character/Cat_Char", typeof(Sprite))[2] as Sprite);
+        m_cSpriteMgr.InsertSprite("양_Hand", Resources.LoadAll("Texture/Character/Sheep_Char", typeof(Sprite))[2] as Sprite);
         //char ver select
         m_cSpriteMgr.InsertSprite("펭귄_CharSel", Resources.LoadAll("Texture/Character/Penguin_Char", typeof(Sprite))[1] as Sprite);
+        m_cSpriteMgr.InsertSprite("고양이_CharSel", Resources.LoadAll("Texture/Character/Cat_Char", typeof(Sprite))[1] as Sprite);
+        m_cSpriteMgr.InsertSprite("양_CharSel", Resources.LoadAll("Texture/Character/Sheep_Char", typeof(Sprite))[1] as Sprite);
         //leg
         m_cSpriteMgr.InsertSprite("펭귄_Leg", Resources.LoadAll("Texture/Character/Penguin_Char", typeof(Sprite))[3] as Sprite);
+        m_cSpriteMgr.InsertSprite("고양이_Leg", Resources.LoadAll("Texture/Character/Cat_Char", typeof(Sprite))[3] as Sprite);
+        m_cSpriteMgr.InsertSprite("양_Leg", Resources.LoadAll("Texture/Character/Sheep_Char", typeof(Sprite))[3] as Sprite);
 
         m_cSpriteMgr.InsertSprite("돼지_Char", Resources.Load("Texture/Character/Pig_Char", typeof(Sprite)) as Sprite);
-        //m_cSpriteMgr.InsertSprite("펭귄_Char", Resources.Load("Texture/Character/Penguin_Char", typeof(Sprite)) as Sprite);
+        
         m_cSpriteMgr.InsertSprite("치킨_Char", Resources.Load("Texture/Character/Chicken_Char", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("사자_Char", Resources.Load("Texture/Character/Lion_Char", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("판다_Char", Resources.Load("Texture/Character/Panda_Char", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("코끼리_Char", Resources.Load("Texture/Character/Elepha_Char", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("원숭이_Char", Resources.Load("Texture/Character/Monkey_Char", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("고양이_Char", Resources.Load("Texture/Character/Cat_Char", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("양_Char", Resources.Load("Texture/Character/Sheep_Char", typeof(Sprite)) as Sprite);
+        
 
         m_cSpriteMgr.InsertSprite("cloudHit", Resources.Load("Texture/cloudHit", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("cloud", Resources.Load("Texture/cloud1", typeof(Sprite)) as Sprite);

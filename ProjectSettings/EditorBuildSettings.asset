@@ -17,3 +17,7 @@ EditorBuildSettings:
     path: Assets/Scene/Charc.unity
   - enabled: 1
     path: Assets/Scene/Roulette.unity
+  - enabled: 1
+    path: Assets/Scene/Plane.unity
+  - enabled: 1
+    path: Assets/Scene/Launch.unity

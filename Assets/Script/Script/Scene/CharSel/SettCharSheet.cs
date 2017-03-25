@@ -17,6 +17,8 @@ public class SettCharSheet : MonoBehaviour {
         dicPage = new Dictionary<int, List<GameObject>>();
         
         CreateView("펭귄", new Vector2(000.0f, 000.0f),0);
+        CreateView("고양이", new Vector2(1.0f, -1.0f), 0);
+        CreateView("양", new Vector2(-1.0f, 1.0f), 0);
     }
 	
     public void CreateView(string _name,Vector2 _pos,int _page)
@@ -30,6 +32,9 @@ public class SettCharSheet : MonoBehaviour {
 
         inst.transform.position = _pos;
         inst.name = _name+"_View";
+
+        inst.GetComponent<CharSelManCtrl>().strCharName = _name;
+        inst.GetComponent<CharSelManCtrl>().SettingCharSprite();
 
         if(!C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveChar(_name))
         {

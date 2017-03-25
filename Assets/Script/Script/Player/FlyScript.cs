@@ -71,6 +71,10 @@ public class FlyScript : MonoBehaviour {
         //strPlaneName = C_GAMEMANAGER.GetInstance().strSelectedPlaneName;
         //strLauncherName = C_GAMEMANAGER.GetInstance().strSelectedLaunchName;
 
+        strCharName = "양";
+        strPlaneName = "나뭇잎";
+        strLauncherName = "launcher2";
+
         C_GAMEMANAGER.GetInstance().GetPlayer().InitPlayer(strCharName,strPlaneName,strLauncherName);
         ChangeCharSprite(strCharName);
         ChangePlaneSprite(strPlaneName);
@@ -233,15 +237,18 @@ public class FlyScript : MonoBehaviour {
         if(fChargeTimer < C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletTime)
         {
             fChargeTimer += Time.deltaTime;
+
+            gobjHand.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
         }
     }
 
     IEnumerator HandDown()
     {
-        float timer = 1.0f;
-        iTween.PunchRotation(gobjHand, new Vector3(0.0f, 0.0f, -120.0f), timer);
+        float timer = 0.75f;
+        //iTween.PunchRotation(gobjHand, new Vector3(0.0f, 0.0f, -180.0f), timer);
+        iTween.RotateFrom(gobjHand, new Vector3(0.0f, 0.0f, 0.0f), timer);
 
-        yield return new WaitForSeconds(timer);
+        yield return new WaitForSeconds(0.01f);
     }
 
     public void EndChargeBullet()
@@ -418,7 +425,7 @@ public class FlyScript : MonoBehaviour {
     public void LauchEvent()
     {
         
-		Vector3 vecPower = (vecAim - OriginPos) * C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fMaxPower * 0.8f;
+		Vector3 vecPower = (vecAim - OriginPos) * C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fMaxPower * 0.75f;
         fHorizontalPower = vecPower.x;
         fVerticalPower = vecPower.y;
         Debug.Log("HorizonPower : " + fHorizontalPower.ToString());

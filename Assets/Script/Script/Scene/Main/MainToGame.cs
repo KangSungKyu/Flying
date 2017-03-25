@@ -18,14 +18,16 @@ public class MainToGame : MonoBehaviour {
         string strP = C_GAMEMANAGER.GetInstance().strSelectedPlaneName;
         string strL = C_GAMEMANAGER.GetInstance().strSelectedLaunchName;
 
-        if(strC != "" && strP != "" && strL != "")
+        //if(strC != "" && strP != "" && strL != "")
             C_GAMEMANAGER.GetInstance().ChangeScene("Test");
+        /*
         else
         {
             youdontSel.enabled = true;
 
             StartCoroutine(CloseYDSel());
         }
+        //*/
     }
     IEnumerator CloseYDSel()
     {
@@ -40,5 +42,15 @@ public class MainToGame : MonoBehaviour {
     public void GoRoulette()
     {
         C_GAMEMANAGER.GetInstance().ChangeScene("Roulette");
+    }
+
+    public void GoPlane()
+    {
+        C_GAMEMANAGER.GetInstance().ChangeScene("Plane");
+    }
+
+    public void GoLaunch()
+    {
+        C_GAMEMANAGER.GetInstance().ChangeScene("Launch");
     }
 }

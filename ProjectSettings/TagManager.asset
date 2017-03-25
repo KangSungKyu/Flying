@@ -12,6 +12,7 @@ TagManager:
   - End
   - Item
   - Obstacle
+  - CharSel
   layers:
   - Default
   - TransparentFX

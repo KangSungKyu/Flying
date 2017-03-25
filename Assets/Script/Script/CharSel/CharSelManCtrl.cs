@@ -10,15 +10,31 @@ public class CharSelManCtrl : MonoBehaviour {
     string curPlayPath;
     bool bStop = true;
     bool bClick = false;
+    int leg_l_o;
+    int leg_r_o;
 
     void Start () {
-       
+        SettingCharSprite();
+    }
+    public void SettingCharSprite()
+    {
+        Debug.Log(strCharName);
+
         GetComponent<SpriteRenderer>().sprite = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(strCharName + "_CharSel");
         GetComponentsInChildren<SpriteRenderer>()[2].sprite = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(strCharName + "_Leg");
         GetComponentsInChildren<SpriteRenderer>()[3].sprite = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(strCharName + "_Leg");
 
-        if(C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveChar(strCharName))
+        if (C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveChar(strCharName))
             SettingMovement();
+        int id = C_GAMEMANAGER.GetInstance().GetIDFromCharName(strCharName);
+
+        GetComponentsInChildren<SpriteRenderer>()[0].sortingOrder += id;
+        GetComponentsInChildren<SpriteRenderer>()[1].sortingOrder += id;
+        GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder += id;
+        GetComponentsInChildren<SpriteRenderer>()[3].sortingOrder += id;
+
+        leg_l_o = GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder;
+        leg_r_o = GetComponentsInChildren<SpriteRenderer>()[3].sortingOrder;
     }
 	void SettingMovement()
     {
@@ -58,14 +74,13 @@ public class CharSelManCtrl : MonoBehaviour {
         
         if(bXFlip)
         {
-            GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = 2;
-            GetComponentsInChildren<SpriteRenderer>()[3].sortingOrder = 1;
-
+            GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = leg_r_o;
+            GetComponentsInChildren<SpriteRenderer>()[3].sortingOrder = leg_l_o;
         }
         else
         {
-            GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = 1;
-            GetComponentsInChildren<SpriteRenderer>()[3].sortingOrder = 2;
+            GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = leg_l_o;
+            GetComponentsInChildren<SpriteRenderer>()[3].sortingOrder = leg_r_o;
         }
 
         prev = transform.position;
@@ -87,18 +102,31 @@ public class CharSelManCtrl : MonoBehaviour {
             bClick = false;
         }
     }
+    void Stop()
+    {
+        iTween.Stop(this.gameObject);
+        bStop = true;
+
+        GetComponent<Animator>().ResetTrigger("IdleToMove");
+        GetComponent<Animator>().SetTrigger("MoveToIdle");
+    }
     public void ItsMe()
     {
         if (!C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveChar(strCharName))
             return;
 
-        iTween.Stop(this.gameObject);
-        bStop = true;
+        Stop();
+
         iTween.PunchPosition(this.gameObject, new Vector3(0.0f, 2.5f, 0.0f), 4.0f);
 
-        GetComponent<Animator>().ResetTrigger("IdleToMove");
-        GetComponent<Animator>().SetTrigger("MoveToIdle");
-
         C_GAMEMANAGER.GetInstance().strSelectedCharName = strCharName;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "CharSel")
+        {
+            Stop();
+        }
     }
 }
