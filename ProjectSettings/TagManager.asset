@@ -13,6 +13,7 @@ TagManager:
   - Item
   - Obstacle
   - CharSel
+  - Launcher
   layers:
   - Default
   - TransparentFX

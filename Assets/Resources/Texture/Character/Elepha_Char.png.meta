@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 guid: de98c546653c66a45a37665acb1e07cc
-timeCreated: 1488115021
+timeCreated: 1490480747
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Elepha_Char
+    21300002: Elepha_Hand
+    21300004: Elepha_CharSel
+    21300006: Elepha_Leg
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -34,7 +38,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -58,9 +62,85 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Elepha_Char
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 245
+        width: 174
+        height: 178
+      alignment: 9
+      pivot: {x: 0.55, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Elepha_Hand
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 26
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.9}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Elepha_CharSel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 34
+        width: 174
+        height: 179
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Elepha_Leg
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 50
+        width: 25
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.9}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

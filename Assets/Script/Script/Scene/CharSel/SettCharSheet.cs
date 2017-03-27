@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SettCharSheet : MonoBehaviour {
 
@@ -19,6 +20,11 @@ public class SettCharSheet : MonoBehaviour {
         CreateView("펭귄", new Vector2(000.0f, 000.0f),0);
         CreateView("고양이", new Vector2(1.0f, -1.0f), 0);
         CreateView("양", new Vector2(-1.0f, 1.0f), 0);
+        CreateView("코끼리", new Vector2(-1.0f, 1.0f), 1);
+        CreateView("판다", new Vector2(1.0f, -1.0f), 1);
+
+
+        SettingCurrentPage(curPage);
     }
 	
     public void CreateView(string _name,Vector2 _pos,int _page)
@@ -70,11 +76,56 @@ public class SettCharSheet : MonoBehaviour {
  
 	}
 
-    public void BeginDragView()
+    public void BeginDragView(BaseEventData _data)
     {
+        start = (_data as PointerEventData).position;
     }
-    public void EndDragView()
+    public void EndDragView(BaseEventData _data)
     {
+        end = (_data as PointerEventData).position;
+
+        Vector2 dir = (end - start).normalized;
+
+        Debug.Log(dir.y);
+
+        if(dir.y > 0.0f)
+        {
+            //up slider
+            if(curPage < maxPage)
+            {
+                curPage++;
+            }
+        }
+        else
+        {
+            //down slider
+            if(curPage > 0)
+            {
+                curPage--;
+            }
+        }
+        SettingCurrentPage(curPage);
+    }
+
+    public void SettingCurrentPage(int _page)
+    {
+        for(int i = 0; i < dicPage.Count; ++i)
+        {
+            if(i == _page)
+            {
+                foreach(GameObject o in dicPage[i])
+                {
+                    o.SetActive(true);
+                }
+            }
+            else
+            {
+                foreach(GameObject o in dicPage[i])
+                {
+                    o.SetActive(false);
+                }
+            }
+        }
     }
 
     public void BackMain()

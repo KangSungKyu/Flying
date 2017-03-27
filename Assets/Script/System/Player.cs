@@ -30,6 +30,8 @@ class C_PLAYER
         SetIHaveChar("돼지", false);
         SetIHaveChar("사자", false);
         SetIHaveChar("치킨", false);
+        SetIHaveChar("판다", true);
+        SetIHaveChar("코끼리", true);
     }
 
 

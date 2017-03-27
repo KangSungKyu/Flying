@@ -26,6 +26,7 @@ public class FlyScript : MonoBehaviour {
     //UI elements
     public GameObject ShotButton;
 	public GameObject PullButton;
+    public GameObject FevButton;
     public GameObject ToqButton;
     public Image imgWindMeter;
     public Image imgLifeMeter;
@@ -58,6 +59,9 @@ public class FlyScript : MonoBehaviour {
     public string strCharName;
     public string strPlaneName;
     public string strLauncherName;
+    Vector3 vecPrevPos = Vector3.zero;
+
+    GameObject gobjLaunch;
 
     // Use this for initialization
     IEnumerator Start() {
@@ -73,15 +77,20 @@ public class FlyScript : MonoBehaviour {
 
         strCharName = "양";
         strPlaneName = "나뭇잎";
-        strLauncherName = "launcher2";
+        strLauncherName = "투석기";
 
         C_GAMEMANAGER.GetInstance().GetPlayer().InitPlayer(strCharName,strPlaneName,strLauncherName);
         ChangeCharSprite(strCharName);
         ChangePlaneSprite(strPlaneName);
         ChangeHandSprite(strCharName);
-        
 
-		GetComponent<BoxCollider2D> ().size = new Vector2 (C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fColliderScale,
+        gobjLaunch = GameObject.Instantiate(C_GAMEMANAGER.GetInstance().GetObjectMgr().GetObject(strLauncherName));
+
+        gobjLaunch.GetComponent<LauncherParent>().SetPlayer(this.gameObject);
+        gobjLaunch.GetComponent<BoxCollider2D>().size = new Vector2(10.0f, 10000.0f);
+        gobjLaunch.GetComponent<BoxCollider2D>().offset = new Vector2(100.0f,5000.0f);
+
+        GetComponent<BoxCollider2D> ().size = new Vector2 (C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fColliderScale,
 			C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fColliderScale);
 
         AimSetting();
@@ -91,20 +100,27 @@ public class FlyScript : MonoBehaviour {
 			PullButton.SetActive (true);
 			ShotButton.SetActive (false);
             ToqButton.SetActive(false);
-
-            if(Input.GetMouseButton(0))
+            FevButton.SetActive(false);
+            
+            if (Input.GetMouseButton(0))
             {
+                gobjLaunch.GetComponent<LauncherParent>().AimEvent();
                 AimEvent();
             }
+
             if (fLauchPower > 0)
                 fLauchPower -= 0.01f;
             else if(fLauchPower > 1.0f)
                 fLauchPower = 1.0f;
-            transform.position = OriginPos + (vecReverseAim - OriginPos ) * fLauchPower;
+
+            gobjLaunch.GetComponent<LauncherParent>().SetLaunchPower(fLauchPower);
+            gobjLaunch.GetComponent<LauncherParent>().EndAimEvent();
+
             yield return new WaitForSeconds(0.01f);
         }
 
         fITTimer = 0.0f;
+        
     }
 
     void ChangeCharSprite(string strCharName)
@@ -132,53 +148,15 @@ public class FlyScript : MonoBehaviour {
 
     void AimEvent()
     {
-        Vector3 vecMouseWorld = myCam.ScreenToWorldPoint(Input.mousePosition);
-        vecMouseWorld.z = 0.0f;
         
-        float fLength = Vector3.Distance(transform.position, vecMouseWorld);
+		vecAim = gobjLaunch.GetComponent<LauncherParent>().GetBlueDot();
+        vecReverseAim = gobjLaunch.GetComponent<LauncherParent>().GetBeforeAim();
+
+        blueDot.transform.position = gobjLaunch.GetComponent<LauncherParent>().GetBlueDot();
+
+        blueDot.GetComponent<LineRenderer>().SetPosition(0, gobjLaunch.GetComponent<LauncherParent>().GetBlueDot());
+        blueDot.GetComponent<LineRenderer>().SetPosition(1, vecReverseAim);
         
-        if(fLength > 3.0f)
-        {
-            return;
-        }
-
-
-        Vector3 vecDir = OriginPos - vecMouseWorld;
-        vecDir = Vector3.Normalize(vecDir) * 3.0f;
-        
-        Vector3 vecBlueDot = OriginPos + vecDir ;
-        
-        Vector3 vecBeforeDot = OriginPos - vecDir;
-        
-        Vector3 vecBlueDir = vecBlueDot - OriginPos;
-        faimAngle = Mathf.Acos(Vector3.Dot(new Vector3(1,0,0), vecBlueDir.normalized)) * Mathf.Rad2Deg;
-      
-		float  faimAngle2 = Mathf.Acos(Vector3.Dot(new Vector3(0, 1, 0), vecBlueDir.normalized)) * Mathf.Rad2Deg;
-
-		if(faimAngle2 > C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree )
-        {
-			faimAngle = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMinDegree;
-			vecBlueDot = rightPos;
-			vecBeforeDot = OriginPos - new Vector3(90-C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMinDegree,
-				C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMinDegree).normalized * 3.0f;
-        }
-		else if(faimAngle >  C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree )
-        {
-			faimAngle =  C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree;
-            vecBlueDot = UpPos;
-			vecBeforeDot = OriginPos - new Vector3(90-C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree,
-				C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree).normalized * 3.0f;
-        }
-        
-		vecAim = vecBlueDot;
-		vecReverseAim = vecBeforeDot;
-
-        blueDot.transform.position = vecBlueDot;
-
-        blueDot.GetComponent<LineRenderer>().SetPosition(0, vecBlueDot);
-        blueDot.GetComponent<LineRenderer>().SetPosition(1, vecBeforeDot);
-
-
     }
 
     
@@ -195,16 +173,16 @@ public class FlyScript : MonoBehaviour {
         chars = new C_ObjectPool(C_GAMEMANAGER.GetInstance().GetPlayer().GetChargeBulletCount(), C_GAMEMANAGER.GetInstance().GetObjectMgr().GetObject(strCharName + "_Bullet_Charge"));
         fLauchPower = 0.0f;
 
-
+        gobjLaunch.GetComponent<LauncherParent>().SetOriginPos(OriginPos);
 
         diagonalPos = new Vector3(0.5f, 0.5f);
         diagonalPos.Normalize();
         diagonalPos = diagonalPos * 3.0f + transform.position;
 		float fMaxDegree = C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats().m_fMaxDegree;
 		float fMinDegree = C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fMinDegree;
-
-		rightPos =new Vector3(90-fMinDegree,fMinDegree).normalized * 3.0f + OriginPos;
-		UpPos = new Vector3(90-fMaxDegree,fMaxDegree).normalized * 3.0f + OriginPos;
+        
+        rightPos = Quaternion.Euler(0.0f, 0.0f, fMinDegree) * Vector2.right * 3.0f + OriginPos;
+        UpPos = Quaternion.Euler(0.0f, 0.0f, fMaxDegree) * Vector2.right * 3.0f + OriginPos;
 
 
         redDot1 = Instantiate(C_GAMEMANAGER.GetInstance().GetObjectMgr().GetObject("RedDot")) as GameObject;
@@ -224,7 +202,6 @@ public class FlyScript : MonoBehaviour {
 
         blueDot.GetComponent<LineRenderer>().SetPosition(0, diagonalPos);
         blueDot.GetComponent<LineRenderer>().SetPosition(1, transform.position);
-
     }
 
 	public void BeginChargeBullet()
@@ -245,7 +222,6 @@ public class FlyScript : MonoBehaviour {
     IEnumerator HandDown()
     {
         float timer = 0.75f;
-        //iTween.PunchRotation(gobjHand, new Vector3(0.0f, 0.0f, -180.0f), timer);
         iTween.RotateFrom(gobjHand, new Vector3(0.0f, 0.0f, 0.0f), timer);
 
         yield return new WaitForSeconds(0.01f);
@@ -270,38 +246,18 @@ public class FlyScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Forward")
-        {
-            GetComponent<Rigidbody2D>().isKinematic = true;
-            float fOriginSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed();
-            float fResultSpeed = fOriginSpeed * 1.5f;
-            C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fResultSpeed);
-            GetComponent<Rigidbody2D>().isKinematic = false;
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 150.0f));
-            Destroy(col.gameObject);
-        }
-        else if(col.tag == "Backward")
-        {
-            GetComponent<Rigidbody2D>().isKinematic = true;
-
-            float fOriginSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed();
-            float fResultSpeed = fOriginSpeed * 0.5f;
-            C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fResultSpeed);
-            GetComponent<Rigidbody2D>().isKinematic = false;
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 150.0f));
-            Destroy(col.gameObject);
-        }
-        else if(col.name == "LaunchPad")
+       if(col.tag == "Launcher")
         {
             C_GAMEMANAGER.GetInstance().GetPlayer().SetState(E_PLAYERSTATE.E_PLAYERRELEASE);
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             
-            C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fHorizontalPower);
-            C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVerticalPower);   
+            C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fHorizontalPower + 100.0f);
+            C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVerticalPower + 100.0f);
 
             PullButton.SetActive (false);
 			ShotButton.SetActive (true);
-            ToqButton.SetActive(true);
+            //ToqButton.SetActive(true);
+            FevButton.SetActive(true);
             StartCoroutine(SpeedReducer());
             StartCoroutine(WindReducer());
 
@@ -331,11 +287,12 @@ public class FlyScript : MonoBehaviour {
         if (fLauchPower < 1.0f)
             fLauchPower += 0.15f;
 
-        if (fLauchPower >= 1.0f)
+        gobjLaunch.GetComponent<LauncherParent>().SetLaunchPower(fLauchPower);
+
+        if (fLauchPower >= 0.3f)
         {
-            fLauchPower = 1.0f;
+            fLauchPower = Mathf.Min(fLauchPower, 1.0f);
             LauchEvent();
-            
         }
     }
 
@@ -424,20 +381,29 @@ public class FlyScript : MonoBehaviour {
 
     public void LauchEvent()
     {
-        
-		Vector3 vecPower = (vecAim - OriginPos) * C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fMaxPower * 0.75f;
+        float MinPow = 0.0f;
+        float MaxPow = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxSpeed;
+        float Pow = Mathf.Lerp(MinPow, MaxPow, fLauchPower);
+
+        vecAim = gobjLaunch.GetComponent<LauncherParent>().GetBlueDot();
+
+        Vector3 vecPower = (vecAim - OriginPos).normalized * Pow * 1.0f;
         fHorizontalPower = vecPower.x;
         fVerticalPower = vecPower.y;
+
         Debug.Log("HorizonPower : " + fHorizontalPower.ToString());
         Debug.Log("fVerticalPower : " + fVerticalPower.ToString());
+        Debug.Log("Angle " + gobjLaunch.GetComponent<LauncherParent>().GetAimAngle().ToString());
+
         C_GAMEMANAGER.GetInstance().GetPlayer().SetState(E_PLAYERSTATE.E_PLAYERRELEASE);
-        GetComponent<Rigidbody2D>().velocity = vecPower;//(vecAim - OriginPos).normalized * 20.0f;
-        C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos(transform.position);
+        GetComponent<Rigidbody2D>().velocity = vecPower;
+        C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos(new Vector3(0.0f,9.0f,0.0f));
 
         Destroy(blueDot);
         Destroy(redDot1);
         Destroy(redDot2);
-        
+
+        gobjLaunch.GetComponent<LauncherParent>().LaunchEvent();
     }
     public void WindButton()
     {
@@ -465,7 +431,6 @@ public class FlyScript : MonoBehaviour {
             textSpeed.text = nSpeed.ToString() + "m/s";
 
             fMeter += C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed() / 500.0f;
-            
 
             int nMeter = (int)fMeter;
 
@@ -490,7 +455,7 @@ public class FlyScript : MonoBehaviour {
             float fWind = C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter();
             if (C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter() > 0)
             {
-                //fWind = fWind - 0.5f;
+                fWind = fWind - 0.5f;
                 C_GAMEMANAGER.GetInstance().GetPlayer().SetWindMeter(fWind);
             }
             else if (C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter() < 0)
@@ -572,7 +537,7 @@ public class FlyScript : MonoBehaviour {
             float fRate = (float)(C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentHP()) / (float)(C_GAMEMANAGER.GetInstance().GetPlayer().GetMaxHP());
             imgLifeMeter.fillAmount = fRate;
 
-            Color32 color = new Color(1 - fRate,fRate, 0);
+            Color32 color = new Color(1 - fRate, fRate, 0);
             imgLifeMeter.color = color;
 
             float h = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y;
@@ -588,36 +553,11 @@ public class FlyScript : MonoBehaviour {
 
             textBCount.text = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentBulletCount().ToString();
             textCBCount.text = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentChargeBulletCount().ToString();
+
+            //==========
+
         }
-    }
 
-    
-    void FixedUpdate()
-    {
-        //player forward vector setting
-        if (C_GAMEMANAGER.GetInstance().GetPlayer().GetState() == E_PLAYERSTATE.E_PLAYERRELEASE)
-        {
-            Vector2 pos = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos();
-            Vector2 ax = Vector2.right;
-            pos.Normalize();
-
-            float rad = Mathf.Acos(Vector2.Dot(ax, pos));
-            transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Rad2Deg * rad + fToqueCtrlDeg);
-            C_GAMEMANAGER.GetInstance().GetPlayer().SetRealForwardDir(pos);
-
-            float deg = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(Vector2.right, pos));
-
-            if (deg < 10.0f && 
-                C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < 500.0f)
-            {
-                float fSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed();
-                float fVSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed();
-
-                C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fSpeed - fSpeed * 0.45f * Time.deltaTime);
-                C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVSpeed - fVSpeed * 0.45f * Time.deltaTime);
-            }
-        }
-    
         if (C_GAMEMANAGER.GetInstance().GetPlayer().GetState() == E_PLAYERSTATE.E_PLAYERDIE)
         {
             StopAllCoroutines();
@@ -628,9 +568,54 @@ public class FlyScript : MonoBehaviour {
                fverticalSpeed, 0);
             transform.position = transform.position + AddVec;
 
+            C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos(Vector3.zero);
+            C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(0.0f);
+            C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(0.0f);
+
             btnBackMain.gameObject.SetActive(true);
         }
-        
+    }
+    
+    
+    void FixedUpdate()
+    {
+        //player forward vector setting
+        if(GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+        {
+            C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos(GetComponent<Rigidbody2D>().transform.position);
+        }
+        if (C_GAMEMANAGER.GetInstance().GetPlayer().GetState() != E_PLAYERSTATE.E_PLAYERDIE)
+        {
+            C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos((Vector2)C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos() + C_GAMEMANAGER.GetInstance().GetAddToPlayer());
+
+            Vector2 pos = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos() - vecPrevPos;
+            Vector2 ax = Vector2.right;
+
+            pos.Normalize();
+
+            float rad = Mathf.Acos(Vector2.Dot(ax, pos));
+            float tog = Mathf.Rad2Deg * rad;
+
+            if (pos.y < 0.0f)
+                tog = -tog;
+
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, tog + fToqueCtrlDeg);
+            C_GAMEMANAGER.GetInstance().GetPlayer().SetRealForwardDir(pos);
+
+            float deg = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(Vector2.right, pos));
+
+            if (deg < 10.0f &&
+                C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < 10.0f)
+            {
+                float fSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed();
+                float fVSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed();
+
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fSpeed - fSpeed * 0.45f * Time.deltaTime);
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVSpeed - fVSpeed * 0.45f * Time.deltaTime);
+            }
+
+            vecPrevPos = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos();
+        }
     }
     
 }

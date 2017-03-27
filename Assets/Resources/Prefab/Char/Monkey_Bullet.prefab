@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 60803835432127958}
   - component: {fileID: 114910105498779810}
   - component: {fileID: 50869506237375630}
-  - component: {fileID: 114780829526902562}
   m_Layer: 0
   m_Name: Monkey_Bullet
   m_TagString: PlayerAttack
@@ -88,17 +87,6 @@ PolygonCollider2D:
       - {x: 0.25494003, y: -0.15314579}
       - {x: 0.46391106, y: 0.07723713}
       - {x: 0.4612503, y: 0.12260246}
---- !u!114 &114780829526902562
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1334540686368580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f14d6f8662a9c4cbd4d23f3b84f408, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114910105498779810
 MonoBehaviour:
   m_ObjectHideFlags: 1

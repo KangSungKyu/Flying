@@ -18,8 +18,6 @@ public class CharSelManCtrl : MonoBehaviour {
     }
     public void SettingCharSprite()
     {
-        Debug.Log(strCharName);
-
         GetComponent<SpriteRenderer>().sprite = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(strCharName + "_CharSel");
         GetComponentsInChildren<SpriteRenderer>()[2].sprite = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(strCharName + "_Leg");
         GetComponentsInChildren<SpriteRenderer>()[3].sprite = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(strCharName + "_Leg");

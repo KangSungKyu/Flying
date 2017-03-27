@@ -7,10 +7,7 @@ public class TerrainVerticalMove : MonoBehaviour {
     public Transform[] ArrTerrain;
     public Vector3[] ArrBufferPos;
     public float[] ArrMovementScaling;
-
-
-
-
+    
     void Start()
     {
         
@@ -22,11 +19,9 @@ public class TerrainVerticalMove : MonoBehaviour {
     }
 
     void Update () {
-
         
-        if (C_GAMEMANAGER.GetInstance().GetPlayer().GetState() == E_PLAYERSTATE.E_PLAYERRELEASE || C_GAMEMANAGER.GetInstance().GetPlayer().GetState() == E_PLAYERSTATE.E_PLAYERFEVERTIME)
+        if (C_GAMEMANAGER.GetInstance().GetPlayer().GetState() != E_PLAYERSTATE.E_PLAYERDIE)
         {
-         
             for (int i = 0; i < ArrTerrain.Length; i++ )
             {
 
@@ -42,23 +37,18 @@ public class TerrainVerticalMove : MonoBehaviour {
                         ArrTerrain[i].position.y,
                         ArrTerrain[i].position.z);
                 }
-                if(ArrBufferPos[0].y - ArrTerrain[0].position.y < -1f)
+                if(C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < -C_GAMEMANAGER.GetInstance().GetCMHeight())
                 {
                     //ArrTerrain[i].position = new Vector3(ArrTerrain[i].position.x,
                     //    ArrBufferPos[i].y,
                     //    ArrBufferPos[i].z);
                     C_GAMEMANAGER.GetInstance().GetPlayer().SetState( E_PLAYERSTATE.E_PLAYERDIE);
                     
-                    
-                    
                 }
                 ArrTerrain[i].position = ArrTerrain[i].position - AddVec;
 
-                C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos(C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos() + AddVec);
+                C_GAMEMANAGER.GetInstance().SetAddToPlayer(AddVec);
             }
         }
-
-
     }
-
 }

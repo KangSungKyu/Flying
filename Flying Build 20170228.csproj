@@ -89,9 +89,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Script\Scene\Launch\LaunchSelectScene.cs" />
+    <Compile Include="Assets\Script\Script\Launcher\PanAimEvent.cs" />
     <Compile Include="Assets\Pixelplacement\iTweenPath\iTweenPath.cs" />
-    <Compile Include="Assets\Script\Script\Scene\Plane\PlaneSelectScene.cs" />
     <Compile Include="Assets\Script\Script\Bullet\BulletScript.cs" />
     <Compile Include="Assets\Script\Script\Bullet\Charge\CatChargeMovement.cs" />
     <Compile Include="Assets\Script\Script\Bullet\Charge\ChickenChargeMovement.cs" />
@@ -104,7 +103,10 @@
     <Compile Include="Assets\Script\Script\Bullet\Normal\MonkeyBulletMovement.cs" />
     <Compile Include="Assets\Script\Script\Camera\CamScript.cs" />
     <Compile Include="Assets\Script\Script\CharSel\CharSelManCtrl.cs" />
+    <Compile Include="Assets\Script\Script\Launcher\BirdGunAimEvent.cs" />
+    <Compile Include="Assets\Script\Script\Launcher\CatapultAimEvent.cs" />
     <Compile Include="Assets\Script\Script\Launcher\Launcher.cs" />
+    <Compile Include="Assets\Script\Script\Launcher\Parent\LauncherParent.cs" />
     <Compile Include="Assets\Script\Script\MoveScript.cs" />
     <Compile Include="Assets\Script\Script\Obs\CloudScript.cs" />
     <Compile Include="Assets\Script\Script\Obs\ItemScript.cs" />
@@ -116,10 +118,12 @@
     <Compile Include="Assets\Script\Script\Scene\CharSel\SetupCharView.cs" />
     <Compile Include="Assets\Script\Script\Scene\Game\BackMainScript.cs" />
     <Compile Include="Assets\Script\Script\Scene\Game\ropeScript.cs" />
+    <Compile Include="Assets\Script\Script\Scene\Launch\LaunchSelectScene.cs" />
     <Compile Include="Assets\Script\Script\Scene\Loading\LoadingScript.cs" />
     <Compile Include="Assets\Script\Script\Scene\Loading\LogoLoading.cs" />
     <Compile Include="Assets\Script\Script\Scene\Loading\prefabLoader.cs" />
     <Compile Include="Assets\Script\Script\Scene\Main\MainToGame.cs" />
+    <Compile Include="Assets\Script\Script\Scene\Plane\PlaneSelectScene.cs" />
     <Compile Include="Assets\Script\Script\Scene\Roulette\RouletteSetScript.cs" />
     <Compile Include="Assets\Script\Script\Terrain\TerrainVerticalMove.cs" />
     <Compile Include="Assets\Script\Script\Trash\AngleScript.cs" />
@@ -145,7 +149,6 @@
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Resources\TestText.txt" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>
