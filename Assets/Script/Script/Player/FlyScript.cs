@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class FlyScript : MonoBehaviour {
 
@@ -51,6 +53,8 @@ public class FlyScript : MonoBehaviour {
     Camera myCam;
 
     float fITTimer;
+    float fMTimer; //mission timer update
+    float fMCheck; //mission timer set
 
     Vector3 vecAim;
     Vector3 vecReverseAim;
@@ -62,6 +66,8 @@ public class FlyScript : MonoBehaviour {
     Vector3 vecPrevPos = Vector3.zero;
 
     GameObject gobjLaunch;
+
+    FeverMissionParent curFevMission;
 
     // Use this for initialization
     IEnumerator Start() {
@@ -77,7 +83,7 @@ public class FlyScript : MonoBehaviour {
 
         strCharName = "양";
         strPlaneName = "나뭇잎";
-        strLauncherName = "투석기";
+        strLauncherName = "고릴라";
 
         C_GAMEMANAGER.GetInstance().GetPlayer().InitPlayer(strCharName,strPlaneName,strLauncherName);
         ChangeCharSprite(strCharName);
@@ -89,7 +95,7 @@ public class FlyScript : MonoBehaviour {
         gobjLaunch.GetComponent<LauncherParent>().SetPlayer(this.gameObject);
         gobjLaunch.GetComponent<BoxCollider2D>().size = new Vector2(10.0f, 10000.0f);
         gobjLaunch.GetComponent<BoxCollider2D>().offset = new Vector2(100.0f,5000.0f);
-
+        
         GetComponent<BoxCollider2D> ().size = new Vector2 (C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fColliderScale,
 			C_GAMEMANAGER.GetInstance ().GetPlayer ().GetPlayerStats ().m_fColliderScale);
 
@@ -119,8 +125,16 @@ public class FlyScript : MonoBehaviour {
             yield return new WaitForSeconds(0.01f);
         }
 
+        foreach (FeverMissionParent scr in FevButton.GetComponents<FeverMissionParent>())
+        {
+            scr.SetPlayer(this.gameObject);
+            scr.SetCamera(myCam);
+        }
+
         fITTimer = 0.0f;
-        
+
+        fMTimer = 0.0f;
+        fMCheck = 20.0f; //초기 n초후에 시작후 추가로 설정
     }
 
     void ChangeCharSprite(string strCharName)
@@ -248,6 +262,8 @@ public class FlyScript : MonoBehaviour {
     {
        if(col.tag == "Launcher")
         {
+            gobjLaunch.GetComponent<LauncherParent>().LaunchEvent();
+
             C_GAMEMANAGER.GetInstance().GetPlayer().SetState(E_PLAYERSTATE.E_PLAYERRELEASE);
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             
@@ -381,6 +397,8 @@ public class FlyScript : MonoBehaviour {
 
     public void LauchEvent()
     {
+        gobjLaunch.GetComponent<LauncherParent>().BeforeLaunchEvent();
+
         float MinPow = 0.0f;
         float MaxPow = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxSpeed;
         float Pow = Mathf.Lerp(MinPow, MaxPow, fLauchPower);
@@ -403,11 +421,11 @@ public class FlyScript : MonoBehaviour {
         Destroy(redDot1);
         Destroy(redDot2);
 
-        gobjLaunch.GetComponent<LauncherParent>().LaunchEvent();
     }
     public void WindButton()
     {
-        if(C_GAMEMANAGER.GetInstance().GetPlayer().GetState() == E_PLAYERSTATE.E_PLAYERRELEASE)
+        if(C_GAMEMANAGER.GetInstance().GetPlayer().GetState() == E_PLAYERSTATE.E_PLAYERRELEASE &&
+            FevButton.GetComponent<MissionEvent>().src == null)
         {
             float fWind = C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter();
             if (fWind >= 100)
@@ -556,6 +574,39 @@ public class FlyScript : MonoBehaviour {
 
             //==========
 
+            if(fMTimer >= fMCheck)
+            {
+                string [] str =
+                {
+                    "Roll",
+                    "Ver",
+                    "Hor"
+                };
+
+                //int sel = Random.Range(0, str.Length);
+                int sel = Random.Range(0, 0);
+                string what = str[sel];
+                int i = 0;
+
+                foreach(FeverMissionParent src in FevButton.GetComponents<FeverMissionParent>())
+                {
+                    src.enabled = i == sel;
+
+                    if (src.enabled)
+                        curFevMission = src;
+
+                    i++;
+                }
+
+                FevButton.GetComponent<MissionEvent>().src = curFevMission;
+                FevButton.GetComponentInChildren<Text>().text = what;
+
+                fMCheck = Random.Range(10.0f, 17.0f);
+                fMTimer = 0.0f;
+            }
+
+            if(C_GAMEMANAGER.GetInstance().GetPlayer().GetState() == E_PLAYERSTATE.E_PLAYERRELEASE)
+                fMTimer += Time.deltaTime;
         }
 
         if (C_GAMEMANAGER.GetInstance().GetPlayer().GetState() == E_PLAYERSTATE.E_PLAYERDIE)

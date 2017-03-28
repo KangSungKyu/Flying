@@ -223,6 +223,9 @@ class C_GAMEMANAGER
         m_cObjectMgr.InsertObject("새총", Resources.Load("Prefab/BirdGun", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("투석기", Resources.Load("Prefab/Catapult", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("선풍기", Resources.Load("Prefab/Pan", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("공룡", Resources.Load("Prefab/Dino", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("고릴라", Resources.Load("Prefab/Gorilla", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("물로켓", Resources.Load("Prefab/WRocket", typeof(GameObject)) as GameObject);
 
 
         //char
