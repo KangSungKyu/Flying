@@ -12,6 +12,7 @@ public class FeverMissionParent : MonoBehaviour
     protected Vector2 vecBeginMouse;
     protected Vector2 vecEndMouse;
     protected Vector2 vecCurMouse;
+    protected Vector2 vecPrvMouse;
 
     private void Start()
     {

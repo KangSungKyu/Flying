@@ -7,8 +7,11 @@ using UnityEngine.EventSystems;
 public class SettCharSheet : MonoBehaviour {
 
     public Canvas canvChar;
+    public SpriteRenderer sprBG;
+
     // Use this for initialization
     Dictionary<int, List<GameObject>> dicPage;
+    Dictionary<int, string> dicPageBG;
     int curPage = 0;
     Vector2 start, end;
     int maxPage = 10;
@@ -16,14 +19,14 @@ public class SettCharSheet : MonoBehaviour {
     void Start ()
     {
         dicPage = new Dictionary<int, List<GameObject>>();
+        dicPageBG = new Dictionary<int, string>();
         
         CreateView("펭귄", new Vector2(000.0f, 000.0f),0);
         CreateView("고양이", new Vector2(1.0f, -1.0f), 0);
         CreateView("양", new Vector2(-1.0f, 1.0f), 0);
         CreateView("코끼리", new Vector2(-1.0f, 1.0f), 1);
         CreateView("판다", new Vector2(1.0f, -1.0f), 1);
-
-
+        
         SettingCurrentPage(curPage);
     }
 	
@@ -75,14 +78,19 @@ public class SettCharSheet : MonoBehaviour {
 	void Update () {
  
 	}
+    
+    public void BeginDragView(Vector2 _data)
+    {
+        start = _data;
 
-    public void BeginDragView(BaseEventData _data)
-    {
-        start = (_data as PointerEventData).position;
+        Debug.Log(start);
     }
-    public void EndDragView(BaseEventData _data)
+
+    public void EndDragView(Vector2 _data)
     {
-        end = (_data as PointerEventData).position;
+        end = _data;
+
+        Debug.Log(end);
 
         Vector2 dir = (end - start).normalized;
 
@@ -125,6 +133,16 @@ public class SettCharSheet : MonoBehaviour {
                     o.SetActive(false);
                 }
             }
+        }
+
+        string str = "";
+
+        if(dicPageBG.TryGetValue(curPage,out str))
+        {
+            Sprite spr = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(str);
+
+            if (spr != null)
+                sprBG.sprite = spr;
         }
     }
 

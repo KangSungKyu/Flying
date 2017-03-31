@@ -14,6 +14,8 @@ class C_PLAYER
     private Vector3 m_vRealPos;
     private Vector3 m_vRealForwardDir;
     private Dictionary<string,bool> m_dicIHaveChar;
+    private Dictionary<string, bool> m_dicIHavePlane;
+    private Dictionary<string, bool> m_dicIHaveLaunch;
 
     public C_PLAYER()
     {
@@ -23,6 +25,8 @@ class C_PLAYER
         m_cLauncher = new C_LAUCHER();
 
         m_dicIHaveChar = new Dictionary<string, bool>();
+        m_dicIHavePlane = new Dictionary<string, bool>();
+        m_dicIHaveLaunch = new Dictionary<string, bool>();
 
         SetIHaveChar("펭귄", true);
         SetIHaveChar("고양이", true);
@@ -32,6 +36,19 @@ class C_PLAYER
         SetIHaveChar("치킨", false);
         SetIHaveChar("판다", true);
         SetIHaveChar("코끼리", true);
+
+        SetIHaveLaunch("새총", true);
+        SetIHaveLaunch("투석기", true);
+        SetIHaveLaunch("공룡", true);
+        SetIHaveLaunch("고릴라", true);
+        SetIHaveLaunch("물로켓", true);
+        SetIHaveLaunch("선풍기", true);
+
+        SetIHavePlane("나뭇잎", true);
+        SetIHavePlane("단풍잎", true);
+        SetIHavePlane("종이비행기", true);
+        SetIHavePlane("달", true);
+        SetIHavePlane("풍선", true);
     }
 
 
@@ -105,7 +122,40 @@ class C_PLAYER
 
         return false;
     }
-	public float SpeedReducer()
+
+    public void SetIHavePlane(string _who, bool _have)
+    {
+        if (m_dicIHavePlane.ContainsKey(_who))
+            m_dicIHavePlane[_who] = _have;
+        else
+            m_dicIHavePlane.Add(_who, _have);
+    }
+    public bool GetIHavePlane(string _who)
+    {
+        bool b = false;
+
+        if (m_dicIHavePlane.TryGetValue(_who, out b))
+            return b;
+
+        return false;
+    }
+    public void SetIHaveLaunch(string _who, bool _have)
+    {
+        if (m_dicIHaveLaunch.ContainsKey(_who))
+            m_dicIHaveLaunch[_who] = _have;
+        else
+            m_dicIHaveLaunch.Add(_who, _have);
+    }
+    public bool GetIHaveLaunch(string _who)
+    {
+        bool b = false;
+
+        if (m_dicIHaveLaunch.TryGetValue(_who, out b))
+            return b;
+
+        return false;
+    }
+    public float SpeedReducer()
 	{
 		return m_sStats.m_fDecreaseSpeed;
 	}

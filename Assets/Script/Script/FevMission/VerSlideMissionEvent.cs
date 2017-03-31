@@ -6,8 +6,10 @@ using UnityEngine.EventSystems;
 public class VerSlideMissionEvent : FeverMissionParent
 {
 
-	// Use this for initialization
-	void Start () {
+    int count = 0;
+    int maxCount = 5;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -27,9 +29,32 @@ public class VerSlideMissionEvent : FeverMissionParent
     public override void EndMotion(BaseEventData _data)
     {
         base.EndMotion(_data);
+
+        Vector2 p = vecPrvMouse;
+        Vector2 v = vecCurMouse - p;
+
+        float dist = v.magnitude;
+
+        if (Mathf.Abs(p.x - vecCurMouse.x) < 1.5f &&
+            dist > 3.0f)
+        {
+            count++;
+        }
+
+        if (count > maxCount)
+        {
+            count = 0;
+            CompleteMission();
+        }
+
+        vecPrvMouse = vecEndMouse;
+
+        Debug.Log(dist + " " + count);
     }
     public override void CompleteMission()
     {
         base.CompleteMission();
+
+        C_GAMEMANAGER.GetInstance().GetPlayer().SetWindMeter(C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter() + 70.0f);
     }
 }

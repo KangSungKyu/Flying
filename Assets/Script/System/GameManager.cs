@@ -193,6 +193,7 @@ class C_GAMEMANAGER
         m_cObjectMgr.InsertObject("Monkey_Bullet_F_Particle", Resources.Load("Prefab/MonkeyBullet_F_Part", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("Monkey_Bullet_Particle", Resources.Load("Prefab/MonkeyBullet_Part", typeof(GameObject)) as GameObject);
 
+        //bullet
         m_cObjectMgr.InsertObject("돼지_Bullet", Resources.Load("Prefab/Char/Pig_Bullet", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("펭귄_Bullet", Resources.Load("Prefab/Char/Penguin_Bullet", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("치킨_Bullet", Resources.Load("Prefab/Char/Chicken_Bullet", typeof(GameObject)) as GameObject);
@@ -214,6 +215,8 @@ class C_GAMEMANAGER
 
        
         m_cObjectMgr.InsertObject("CharSel_Man", Resources.Load("Prefab/CharSel_Man", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("PlaneSel", Resources.Load("Prefab/PlaneSel", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("LauncherSel", Resources.Load("Prefab/LauncherSel", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("RouletteBoardPeace", Resources.Load("Prefab/BoardPeace", typeof(GameObject)) as GameObject);
 
         m_cObjectMgr.InsertObject("RedDot", Resources.Load("Prefab/RedDot", typeof(GameObject)) as GameObject);
@@ -253,16 +256,17 @@ class C_GAMEMANAGER
         m_cSpriteMgr.InsertSprite("판다_Leg", Resources.LoadAll("Texture/Character/Panda_Char", typeof(Sprite))[3] as Sprite);
         m_cSpriteMgr.InsertSprite("코끼리_Leg", Resources.LoadAll("Texture/Character/Elepha_Char", typeof(Sprite))[3] as Sprite);
 
+
         m_cSpriteMgr.InsertSprite("돼지_Char", Resources.Load("Texture/Character/Pig_Char", typeof(Sprite)) as Sprite);
-        
         m_cSpriteMgr.InsertSprite("치킨_Char", Resources.Load("Texture/Character/Chicken_Char", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("사자_Char", Resources.Load("Texture/Character/Lion_Char", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("원숭이_Char", Resources.Load("Texture/Character/Monkey_Char", typeof(Sprite)) as Sprite);
         
-
+        //obs
         m_cSpriteMgr.InsertSprite("cloudHit", Resources.Load("Texture/cloudHit", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("cloud", Resources.Load("Texture/cloud1", typeof(Sprite)) as Sprite);
 
+        //item
         m_cSpriteMgr.InsertSprite("ForwardWind", Resources.Load("Texture/ForwardWind", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("BackwardWind", Resources.Load("Texture/BackwardWind", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("RouletteKey", Resources.Load("Texture/RouletteKey", typeof(Sprite)) as Sprite);
@@ -271,8 +275,27 @@ class C_GAMEMANAGER
         m_cSpriteMgr.InsertSprite("UpGo", Resources.Load("Texture/UpGo", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("DownGo", Resources.Load("Texture/DownGo", typeof(Sprite)) as Sprite);
 
+        //Plane
         m_cSpriteMgr.InsertSprite("나뭇잎_Plane", Resources.Load("Texture/Leaf1", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("단풍잎_Plane", Resources.Load("Texture/Leaf2", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("종이비행기_Plane", Resources.Load("Texture/Paper", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("달_Plane", Resources.Load("Texture/Moon", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("풍선_Plane", Resources.Load("Texture/Balloon", typeof(Sprite)) as Sprite);
+
+
+        //select plane
+        m_cSpriteMgr.InsertSprite("나뭇잎_PlaneSel", Resources.Load("Texture/Selected/Plane/Leaf_PlaneSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("단풍잎_PlaneSel", Resources.Load("Texture/Selected/Plane/Maple_PlaneSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("종이비행기_PlaneSel", Resources.Load("Texture/Selected/Plane/Paper_PlaneSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("달_PlaneSel", Resources.Load("Texture/Selected/Plane/Moon_PlaneSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("풍선_PlaneSel", Resources.Load("Texture/Selected/Plane/Balloon_PlaneSel", typeof(Sprite)) as Sprite);
+        //select launch
+        m_cSpriteMgr.InsertSprite("새총_LauncherSel", Resources.Load("Texture/Selected/Launcher/BirdGun_LaunchSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("투석기_LauncherSel", Resources.Load("Texture/Selected/Launcher/Catapult_LaunchSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("선풍기_LauncherSel", Resources.Load("Texture/Selected/Launcher/Pan_LaunchSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("공룡_LauncherSel", Resources.Load("Texture/Selected/Launcher/Dino_LaunchSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("고릴라_LauncherSel", Resources.Load("Texture/Selected/Launcher/Gorilla_LaunchSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("물로켓_LauncherSel", Resources.Load("Texture/Selected/Launcher/WRocket_LaunchSel", typeof(Sprite)) as Sprite);
 
         m_cDataMgr.InitMgr();
 

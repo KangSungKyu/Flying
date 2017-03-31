@@ -18,9 +18,11 @@ public class MainToGame : MonoBehaviour {
         string strP = C_GAMEMANAGER.GetInstance().strSelectedPlaneName;
         string strL = C_GAMEMANAGER.GetInstance().strSelectedLaunchName;
 
-        //if(strC != "" && strP != "" && strL != "")
+        Debug.Log(strC + " " + strP + " " + strL);
+
+        if(strC != "" && strP != "" && strL != "")
             C_GAMEMANAGER.GetInstance().ChangeScene("Test");
-        /*
+        //*
         else
         {
             youdontSel.enabled = true;

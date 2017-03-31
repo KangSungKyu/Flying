@@ -46,10 +46,13 @@ public class CharSelManCtrl : MonoBehaviour {
         curPlayPath = strp[Random.Range(0, strp.Length)];
 
         Vector3[] path = iTweenPath.GetPath(curPlayPath);
+
+        /*
         for (int i = 0; i < path.Length; ++i)
         {
             path[i] += this.gameObject.transform.position;
         }
+        //*/
 
         iTween.MoveTo(this.gameObject, iTween.Hash("path", path, "speed", 0.35f, "loopType", iTween.LoopType.pingPong));
 
@@ -126,5 +129,15 @@ public class CharSelManCtrl : MonoBehaviour {
         {
             Stop();
         }
+    }
+
+    private void OnEnable()
+    {
+        SettingMovement();
+    }
+
+    private void OnDisable()
+    {
+        Stop();
     }
 }

@@ -78,12 +78,8 @@ public class FlyScript : MonoBehaviour {
         //Debug.Log(nDataTest);
 
         strCharName = C_GAMEMANAGER.GetInstance().strSelectedCharName;
-        //strPlaneName = C_GAMEMANAGER.GetInstance().strSelectedPlaneName;
-        //strLauncherName = C_GAMEMANAGER.GetInstance().strSelectedLaunchName;
-
-        strCharName = "양";
-        strPlaneName = "나뭇잎";
-        strLauncherName = "고릴라";
+        strPlaneName = C_GAMEMANAGER.GetInstance().strSelectedPlaneName;
+        strLauncherName = C_GAMEMANAGER.GetInstance().strSelectedLaunchName;
 
         C_GAMEMANAGER.GetInstance().GetPlayer().InitPlayer(strCharName,strPlaneName,strLauncherName);
         ChangeCharSprite(strCharName);
@@ -574,7 +570,7 @@ public class FlyScript : MonoBehaviour {
 
             //==========
 
-            if(fMTimer >= fMCheck)
+            if(fMTimer >= fMCheck && FevButton.GetComponentInChildren<Text>().text == "Wind")
             {
                 string [] str =
                 {
@@ -583,8 +579,8 @@ public class FlyScript : MonoBehaviour {
                     "Hor"
                 };
 
-                //int sel = Random.Range(0, str.Length);
-                int sel = Random.Range(0, 0);
+                int sel = Random.Range(0, str.Length);
+               
                 string what = str[sel];
                 int i = 0;
 

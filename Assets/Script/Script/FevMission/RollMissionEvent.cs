@@ -7,8 +7,9 @@ public class RollMissionEvent : FeverMissionParent {
 
     float prev = 0.0f;
     int count = 0;
-	// Use this for initialization
-	void Start () {
+    int maxCount = 5;
+    // Use this for initialization
+    void Start () {
         prev = 0.0f;
 	}
 	
@@ -38,7 +39,7 @@ public class RollMissionEvent : FeverMissionParent {
             prev = 0.0f;
         }
 
-        if(count > 5)
+        if(count > maxCount)
         {
             count = 0;
             CompleteMission();
@@ -52,8 +53,9 @@ public class RollMissionEvent : FeverMissionParent {
     }
     public override void CompleteMission()
     {
-        C_GAMEMANAGER.GetInstance().GetPlayer().SetWindMeter(C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter() + 50.0f);
-
         base.CompleteMission();
+
+        C_GAMEMANAGER.GetInstance().GetPlayer().SetWindMeter(C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter() + 70.0f);
+
     }
 }
