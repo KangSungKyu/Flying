@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Collections;
@@ -45,6 +45,9 @@ class C_PLANE : C_PLAYERITEM
         m_sStats.m_fIncreaseAirMeter = floatParseWord(strFileName, strID, strArrFiliter[3]);
         m_sStats.m_fCollisionScale = floatParseWord(strFileName, strID, strArrFiliter[4]);
         m_sStats.m_fFeverTimeHeight = floatParseWord(strFileName, strID, strArrFiliter[5]);
+        m_sStats.m_fStartHeight = floatParseWord(strFileName, strID, strArrFiliter[6]);
+        m_sStats.m_ffStartSpeed = floatParseWord(strFileName, strID, strArrFiliter[7]);
+        m_sStats.m_fFeverUp = floatParseWord(strFileName, strID, strArrFiliter[8]);
 
         Debug.Log("Type : Plane \n"
             + "ID : " + m_sStats.m_strID + "\n"
