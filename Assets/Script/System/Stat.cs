@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 struct S_CHAR_STATS
@@ -37,6 +37,9 @@ struct S_PLANE_STATS
     public float m_fIncreaseAirMeter;
     public float m_fCollisionScale;
     public float m_fFeverTimeHeight;
+    public float m_fStartHeight;
+    public float m_ffStartSpeed;
+    public float m_fFeverUp;
 }
 struct S_LAUNCHER_STATS
 {
