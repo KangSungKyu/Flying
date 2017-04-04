@@ -82,6 +82,7 @@ public class FlyScript : MonoBehaviour {
         strLauncherName = C_GAMEMANAGER.GetInstance().strSelectedLaunchName;
 
         C_GAMEMANAGER.GetInstance().GetPlayer().InitPlayer(strCharName,strPlaneName,strLauncherName);
+
         ChangeCharSprite(strCharName);
         ChangePlaneSprite(strPlaneName);
         ChangeHandSprite(strCharName);

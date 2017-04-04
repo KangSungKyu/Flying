@@ -10,11 +10,6 @@ class C_GAMEMANAGER
     private C_PLAYER m_cPlayer;
     private C_DATAMANAGER m_cDataMgr;
     private C_SPRITEMANAGER m_cSpriteMgr;
-    private Dictionary<string,int> m_dicID;
-    private Dictionary<int, string> m_dicName;
-    private Dictionary<int, int> m_dicMaxFromLevel; //cur max -> next max
-    private List<int> m_arrPeace;
-    private List<int> m_arrMaxPeace;
     private int m_nKey;
     private float m_fCheckMaxHeight = 10.0f;
 
@@ -26,6 +21,11 @@ class C_GAMEMANAGER
     public string strSelectedPlaneName = "";
     public string strSelectedLaunchName = "";
 
+    private PeaceMeter CharPeaceM;
+    private PeaceMeter PlanePeaceM;
+    private PeaceMeter LauncherPeaceM;
+    private JewelMeter JewelM;
+
     #region ApplySingleton
     private static C_GAMEMANAGER m_cInstance;
     private C_GAMEMANAGER()
@@ -36,49 +36,10 @@ class C_GAMEMANAGER
         m_cPlayer = new C_PLAYER();
         m_cSpriteMgr = new C_SPRITEMANAGER();
 
-        if (m_dicID != null)
-            m_dicID.Clear();
-        if (m_dicID == null)
-            m_dicID = new Dictionary<string, int>();
-
-        if (m_dicName != null)
-            m_dicName.Clear();
-        if (m_dicName == null)
-            m_dicName = new Dictionary<int, string>();
-
-        AddID("치킨", 0);
-        AddID("펭귄", 1);
-        AddID("돼지", 2);
-        AddID("고양이", 3);
-        AddID("양", 4);
-        AddID("판다", 5);
-        AddID("코끼리", 6);
-
-        if (m_dicMaxFromLevel != null)
-            m_dicMaxFromLevel.Clear();
-        if (m_dicMaxFromLevel == null)
-        {
-            m_dicMaxFromLevel = new Dictionary<int, int>();
-            m_dicMaxFromLevel[0] = 30;
-            m_dicMaxFromLevel[30] = 50;
-            m_dicMaxFromLevel[50] = 70;
-            m_dicMaxFromLevel[70] = 90;
-        }
-
-        if (m_arrPeace == null)
-        {
-            m_arrPeace = new List<int>();
-
-            for (int i = 0; i < m_dicID.Count; ++i)
-                m_arrPeace.Add(0);
-        }
-        if (m_arrMaxPeace == null)
-        {
-            m_arrMaxPeace = new List<int>();
-
-            for (int i = 0; i < m_dicID.Count; ++i)
-                m_arrMaxPeace.Add(m_dicMaxFromLevel[m_arrPeace[i]]);
-        }
+        CharPeaceM = new PeaceMeter();
+        PlanePeaceM = new PeaceMeter();
+        LauncherPeaceM = new PeaceMeter();
+        JewelM = new JewelMeter();
 
     }
     public static C_GAMEMANAGER GetInstance()
@@ -111,20 +72,6 @@ class C_GAMEMANAGER
     {
         return m_fCheckMaxHeight;
     }
-    public void AddID(string _name,int _id)
-    {
-        int id = 0;
-
-        if (!m_dicID.TryGetValue(_name, out id))
-        {
-            m_dicID.Add(_name, _id);
-            m_dicName.Add(_id, _name);
-        }
-    }
-    public int GetIDCount()
-    {
-        return m_dicID.Count;
-    }
     public void SetKeyCount(int _n)
     {
         m_nKey = _n;
@@ -141,44 +88,76 @@ class C_GAMEMANAGER
     {
         return vecAddToPlayer;
     }
-    public void SetPeace(int _who, int _peace)
-    {
-        if (0 <= _who && _who < m_arrPeace.Count)
-        {
-            m_arrPeace[_who] = _peace;
 
-            if (m_arrPeace[_who] >= m_arrMaxPeace[_who])
-            {
-                m_arrMaxPeace[_who] = m_dicMaxFromLevel[m_arrPeace[_who]];
-                m_arrPeace[_who] = 0;
-            }
-        }
-    }
-    public void SetMaxPeace(int _who, int _peace)
+    public PeaceMeter GetCharPeaceMeter()
     {
-        if(0 <= _who && _who < m_arrMaxPeace.Count)
-            m_arrMaxPeace[_who] = _peace;
+        return CharPeaceM;
     }
-    public int GetPeace(int _who)
+    public PeaceMeter GetPlanePeaceMeter()
     {
-        if(0 <= _who && _who < m_arrPeace.Count)
-            return m_arrPeace[_who];
-        return 0;
+        return PlanePeaceM;
     }
-    public int GetMaxPeace(int _who)
+    public PeaceMeter GetLauncherPeaceMeter()
     {
-        if(0 <= _who && _who < m_arrMaxPeace.Count)
-            return m_arrMaxPeace[_who];
-        return 0;
+        return LauncherPeaceM;
     }
-    public string GetCharNameFromID(int _id)
+    public JewelMeter GetJewelMeter()
     {
-        return m_dicName[_id];
+        return JewelM;
     }
+
+    public void InitPeaceMeter()
+    {
+        CharPeaceM.Init();
+        PlanePeaceM.Init();
+        LauncherPeaceM.Init();
+        JewelM.Init();
+
+        CharPeaceM.m_cPlayer = PlanePeaceM.m_cPlayer = LauncherPeaceM.m_cPlayer = m_cPlayer;
+
+        CharPeaceM.AddID("펭귄", 0);
+        CharPeaceM.AddID("고양이", 1);
+        CharPeaceM.AddID("양", 2);
+        CharPeaceM.AddID("판다", 3);
+        CharPeaceM.AddID("코끼리", 4);
+        CharPeaceM.AddID("돼지", 5);
+        CharPeaceM.AddID("치킨", 6);
+        CharPeaceM.AddID("사자", 7);
+
+        PlanePeaceM.AddID("종이비행기", 0);
+        PlanePeaceM.AddID("나뭇잎", 1);
+        PlanePeaceM.AddID("낙옆", 2);
+        PlanePeaceM.AddID("풍선", 3);
+        PlanePeaceM.AddID("달", 4);
+
+        LauncherPeaceM.AddID("새총", 0);
+        LauncherPeaceM.AddID("투석기", 1);
+        LauncherPeaceM.AddID("공룡", 2);
+        LauncherPeaceM.AddID("고릴라", 3);
+        LauncherPeaceM.AddID("물로켓", 4);
+        LauncherPeaceM.AddID("선풍기", 5);
+
+        JewelM.SetCurrentJewelCount("다이아", 0);
+        JewelM.SetCurrentJewelCount("루비", 0);
+        JewelM.SetCurrentJewelCount("사파이어", 0);
+        JewelM.SetCurrentJewelCount("토파츠", 0);
+        JewelM.SetCurrentJewelCount("호박", 0);
+        JewelM.SetCurrentJewelCount("에메랄드", 0);
+
+        JewelM.SetExchangeJewelCount("다이아", 10);
+        JewelM.SetExchangeJewelCount("루비", 15);
+        JewelM.SetExchangeJewelCount("사파이어", 10);
+        JewelM.SetExchangeJewelCount("토파츠", 15);
+        JewelM.SetExchangeJewelCount("호박", 10);
+        JewelM.SetExchangeJewelCount("에메랄드", 20);
+    }
+
     public void InitMgr()
     {
         if (m_bInit == true)
             return;
+
+        InitPeaceMeter();
 
 
         m_cObjectMgr.InsertObject("Flying", Resources.Load("FlyingObject", typeof(GameObject)) as GameObject);
@@ -277,7 +256,7 @@ class C_GAMEMANAGER
 
         //Plane
         m_cSpriteMgr.InsertSprite("나뭇잎_Plane", Resources.Load("Texture/Leaf1", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("단풍잎_Plane", Resources.Load("Texture/Leaf2", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("낙옆_Plane", Resources.Load("Texture/Leaf2", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("종이비행기_Plane", Resources.Load("Texture/Paper", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("달_Plane", Resources.Load("Texture/Moon", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("풍선_Plane", Resources.Load("Texture/Balloon", typeof(Sprite)) as Sprite);
@@ -285,7 +264,7 @@ class C_GAMEMANAGER
 
         //select plane
         m_cSpriteMgr.InsertSprite("나뭇잎_PlaneSel", Resources.Load("Texture/Selected/Plane/Leaf_PlaneSel", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("단풍잎_PlaneSel", Resources.Load("Texture/Selected/Plane/Maple_PlaneSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("낙옆_PlaneSel", Resources.Load("Texture/Selected/Plane/Maple_PlaneSel", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("종이비행기_PlaneSel", Resources.Load("Texture/Selected/Plane/Paper_PlaneSel", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("달_PlaneSel", Resources.Load("Texture/Selected/Plane/Moon_PlaneSel", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("풍선_PlaneSel", Resources.Load("Texture/Selected/Plane/Balloon_PlaneSel", typeof(Sprite)) as Sprite);
@@ -300,6 +279,13 @@ class C_GAMEMANAGER
         m_cDataMgr.InitMgr();
 
         m_bInit = true;
+
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("다이아", 100);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("루비", 100);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("사파이어",100);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("토파츠",100);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("호박",100);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("에메랄드", 100);
     }
     public C_PLAYER GetPlayer()
     {
@@ -317,16 +303,6 @@ class C_GAMEMANAGER
     }
 
 
-    public int GetIDFromCharName(string _name)
-    {
-        int num = 0;
-
-        if(m_dicID.TryGetValue(_name,out num))
-        {
-            return num;
-        }
-        return 0;
-    }
 }
  struct S_SCENEDATA
 {

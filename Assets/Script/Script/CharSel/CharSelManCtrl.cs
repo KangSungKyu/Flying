@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharSelManCtrl : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class CharSelManCtrl : MonoBehaviour {
     bool bClick = false;
     int leg_l_o;
     int leg_r_o;
+    public Text peace;
 
     void Start () {
         SettingCharSprite();
@@ -24,7 +26,7 @@ public class CharSelManCtrl : MonoBehaviour {
 
         if (C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveChar(strCharName))
             SettingMovement();
-        int id = C_GAMEMANAGER.GetInstance().GetIDFromCharName(strCharName);
+        int id = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetIDFromCharName(strCharName);
 
         GetComponentsInChildren<SpriteRenderer>()[0].sortingOrder += id;
         GetComponentsInChildren<SpriteRenderer>()[1].sortingOrder += id;
@@ -33,6 +35,9 @@ public class CharSelManCtrl : MonoBehaviour {
 
         leg_l_o = GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder;
         leg_r_o = GetComponentsInChildren<SpriteRenderer>()[3].sortingOrder;
+
+        for (int i = 0; i < C_GAMEMANAGER.GetInstance().GetPlayer().GetCharLevel(strCharName); ++i)
+            GetComponentsInChildren<SpriteRenderer>()[4 + i].enabled = true;
     }
 	void SettingMovement()
     {
@@ -85,9 +90,16 @@ public class CharSelManCtrl : MonoBehaviour {
         }
 
         prev = transform.position;
+
+        int id = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetIDFromCharName(strCharName);
+
+        peace.text = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetPeace(id) + " / " + C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetMaxPeace(id);
     }
     private void OnMouseDown()
     {
+        if (!C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveChar(strCharName))
+            return;
+
         if (!bClick)
             bClick = true;
     }
@@ -103,7 +115,7 @@ public class CharSelManCtrl : MonoBehaviour {
             bClick = false;
         }
     }
-    void Stop()
+    public void Stop()
     {
         iTween.Stop(this.gameObject);
         bStop = true;
@@ -133,7 +145,8 @@ public class CharSelManCtrl : MonoBehaviour {
 
     private void OnEnable()
     {
-        SettingMovement();
+        if(C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveChar(strCharName))
+            SettingMovement();
     }
 
     private void OnDisable()

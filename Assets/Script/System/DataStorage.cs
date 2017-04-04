@@ -17,8 +17,11 @@ public class C_DATAMANAGER
 
         C_DATASTORAGE cData = new C_DATASTORAGE();
         cData.LoadData(textAsset);
-        m_dicData.Add(strDataName, cData);
 
+        if (m_dicData.ContainsKey(strDataName))
+            m_dicData[strDataName] = cData;
+        else
+            m_dicData.Add(strDataName, cData);
     }
     public void InitMgr()
     {
@@ -27,6 +30,12 @@ public class C_DATAMANAGER
         InsertData("Data/Data_Char", "Character");
         InsertData("Data/Data_Launcher", "Launcher");
         InsertData("Data/Data_Plane", "Plane");
+        InsertData("Data/Data_Exchange_Char_1S", "Char_1S");
+        InsertData("Data/Data_Exchange_Char_2S", "Char_2S");
+        InsertData("Data/Data_Exchange_Char_3S", "Char_3S");
+        InsertData("Data/Data_Exchange_Plane_1S", "Plane_1S");
+        InsertData("Data/Data_Exchange_Plane_2S", "Plane_2S");
+        InsertData("Data/Data_Exchange_Plane_3S", "Plane_3S");
 
     }
     public bool TryAccessStorage(string strName)
@@ -85,22 +94,23 @@ public class C_DATASTORAGE
         
         for(int i = 1; i<m_strArrData.Length; i++)
         {
-            
             Dictionary<string, string> dicData = new Dictionary<string, string>();
             string[] strData = m_strArrData[i].Split(',');
             string strID = strData[0];
             
             for(int j = 1; j<strData.Length; j++)
             {
-                dicData.Add(m_strFilter[j], strData[j]);
-                
+                if (dicData.ContainsKey(m_strFilter[j]))
+                    dicData[m_strFilter[j]] = strData[j];
+                else
+                    dicData.Add(m_strFilter[j], strData[j]);
             }
-            
-            m_dicData.Add(strID, dicData);
 
+            if (m_dicData.ContainsKey(strID))
+                m_dicData[strID] = dicData;
+            else
+                m_dicData.Add(strID, dicData);
         }
-        
-
     }
     public string GetData(string strID,string strKey)
     {

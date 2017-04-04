@@ -55,7 +55,10 @@ class C_PLANE : C_PLAYERITEM
             + "Decrease Speed : " + m_sStats.m_fDecreaseSpeed + "\n"
             + "Increase Air Meter : " + m_sStats.m_fIncreaseAirMeter + "\n"
             + "CollisionScale : " + m_sStats.m_fCollisionScale + "\n"
-            + "FeverTimeHeight : " + m_sStats.m_fFeverTimeHeight + "\n");
+            + "FeverTimeHeight : " + m_sStats.m_fFeverTimeHeight + "\n"
+            + "Start Height : " + m_sStats.m_fStartHeight + "\n"
+            + "Start Speed : " + m_sStats.m_ffStartSpeed + "\n"
+            + "Fever Up : " + m_sStats.m_fFeverUp + "\n");
 
     }
 	public S_PLANE_STATS GetPlaneStats()

@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public class SettCharSheet : MonoBehaviour {
 
     public Canvas canvChar;
+    public Dropdown drop;
+    public Dropdown drop_u;
     public SpriteRenderer sprBG;
 
     // Use this for initialization
@@ -28,6 +30,25 @@ public class SettCharSheet : MonoBehaviour {
         CreateView("판다", new Vector2(1.0f, -1.0f), 1);
         
         SettingCurrentPage(curPage);
+
+        List<string> opt = new List<string>();
+
+        opt.Add("펭귄");
+        opt.Add("고양이");
+        opt.Add("양");
+        opt.Add("판다");
+        opt.Add("코끼리");
+        opt.Add("돼지");
+        opt.Add("치킨");
+        opt.Add("사자");
+
+        drop.transform.parent.gameObject.GetComponent<CreatePeaceCtrl>().bChar = true;
+        drop.ClearOptions();
+        drop.AddOptions(opt);
+        
+        drop_u.transform.parent.gameObject.GetComponent<UpgradeCtrl>().bChar = true;
+        drop_u.ClearOptions();
+        drop_u.AddOptions(opt);
     }
 	
     public void CreateView(string _name,Vector2 _pos,int _page)
@@ -38,6 +59,11 @@ public class SettCharSheet : MonoBehaviour {
             return;
 
         GameObject inst = GameObject.Instantiate<GameObject>(instCap);
+        Text peace = inst.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
+
+        peace.name = _name + "_Peace";
+
+        inst.GetComponent<CharSelManCtrl>().peace = peace;
 
         inst.transform.position = _pos;
         inst.name = _name+"_View";
@@ -56,6 +82,8 @@ public class SettCharSheet : MonoBehaviour {
             inst.GetComponentsInChildren<SpriteRenderer>()[1].color = c;
             inst.GetComponentsInChildren<SpriteRenderer>()[2].color = c;
             inst.GetComponentsInChildren<SpriteRenderer>()[3].color = c;
+
+            inst.GetComponent<CharSelManCtrl>().Stop();
         }
         List<GameObject> li;
 

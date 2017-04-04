@@ -22,7 +22,7 @@ public class RouletteSetScript : MonoBehaviour {
         body = img.GetComponent<Rigidbody2D>();
 
         //갯수만큼 균등하게 분할해서 선을 그려줌
-        int num = C_GAMEMANAGER.GetInstance().GetIDCount();
+        int num = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetIDCount();
         float fDegPeace = 360.0f / (float)(num);
 
         peaces = new List<GameObject>(0);
@@ -36,7 +36,7 @@ public class RouletteSetScript : MonoBehaviour {
 
             peaces[i].transform.rotation = Quaternion.Euler(0.0f, 0.0f, fDeg);
             peaces[i].transform.position = can.transform.position;
-            peaces[i].GetComponentInChildren<Text>().text = C_GAMEMANAGER.GetInstance().GetCharNameFromID(i);
+            peaces[i].GetComponentInChildren<Text>().text = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetCharNameFromID(i);
             peaces[i].GetComponentInChildren<Image>().color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
         }
         
@@ -48,8 +48,8 @@ public class RouletteSetScript : MonoBehaviour {
         {
             Debug.Log("You Got it!" + nSel);
 
-            int pe = C_GAMEMANAGER.GetInstance().GetPeace(nSel);
-            C_GAMEMANAGER.GetInstance().SetPeace(nSel, pe + 10);
+            int pe = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetPeace(nSel);
+            C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().SetPeace(nSel, pe + 10);
 
             nSel = -1;
             bStart = false;

@@ -19,6 +19,9 @@ public class LauncherSelCtrl : MonoBehaviour {
     public void SettingLauncherSprite()
     {
         GetComponentInChildren<SpriteRenderer>().sprite = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(strLaunchName + "_LauncherSel");
+
+        for (int i = 0; i < C_GAMEMANAGER.GetInstance().GetPlayer().GetLauncherLevel(strLaunchName); ++i)
+            GetComponentsInChildren<SpriteRenderer>()[1+i].enabled = true;
     }
 
     private void OnMouseDown()

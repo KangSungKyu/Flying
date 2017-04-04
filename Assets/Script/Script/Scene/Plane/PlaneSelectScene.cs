@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaneSelectScene : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class PlaneSelectScene : MonoBehaviour {
     int maxPage = 10;
 
     public SpriteRenderer sprBG;
+    public Dropdown drop;
+    public Dropdown drop_u;
 
     // Use this for initialization
     Dictionary<int, List<GameObject>> dicPage;
@@ -23,12 +26,29 @@ public class PlaneSelectScene : MonoBehaviour {
         dicPageBG = new Dictionary<int, string>();
 
         CreateView("나뭇잎", new Vector2(-2.560f, 1.000f), 0);
-        CreateView("단풍잎", new Vector2(-1.180f, 1.000f), 0);
+        CreateView("낙옆", new Vector2(-1.180f, 1.000f), 0);
         CreateView("종이비행기", new Vector2(1.00f, 1.000f), 0);
         CreateView("달", new Vector2(-2.560f, 1.000f), 1);
         CreateView("풍선", new Vector2(-1.180f, 1.000f), 1);
 
         SettingCurrentPage(curPage);
+
+
+        List<string> opt = new List<string>();
+
+        opt.Add("종이비행기");
+        opt.Add("나뭇잎");
+        opt.Add("낙옆");
+        opt.Add("풍선");
+        opt.Add("달");
+
+        drop.transform.parent.gameObject.GetComponent<CreatePeaceCtrl>().bChar = false;
+        drop.ClearOptions();
+        drop.AddOptions(opt);
+
+        drop_u.transform.parent.gameObject.GetComponent<UpgradeCtrl>().bChar = false;
+        drop_u.ClearOptions();
+        drop_u.AddOptions(opt);
     }
 	
 	// Update is called once per frame
@@ -44,6 +64,11 @@ public class PlaneSelectScene : MonoBehaviour {
             return;
 
         GameObject inst = GameObject.Instantiate<GameObject>(instCap);
+        Text peace = inst.GetComponentInChildren<Canvas>().GetComponentInChildren<Text>();
+
+        peace.name = _name + "_Peace";
+
+        inst.GetComponent<PlaneSelCtrl>().peace = peace;
 
         inst.transform.position = _pos;
         inst.name = _name + "_View";

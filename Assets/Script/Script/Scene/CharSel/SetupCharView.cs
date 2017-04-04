@@ -19,8 +19,8 @@ public class SetupCharView : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        int idx = C_GAMEMANAGER.GetInstance().GetIDFromCharName(id);
-        txtPeace.text = C_GAMEMANAGER.GetInstance().GetPeace(idx) + " / " + C_GAMEMANAGER.GetInstance().GetMaxPeace(idx);
+        int idx = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetIDFromCharName(id);
+        txtPeace.text = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetPeace(idx) + " / " + C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetMaxPeace(idx);
 
         Vector3 v = gobj.transform.position;
 

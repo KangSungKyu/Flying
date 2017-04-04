@@ -27,9 +27,15 @@ public class ItemScript : MonoBehaviour
 
         m_dicIFunc.Add("ForwardWind", ForwardWindFunc);
         m_dicIFunc.Add("BackwardWind", BackwardWindFunc);
-        m_dicIFunc.Add("치킨_Char", Chicken_CharFunc);
-        m_dicIFunc.Add("돼지_Char", Pig_CharFunc);
-        m_dicIFunc.Add("펭귄_Char", Penguin_CharFunc);
+        m_dicIFunc.Add("치킨_Char", CharPeaceFunc);
+        m_dicIFunc.Add("돼지_Char", CharPeaceFunc);
+        m_dicIFunc.Add("펭귄_Char", CharPeaceFunc);
+        m_dicIFunc.Add("양_Char", CharPeaceFunc);
+        m_dicIFunc.Add("사자_Char", CharPeaceFunc);
+        m_dicIFunc.Add("코끼리_Char", CharPeaceFunc);
+        m_dicIFunc.Add("판다_Char", CharPeaceFunc);
+        m_dicIFunc.Add("고양이_Char", CharPeaceFunc);
+        m_dicIFunc.Add("원숭이_Char", CharPeaceFunc);
         m_dicIFunc.Add("RouletteKey", RouletteKeyFunc);
         m_dicIFunc.Add("BulletGet", BulletGetFunc);
         m_dicIFunc.Add("ChargeGet", ChargeGetFunc);
@@ -42,8 +48,10 @@ public class ItemScript : MonoBehaviour
     {
  
         string[] arrN = {
-                "ForwardWind", "BackwardWind", "치킨_Char","돼지_Char","펭귄_Char","RouletteKey",
-                "BulletGet", "ChargeGet", "UpGo", "DownGo",
+                "ForwardWind", "BackwardWind", "치킨_Char","돼지_Char",
+            "펭귄_Char","사자_Char","고양이_Char","판다_Char",
+            "양_Char","원숭이_Char", "RouletteKey","BulletGet",
+            "ChargeGet", "UpGo", "DownGo",
                         };
 
 
@@ -116,26 +124,17 @@ public class ItemScript : MonoBehaviour
     {
         C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed() - 30.0f);
     }
-    void Chicken_CharFunc()
-    {
-        int idx = C_GAMEMANAGER.GetInstance().GetIDFromCharName("치킨");
-        int pe = C_GAMEMANAGER.GetInstance().GetPeace(idx);
 
-        C_GAMEMANAGER.GetInstance().SetPeace(idx, pe + 1);
-    }
-    void Pig_CharFunc()
+    void CharPeaceFunc()
     {
-        int idx = C_GAMEMANAGER.GetInstance().GetIDFromCharName("돼지");
-        int pe = C_GAMEMANAGER.GetInstance().GetPeace(idx);
+        string str = strObjectName;
 
-        C_GAMEMANAGER.GetInstance().SetPeace(idx, pe + 1);
-    }
-    void Penguin_CharFunc()
-    {
-        int idx = C_GAMEMANAGER.GetInstance().GetIDFromCharName("펭귄");
-        int pe = C_GAMEMANAGER.GetInstance().GetPeace(idx);
+        str = str.Substring(0, str.IndexOf("_"));
 
-        C_GAMEMANAGER.GetInstance().SetPeace(idx, pe + 1);
+        int idx = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetIDFromCharName(str);
+        int pe = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetPeace(idx);
+
+        C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().SetPeace(idx, pe + 1);
     }
     void RouletteKeyFunc()
     {

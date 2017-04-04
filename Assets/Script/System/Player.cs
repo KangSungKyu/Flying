@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-class C_PLAYER
+public class C_PLAYER
 {
     private int m_nID;
     private string m_strSpriteName;
@@ -16,6 +16,9 @@ class C_PLAYER
     private Dictionary<string,bool> m_dicIHaveChar;
     private Dictionary<string, bool> m_dicIHavePlane;
     private Dictionary<string, bool> m_dicIHaveLaunch;
+    private Dictionary<string, int> m_dicCharLevel;
+    private Dictionary<string, int> m_dicPlaneLevel;
+    private Dictionary<string, int> m_dicLaunchLevel;
 
     public C_PLAYER()
     {
@@ -27,28 +30,53 @@ class C_PLAYER
         m_dicIHaveChar = new Dictionary<string, bool>();
         m_dicIHavePlane = new Dictionary<string, bool>();
         m_dicIHaveLaunch = new Dictionary<string, bool>();
+        m_dicCharLevel = new Dictionary<string, int>();
+        m_dicPlaneLevel = new Dictionary<string, int>();
+        m_dicLaunchLevel = new Dictionary<string, int>();
 
         SetIHaveChar("펭귄", true);
-        SetIHaveChar("고양이", true);
-        SetIHaveChar("양", true);
-        SetIHaveChar("돼지", false);
-        SetIHaveChar("사자", false);
         SetIHaveChar("치킨", false);
-        SetIHaveChar("판다", true);
-        SetIHaveChar("코끼리", true);
+        SetIHaveChar("돼지", false);
+        SetIHaveChar("양", false);
+        SetIHaveChar("사자", false);
+        SetIHaveChar("판다", false);
+        SetIHaveChar("고양이", false);
+        SetIHaveChar("코끼리", false);
 
         SetIHaveLaunch("새총", true);
-        SetIHaveLaunch("투석기", true);
-        SetIHaveLaunch("공룡", true);
-        SetIHaveLaunch("고릴라", true);
-        SetIHaveLaunch("물로켓", true);
-        SetIHaveLaunch("선풍기", true);
+        SetIHaveLaunch("투석기", false);
+        SetIHaveLaunch("선풍기", false);
+        SetIHaveLaunch("고릴라", false);
+        SetIHaveLaunch("공룡", false);
+        SetIHaveLaunch("물로켓", false);
 
-        SetIHavePlane("나뭇잎", true);
-        SetIHavePlane("단풍잎", true);
         SetIHavePlane("종이비행기", true);
-        SetIHavePlane("달", true);
-        SetIHavePlane("풍선", true);
+        SetIHavePlane("나뭇잎", false);
+        SetIHavePlane("낙옆", false);
+        SetIHavePlane("달", false);
+        SetIHavePlane("풍선", false);
+
+        SetCharLevel("펭귄", 1);
+        SetCharLevel("고양이", 1);
+        SetCharLevel("돼지", 1);
+        SetCharLevel("양", 1);
+        SetCharLevel("사자", 1);
+        SetCharLevel("치킨", 1);
+        SetCharLevel("판다", 1);
+        SetCharLevel("코끼리", 1);
+
+        SetPlaneLevel("종이비행기", 1);
+        SetPlaneLevel("나뭇잎", 1);
+        SetPlaneLevel("낙옆", 1);
+        SetPlaneLevel("풍선", 2);
+        SetPlaneLevel("달", 3);
+
+        SetLauncherLevel("새총", 1);
+        SetLauncherLevel("투석기", 1);
+        SetLauncherLevel("선풍기", 1);
+        SetLauncherLevel("고릴라", 2);
+        SetLauncherLevel("공룡", 3);
+        SetLauncherLevel("물로켓", 3);
     }
 
 
@@ -57,8 +85,8 @@ class C_PLAYER
         m_sStats.m_fMaxSpeed = 100.0f;
         m_sStats.m_fWindMeter = 0.0f;
         m_cCharacter.LoadDataFromID(strCharacterName);
-        m_cPlane.LoadDataFromID(strPlaneName);
-        m_cLauncher.LoadDataFromID(strLauncherName);
+        m_cPlane.LoadDataFromID(strPlaneName+GetPlaneLevel(strPlaneName));
+        m_cLauncher.LoadDataFromID(strLauncherName+GetLauncherLevel(strLauncherName));
 		TotalStats ();
     }
     public E_PLAYERSTATE GetState()
@@ -121,6 +149,32 @@ class C_PLAYER
             return b;
 
         return false;
+    }
+
+    public void SetCharLevel(string _who, int _lev)
+    {
+        m_dicCharLevel[_who] = _lev;
+    }
+    public int GetCharLevel(string _who)
+    {
+        return m_dicCharLevel[_who];
+    }
+    public void SetPlaneLevel(string _who,int _lev)
+    {
+        m_dicPlaneLevel[_who] = _lev;
+    }
+    public int GetPlaneLevel(string _who)
+    {
+        return m_dicPlaneLevel[_who];
+    }
+
+    public void SetLauncherLevel(string _who, int _lev)
+    {
+        m_dicLaunchLevel[_who] = _lev;
+    }
+    public int GetLauncherLevel(string _who)
+    {
+        return m_dicLaunchLevel[_who];
     }
 
     public void SetIHavePlane(string _who, bool _have)
@@ -284,7 +338,7 @@ class C_PLAYER
 }
 
 
-struct S_STATS
+public struct S_STATS
 {
     //Plane
     public float m_fGravitySpeed;
