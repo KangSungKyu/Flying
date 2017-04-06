@@ -12,6 +12,11 @@ class C_GAMEMANAGER
     private C_SPRITEMANAGER m_cSpriteMgr;
     private int m_nKey;
     private float m_fCheckMaxHeight = 10.0f;
+    private int m_nCoin = 0;
+    private int m_nPlayCount = 5;
+    private int m_nMaxPlayCount = 5;
+    private int m_nScore = 0;
+    private int m_nCash = 0;
 
     bool m_bInit = false;
 
@@ -25,6 +30,8 @@ class C_GAMEMANAGER
     private PeaceMeter PlanePeaceM;
     private PeaceMeter LauncherPeaceM;
     private JewelMeter JewelM;
+    private LauncherCost LauncherCostM;
+    private SaveLoadCtrl SaveLoadCtrlM;
 
     #region ApplySingleton
     private static C_GAMEMANAGER m_cInstance;
@@ -40,6 +47,8 @@ class C_GAMEMANAGER
         PlanePeaceM = new PeaceMeter();
         LauncherPeaceM = new PeaceMeter();
         JewelM = new JewelMeter();
+        LauncherCostM = new LauncherCost();
+        SaveLoadCtrlM = new SaveLoadCtrl();
 
     }
     public static C_GAMEMANAGER GetInstance()
@@ -88,6 +97,42 @@ class C_GAMEMANAGER
     {
         return vecAddToPlayer;
     }
+    public void SetCoin(int _c)
+    {
+        m_nCoin = _c;
+    }
+    public int GetCoin()
+    {
+        return m_nCoin;
+    }
+    public void SetPlayCount(int _play)
+    {
+        m_nPlayCount = _play;
+    }
+    public int GetPlayCount()
+    {
+        return m_nPlayCount;
+    }
+    public int GetMaxPlayCount()
+    {
+        return m_nMaxPlayCount;
+    }
+    public void SetScore(int _s)
+    {
+        m_nScore = _s;
+    }
+    public int GetScore()
+    {
+        return m_nScore;
+    }
+    public void SetCash(int _cs)
+    {
+        m_nCash = _cs;
+    }
+    public int GetCash()
+    {
+        return m_nCash;
+    }
 
     public PeaceMeter GetCharPeaceMeter()
     {
@@ -104,6 +149,14 @@ class C_GAMEMANAGER
     public JewelMeter GetJewelMeter()
     {
         return JewelM;
+    }
+    public LauncherCost GetLauncherCost()
+    {
+        return LauncherCostM;
+    }
+    public SaveLoadCtrl GetSaveLoadCtr()
+    {
+        return SaveLoadCtrlM;
     }
 
     public void InitPeaceMeter()
@@ -129,6 +182,7 @@ class C_GAMEMANAGER
         PlanePeaceM.AddID("낙옆", 2);
         PlanePeaceM.AddID("풍선", 3);
         PlanePeaceM.AddID("달", 4);
+        PlanePeaceM.AddID("민들래씨앗", 5);
 
         LauncherPeaceM.AddID("새총", 0);
         LauncherPeaceM.AddID("투석기", 1);
@@ -253,6 +307,13 @@ class C_GAMEMANAGER
         m_cSpriteMgr.InsertSprite("ChargeGet", Resources.Load("Texture/ChargeGet", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("UpGo", Resources.Load("Texture/UpGo", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("DownGo", Resources.Load("Texture/DownGo", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("다이아", Resources.Load("Texture/Diamond", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("루비", Resources.Load("Texture/Ruby", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("사파이어", Resources.Load("Texture/Sapphire", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("토파츠", Resources.Load("Texture/Topaz", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("호박", Resources.Load("Texture/Amber", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("에메랄드", Resources.Load("Texture/Emerald", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("코인", Resources.Load("Texture/CoinIcon", typeof(Sprite)) as Sprite);
 
         //Plane
         m_cSpriteMgr.InsertSprite("나뭇잎_Plane", Resources.Load("Texture/Leaf1", typeof(Sprite)) as Sprite);
@@ -260,6 +321,8 @@ class C_GAMEMANAGER
         m_cSpriteMgr.InsertSprite("종이비행기_Plane", Resources.Load("Texture/Paper", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("달_Plane", Resources.Load("Texture/Moon", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("풍선_Plane", Resources.Load("Texture/Balloon", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("민들래씨앗_Plane", Resources.Load("Texture/Flower", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("민들래씨앗2_Plane", Resources.Load("Texture/Flower2", typeof(Sprite)) as Sprite);
 
 
         //select plane
@@ -268,6 +331,7 @@ class C_GAMEMANAGER
         m_cSpriteMgr.InsertSprite("종이비행기_PlaneSel", Resources.Load("Texture/Selected/Plane/Paper_PlaneSel", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("달_PlaneSel", Resources.Load("Texture/Selected/Plane/Moon_PlaneSel", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("풍선_PlaneSel", Resources.Load("Texture/Selected/Plane/Balloon_PlaneSel", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("민들래씨앗_PlaneSel", Resources.Load("Texture/Selected/Plane/Flower_PlaneSel", typeof(Sprite)) as Sprite);
         //select launch
         m_cSpriteMgr.InsertSprite("새총_LauncherSel", Resources.Load("Texture/Selected/Launcher/BirdGun_LaunchSel", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("투석기_LauncherSel", Resources.Load("Texture/Selected/Launcher/Catapult_LaunchSel", typeof(Sprite)) as Sprite);
@@ -279,13 +343,16 @@ class C_GAMEMANAGER
         m_cDataMgr.InitMgr();
 
         m_bInit = true;
+        
 
-        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("다이아", 100);
-        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("루비", 100);
-        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("사파이어",100);
-        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("토파츠",100);
-        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("호박",100);
-        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("에메랄드", 100);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("다이아", 999999);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("루비", 999999);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("사파이어",999999);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("토파츠",999999);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("호박",999999);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("에메랄드", 999999);
+        C_GAMEMANAGER.GetInstance().SetCoin(9999999);
+        C_GAMEMANAGER.GetInstance().SetPlayCount(999);
     }
     public C_PLAYER GetPlayer()
     {

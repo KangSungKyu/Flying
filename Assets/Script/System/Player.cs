@@ -55,6 +55,7 @@ public class C_PLAYER
         SetIHavePlane("낙옆", false);
         SetIHavePlane("달", false);
         SetIHavePlane("풍선", false);
+        SetIHavePlane("민들래씨앗", false);
 
         SetCharLevel("펭귄", 1);
         SetCharLevel("고양이", 1);
@@ -70,6 +71,7 @@ public class C_PLAYER
         SetPlaneLevel("낙옆", 1);
         SetPlaneLevel("풍선", 2);
         SetPlaneLevel("달", 3);
+        SetPlaneLevel("민들래씨앗", 3);
 
         SetLauncherLevel("새총", 1);
         SetLauncherLevel("투석기", 1);

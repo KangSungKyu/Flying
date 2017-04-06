@@ -14,6 +14,7 @@ TagManager:
   - Obstacle
   - CharSel
   - Launcher
+  - UpgradeView
   layers:
   - Default
   - TransparentFX

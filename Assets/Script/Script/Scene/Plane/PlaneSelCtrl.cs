@@ -15,9 +15,20 @@ public class PlaneSelCtrl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveLaunch(strPlaneName))
+        {
+            Color c = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+            this.gameObject.GetComponentInChildren<SpriteRenderer>().color = c;
+        }
+
         int id = C_GAMEMANAGER.GetInstance().GetPlanePeaceMeter().GetIDFromCharName(strPlaneName);
 
         peace.text = C_GAMEMANAGER.GetInstance().GetPlanePeaceMeter().GetPeace(id) + " / " + C_GAMEMANAGER.GetInstance().GetPlanePeaceMeter().GetMaxPeace(id);
+
+        for (int i = 0; i < C_GAMEMANAGER.GetInstance().GetPlayer().GetPlaneLevel(strPlaneName); ++i)
+            GetComponentsInChildren<SpriteRenderer>()[1 + i].enabled = true;
     }
     public void SettingPlaneSprite()
     {

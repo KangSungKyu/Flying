@@ -15,6 +15,15 @@ public class LauncherSelCtrl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveLaunch(strLaunchName))
+        {
+            Color c = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+            this.gameObject.GetComponentInChildren<SpriteRenderer>().color = c;
+        }
+
+        for (int i = 0; i < C_GAMEMANAGER.GetInstance().GetPlayer().GetLauncherLevel(strLaunchName); ++i)
+            GetComponentsInChildren<SpriteRenderer>()[1 + i].enabled = true;
     }
     public void SettingLauncherSprite()
     {

@@ -30,6 +30,7 @@ public class PlaneSelectScene : MonoBehaviour {
         CreateView("종이비행기", new Vector2(1.00f, 1.000f), 0);
         CreateView("달", new Vector2(-2.560f, 1.000f), 1);
         CreateView("풍선", new Vector2(-1.180f, 1.000f), 1);
+        CreateView("민들래씨앗", new Vector2(-2.560f, 1.000f), 2);
 
         SettingCurrentPage(curPage);
 
@@ -41,6 +42,7 @@ public class PlaneSelectScene : MonoBehaviour {
         opt.Add("낙옆");
         opt.Add("풍선");
         opt.Add("달");
+        opt.Add("민들래씨앗");
 
         drop.transform.parent.gameObject.GetComponent<CreatePeaceCtrl>().bChar = false;
         drop.ClearOptions();
@@ -49,6 +51,7 @@ public class PlaneSelectScene : MonoBehaviour {
         drop_u.transform.parent.gameObject.GetComponent<UpgradeCtrl>().bChar = false;
         drop_u.ClearOptions();
         drop_u.AddOptions(opt);
+        drop_u.transform.parent.gameObject.GetComponent<UpgradeCtrl>().Setting();
     }
 	
 	// Update is called once per frame
@@ -174,5 +177,15 @@ public class PlaneSelectScene : MonoBehaviour {
     public void BackMain()
     {
         C_GAMEMANAGER.GetInstance().ChangeScene("Main");
+    }
+
+    private void OnApplicationQuit()
+    {
+        C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().SaveXML();
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().SaveXML();
     }
 }

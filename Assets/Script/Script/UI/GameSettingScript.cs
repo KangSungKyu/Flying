@@ -15,4 +15,14 @@ public class GameSettingScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnApplicationQuit()
+    {
+        C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().SaveXML();
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().SaveXML();
+    }
 }

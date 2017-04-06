@@ -6,11 +6,20 @@ using UnityEngine.UI;
 public class MainToGame : MonoBehaviour {
 
     public Text youdontSel;
+    public Text playcountNotEnough;
+    public Text Play;
+    public Text Coin;
 
     private void Awake()
     {
         C_GAMEMANAGER.GetInstance().InitMgr();
         C_GAMEMANAGER.GetInstance().GetDataMgr().InitMgr();
+        C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().LoadXML();
+    }
+    private void Update()
+    {
+        Play.text = C_GAMEMANAGER.GetInstance().GetPlayCount().ToString() + " / " + C_GAMEMANAGER.GetInstance().GetMaxPlayCount().ToString();
+        Coin.text = C_GAMEMANAGER.GetInstance().GetCoin().ToString();
     }
     public void ButtonEvent()
     {
@@ -20,8 +29,23 @@ public class MainToGame : MonoBehaviour {
 
         Debug.Log(strC + " " + strP + " " + strL);
 
-        if(strC != "" && strP != "" && strL != "")
-            C_GAMEMANAGER.GetInstance().ChangeScene("Test");
+        if (strC != "" && strP != "" && strL != "")
+        {
+            int p = C_GAMEMANAGER.GetInstance().GetPlayCount();
+
+            if (p >= C_GAMEMANAGER.GetInstance().GetMaxPlayCount())
+            {
+                C_GAMEMANAGER.GetInstance().ChangeScene("Test");
+                C_GAMEMANAGER.GetInstance().SetPlayCount(p - 1);
+            }
+            else
+            {
+                //플레이카운트 채워줘양!
+                playcountNotEnough.enabled = true;
+
+                StartCoroutine(ClosePlayCount());
+            }
+        }
         //*
         else
         {
@@ -36,6 +60,12 @@ public class MainToGame : MonoBehaviour {
         yield return new WaitForSeconds(3.0f);
 
         youdontSel.enabled = false;
+    }
+    IEnumerator ClosePlayCount()
+    {
+        yield return new WaitForSeconds(3.0f);
+
+        playcountNotEnough.enabled = false;
     }
     public void GoCharc()
     {
@@ -54,5 +84,14 @@ public class MainToGame : MonoBehaviour {
     public void GoLaunch()
     {
         C_GAMEMANAGER.GetInstance().ChangeScene("Launch");
+    }
+
+    private void OnApplicationQuit()
+    {
+        C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().SaveXML();
+    }
+    private void OnApplicationPause(bool pause)
+    {
+        C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().SaveXML();
     }
 }

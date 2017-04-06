@@ -36,7 +36,7 @@ public class C_DATAMANAGER
         InsertData("Data/Data_Exchange_Plane_1S", "Plane_1S");
         InsertData("Data/Data_Exchange_Plane_2S", "Plane_2S");
         InsertData("Data/Data_Exchange_Plane_3S", "Plane_3S");
-
+        InsertData("Data/Data_LauncherCost", "LauncherCost");
     }
     public bool TryAccessStorage(string strName)
     {

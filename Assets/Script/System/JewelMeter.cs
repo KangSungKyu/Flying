@@ -5,10 +5,12 @@ using UnityEngine;
 public class JewelMeter : MonoBehaviour
 {
     Dictionary<string, List<int>> m_dicJewel;//name,(cur/exchange)
+    List<string> m_liName;
 
     public void Init()
     {
         m_dicJewel = new Dictionary<string, List<int>>();
+        m_liName = new List<string>();
     }
 
     public void SetCurrentJewelCount(string _what,int _n)
@@ -26,6 +28,7 @@ public class JewelMeter : MonoBehaviour
             li.Add(_n);
 
             m_dicJewel.Add(_what, li);
+            m_liName.Add(_what);
         }
     }
     public void SetExchangeJewelCount(string _what,int _m)
@@ -53,6 +56,14 @@ public class JewelMeter : MonoBehaviour
     public int GetExchangeJewelCount(string _what)
     {
         return m_dicJewel[_what][1];
+    }
+    public int GetJewelIDCount()
+    {
+        return m_dicJewel.Count;
+    }
+    public string GetJewelName(int _idx)
+    {
+        return m_liName[_idx];
     }
 }
 

@@ -69,7 +69,17 @@ public class CharSelManCtrl : MonoBehaviour {
         GetComponent<Animator>().ResetTrigger("MoveToIdle");
     }
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        if (C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveLaunch(strCharName))
+        {
+            Color c = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+            this.gameObject.GetComponent<SpriteRenderer>().color = c;
+            this.gameObject.GetComponentsInChildren<SpriteRenderer>()[1].color = c;
+            this.gameObject.GetComponentsInChildren<SpriteRenderer>()[2].color = c;
+            this.gameObject.GetComponentsInChildren<SpriteRenderer>()[3].color = c;
+        }
 
         bool bXFlip = (prev - transform.position).x > 0.0f;
 
@@ -94,6 +104,9 @@ public class CharSelManCtrl : MonoBehaviour {
         int id = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetIDFromCharName(strCharName);
 
         peace.text = C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetPeace(id) + " / " + C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetMaxPeace(id);
+
+        for (int i = 0; i < C_GAMEMANAGER.GetInstance().GetPlayer().GetCharLevel(strCharName); ++i)
+            GetComponentsInChildren<SpriteRenderer>()[4 + i].enabled = true;
     }
     private void OnMouseDown()
     {

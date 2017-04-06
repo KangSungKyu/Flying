@@ -178,4 +178,13 @@ public class SettCharSheet : MonoBehaviour {
     {
         C_GAMEMANAGER.GetInstance().ChangeScene("Main");
     }
+
+    private void OnApplicationQuit()
+    {
+        C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().SaveXML();
+    }
+    private void OnApplicationPause(bool pause)
+    {
+        C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().SaveXML();
+    }
 }

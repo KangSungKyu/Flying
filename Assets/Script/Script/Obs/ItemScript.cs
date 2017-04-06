@@ -36,11 +36,18 @@ public class ItemScript : MonoBehaviour
         m_dicIFunc.Add("판다_Char", CharPeaceFunc);
         m_dicIFunc.Add("고양이_Char", CharPeaceFunc);
         m_dicIFunc.Add("원숭이_Char", CharPeaceFunc);
+        m_dicIFunc.Add("다이아", JewelFunc);
+        m_dicIFunc.Add("루비", JewelFunc);
+        m_dicIFunc.Add("사파이어", JewelFunc);
+        m_dicIFunc.Add("토파츠", JewelFunc);
+        m_dicIFunc.Add("호박", JewelFunc);
+        m_dicIFunc.Add("에메랄드", JewelFunc);
         m_dicIFunc.Add("RouletteKey", RouletteKeyFunc);
         m_dicIFunc.Add("BulletGet", BulletGetFunc);
         m_dicIFunc.Add("ChargeGet", ChargeGetFunc);
         m_dicIFunc.Add("UpGo", UpGoFunc);
         m_dicIFunc.Add("DownGo", DownGoFunc);
+        m_dicIFunc.Add("코인", CoinFunc);
     }
 
 
@@ -51,7 +58,7 @@ public class ItemScript : MonoBehaviour
                 "ForwardWind", "BackwardWind", "치킨_Char","돼지_Char",
             "펭귄_Char","사자_Char","고양이_Char","판다_Char",
             "양_Char","원숭이_Char", "RouletteKey","BulletGet",
-            "ChargeGet", "UpGo", "DownGo",
+            "ChargeGet", "UpGo", "DownGo","코인",
                         };
 
 
@@ -136,6 +143,13 @@ public class ItemScript : MonoBehaviour
 
         C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().SetPeace(idx, pe + 1);
     }
+    void JewelFunc()
+    {
+        string str = strObjectName;
+
+        int cur = C_GAMEMANAGER.GetInstance().GetJewelMeter().GetCurrentJewelCount(str);
+        C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount(str, cur + 1);
+    }
     void RouletteKeyFunc()
     {
         C_GAMEMANAGER.GetInstance().SetKeyCount(C_GAMEMANAGER.GetInstance().GetKeyCount() + 1);
@@ -181,5 +195,11 @@ public class ItemScript : MonoBehaviour
         float power = 100.0f;
         
         C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(curV - power);
+    }
+    void CoinFunc()
+    {
+        int c = C_GAMEMANAGER.GetInstance().GetCoin();
+
+        C_GAMEMANAGER.GetInstance().SetCoin(c + 1);
     }
 }

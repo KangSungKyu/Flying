@@ -37,6 +37,9 @@ public class CreatePeaceCtrl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        ChangeSelectChar(drop.value);
+
         dia.text = "다이아 : " + C_GAMEMANAGER.GetInstance().GetJewelMeter().GetCurrentJewelCount("다이아") + " / " + C_GAMEMANAGER.GetInstance().GetJewelMeter().GetExchangeJewelCount("다이아");
         rub.text = "루비 : " + C_GAMEMANAGER.GetInstance().GetJewelMeter().GetCurrentJewelCount("루비") + " / " + C_GAMEMANAGER.GetInstance().GetJewelMeter().GetExchangeJewelCount("루비");
         spa.text = "사파이어 : " + C_GAMEMANAGER.GetInstance().GetJewelMeter().GetCurrentJewelCount("사파이어") + " / " + C_GAMEMANAGER.GetInstance().GetJewelMeter().GetExchangeJewelCount("사파이어");
@@ -130,6 +133,23 @@ public class CreatePeaceCtrl : MonoBehaviour {
         }
         else
         {
+            if (bChar)
+            {
+                if (C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetPeace(C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetIDFromCharName(drop.options[sel].text)) >=
+                    C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetMaxPeace(C_GAMEMANAGER.GetInstance().GetCharPeaceMeter().GetIDFromCharName(drop.options[sel].text)))
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (C_GAMEMANAGER.GetInstance().GetPlanePeaceMeter().GetPeace(C_GAMEMANAGER.GetInstance().GetPlanePeaceMeter().GetIDFromCharName(drop.options[sel].text)) >=
+                    C_GAMEMANAGER.GetInstance().GetPlanePeaceMeter().GetMaxPeace(C_GAMEMANAGER.GetInstance().GetPlanePeaceMeter().GetIDFromCharName(drop.options[sel].text)))
+                {
+                    return;
+                }
+            }
+
             if(dia > 0) C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("다이아", dia);
             if(rub > 0) C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("루비", rub);
             if(spa > 0) C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("사파이어", spa);

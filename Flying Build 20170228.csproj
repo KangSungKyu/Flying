@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.5.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -117,6 +115,7 @@
     <Compile Include="Assets\Script\Script\Launcher\PanAimEvent.cs" />
     <Compile Include="Assets\Script\Script\Launcher\Parent\LauncherParent.cs" />
     <Compile Include="Assets\Script\Script\Launcher\WRocketAimEvent.cs" />
+    <Compile Include="Assets\Script\Script\LauncherBuy\BuyPanelCtrl.cs" />
     <Compile Include="Assets\Script\Script\MoveScript.cs" />
     <Compile Include="Assets\Script\Script\Obs\CloudScript.cs" />
     <Compile Include="Assets\Script\Script\Obs\ItemScript.cs" />
@@ -124,6 +123,7 @@
     <Compile Include="Assets\Script\Script\Obs\ObstacleScript.cs" />
     <Compile Include="Assets\Script\Script\Obs\SpawnScript.cs" />
     <Compile Include="Assets\Script\Script\Player\FlyScript.cs" />
+    <Compile Include="Assets\Script\Script\SaveLoad\SaveLoadCtrl.cs" />
     <Compile Include="Assets\Script\Script\Scene\CharSel\SettCharSheet.cs" />
     <Compile Include="Assets\Script\Script\Scene\CharSel\SetupCharView.cs" />
     <Compile Include="Assets\Script\Script\Scene\Game\BackMainScript.cs" />
@@ -148,12 +148,14 @@
     <Compile Include="Assets\Script\Script\UI\PowerButtonScript.cs" />
     <Compile Include="Assets\Script\Script\UI\ShootCtrl.cs" />
     <Compile Include="Assets\Script\Script\UI\TogueCtrl.cs" />
+    <Compile Include="Assets\Script\Script\Upgrade\UpgradeCtrl.cs" />
     <Compile Include="Assets\Script\System\DataStorage.cs" />
     <Compile Include="Assets\Script\System\Event.cs" />
     <Compile Include="Assets\Script\System\ExChangeStorage.cs" />
     <Compile Include="Assets\Script\System\GameManager.cs" />
     <Compile Include="Assets\Script\System\Item.cs" />
     <Compile Include="Assets\Script\System\JewelMeter.cs" />
+    <Compile Include="Assets\Script\System\LauncherCost.cs" />
     <Compile Include="Assets\Script\System\ObjectManager.cs" />
     <Compile Include="Assets\Script\System\ObjectPool.cs" />
     <Compile Include="Assets\Script\System\PeaceMeter.cs" />
@@ -161,7 +163,6 @@
     <Compile Include="Assets\Script\System\SoundManager.cs" />
     <Compile Include="Assets\Script\System\SpriteManager.cs" />
     <Compile Include="Assets\Script\System\Stat.cs" />
-    <Compile Include="Assets\Script\Script\Upgrade\UpgradeCtrl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />

@@ -71,7 +71,7 @@ public class PeaceMeter : MonoBehaviour
         return m_dicID.Count;
     }
 
-    public void SetNextLevel(int _who)
+    public bool SetNextLevel(int _who)
     {
         if (IsNextLevel(_who))
         {
@@ -80,8 +80,10 @@ public class PeaceMeter : MonoBehaviour
             m_arrMaxPeace[_who] = m_dicMaxFromLevel[m_arrPeace[_who]];
             m_arrPeace[_who] = sub;
 
-            m_cPlayer.SetCharLevel(GetCharNameFromID(_who), m_cPlayer.GetCharLevel(GetCharNameFromID(_who)) + 1);
+            return true;
         }
+
+        return false;
     }
     public bool IsNextLevel(int _who)
     {
