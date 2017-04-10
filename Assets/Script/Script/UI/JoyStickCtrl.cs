@@ -24,6 +24,9 @@ public class JoyStickCtrl : MonoBehaviour {
 
         fRadius *= ca;
 	}
+    private void Update()
+    {
+    }
 
     public void Select()
     {
@@ -53,6 +56,8 @@ public class JoyStickCtrl : MonoBehaviour {
         vecDir = Vector3.zero;
 
         bStart = false;
+
+        C_GAMEMANAGER.GetInstance().SetJoyStickDir((-vecLastDir).normalized);
     }
     
 }

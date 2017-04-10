@@ -21,3 +21,5 @@ EditorBuildSettings:
     path: Assets/Scene/Plane.unity
   - enabled: 1
     path: Assets/Scene/Launch.unity
+  - enabled: 1
+    path: Assets/Scene/FeverTime.unity

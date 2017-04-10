@@ -139,13 +139,18 @@ public class CharSelManCtrl : MonoBehaviour {
     public void ItsMe()
     {
         if (!C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveChar(strCharName))
+        {
+            Debug.Log("I don't have it!");
             return;
+        }
 
         Stop();
 
         iTween.PunchPosition(this.gameObject, new Vector3(0.0f, 2.5f, 0.0f), 4.0f);
 
         C_GAMEMANAGER.GetInstance().strSelectedCharName = strCharName;
+
+        Debug.Log(strCharName);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

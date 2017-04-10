@@ -4,12 +4,12 @@ using System.Collections;
 public class ropeScript : MonoBehaviour {
 
 
-    LineRenderer Drawline;
+    public LineRenderer Drawline;
     public Transform StartTrans;
     public Transform EndTrans;
     void Start()
     {
-        Drawline = GetComponent<LineRenderer>();
+        //Drawline = GetComponent<LineRenderer>();
     }
 	// Update is called once per frame
 	void Update () {

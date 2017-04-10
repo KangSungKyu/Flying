@@ -33,6 +33,8 @@ class C_GAMEMANAGER
     private LauncherCost LauncherCostM;
     private SaveLoadCtrl SaveLoadCtrlM;
 
+    private Vector2 vecJoystickDir;
+
     #region ApplySingleton
     private static C_GAMEMANAGER m_cInstance;
     private C_GAMEMANAGER()
@@ -132,6 +134,14 @@ class C_GAMEMANAGER
     public int GetCash()
     {
         return m_nCash;
+    }
+    public void SetJoyStickDir(Vector2 _dir)
+    {
+        vecJoystickDir = _dir;
+    }
+    public Vector2 GetJoyStickDir()
+    {
+        return vecJoystickDir;
     }
 
     public PeaceMeter GetCharPeaceMeter()
@@ -368,7 +378,6 @@ class C_GAMEMANAGER
         SceneManager.LoadSceneAsync(name);
         m_sScene.m_nSceneNum = SceneManager.GetSceneByName(name).buildIndex;
     }
-
 
 }
  struct S_SCENEDATA

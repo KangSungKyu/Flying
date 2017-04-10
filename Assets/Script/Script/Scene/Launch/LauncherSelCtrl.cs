@@ -51,8 +51,13 @@ public class LauncherSelCtrl : MonoBehaviour {
     public void ItsMe()
     {
         if (!C_GAMEMANAGER.GetInstance().GetPlayer().GetIHaveLaunch(strLaunchName))
+        {
+            Debug.Log("I don't have it!");
             return;
+        }
 
         C_GAMEMANAGER.GetInstance().strSelectedLaunchName = strLaunchName;
+
+        Debug.Log(strLaunchName);
     }
 }

@@ -123,6 +123,10 @@ public class C_PLAYER
     {
         return m_sStats.m_fGravitySpeed;
     }
+    public void SetGravitySpeed(float _f)
+    {
+        m_sStats.m_fGravitySpeed = _f;
+    }
     public float GetCurrentSpeed()
     {
         return m_sStats.m_fCurrentSpeed;
@@ -215,6 +219,10 @@ public class C_PLAYER
 	{
 		return m_sStats.m_fDecreaseSpeed;
 	}
+    public void SetSpeedReducer(float _f)
+    {
+        m_sStats.m_fDecreaseSpeed = _f;
+    }
 
     public void SetWindMeter(float nData)
     {

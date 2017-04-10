@@ -5,6 +5,7 @@ using UnityEngine;
 public class PanAimEvent : LauncherParent {
 
     GameObject head;
+    GameObject head2;
     // Use this for initialization
     void Start () {
 
@@ -13,10 +14,14 @@ public class PanAimEvent : LauncherParent {
 	// Update is called once per frame
 	void Update ()
     {
-        if(head == null)
+        if (head == null)
+        {
             head = GameObject.Find("Pan_Head");
+            head2 = GameObject.Find("Pan_Head2");
+        }
 
-        head.transform.Rotate(new Vector3(0.0f, -60.0f, 0.0f));
+        head.transform.Rotate(new Vector3(0.0f, -1080.0f*Time.deltaTime*(fLauchPower+1.0f), 0.0f));
+        head2.transform.Rotate(new Vector3(0.0f, -1080.0f * Time.deltaTime * (fLauchPower+1.0f), 0.0f));
     }
     override public void AimEvent()
     {

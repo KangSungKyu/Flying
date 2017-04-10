@@ -15,6 +15,7 @@ TagManager:
   - CharSel
   - Launcher
   - UpgradeView
+  - GameUICanv
   layers:
   - Default
   - TransparentFX

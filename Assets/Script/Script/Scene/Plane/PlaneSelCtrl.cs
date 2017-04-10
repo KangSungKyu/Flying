@@ -56,8 +56,13 @@ public class PlaneSelCtrl : MonoBehaviour {
     public void ItsMe()
     {
         if (!C_GAMEMANAGER.GetInstance().GetPlayer().GetIHavePlane(strPlaneName))
+        {
+            Debug.Log("I don't have it!");
             return;
+        }
 
         C_GAMEMANAGER.GetInstance().strSelectedPlaneName = strPlaneName;
+
+        Debug.Log(strPlaneName);
     }
 }

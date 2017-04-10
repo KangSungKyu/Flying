@@ -17,19 +17,8 @@ public class VerSlideMissionEvent : FeverMissionParent
 	void Update () {
 
     }
-
-    public override void BeginMotion(BaseEventData _data)
+    void Action(Vector2 _prev)
     {
-        base.BeginMotion(_data);
-    }
-    public override void UpdateMoition(BaseEventData _data)
-    {
-        base.UpdateMoition(_data);
-    }
-    public override void EndMotion(BaseEventData _data)
-    {
-        base.EndMotion(_data);
-
         Vector2 p = vecPrvMouse;
         Vector2 v = vecCurMouse - p;
 
@@ -47,9 +36,24 @@ public class VerSlideMissionEvent : FeverMissionParent
             CompleteMission();
         }
 
-        vecPrvMouse = vecEndMouse;
+        vecPrvMouse = _prev;
 
         Debug.Log(dist + " " + count);
+    }
+
+    public override void BeginMotion(BaseEventData _data)
+    {
+        base.BeginMotion(_data);
+    }
+    public override void UpdateMoition(BaseEventData _data)
+    {
+        base.UpdateMoition(_data);
+
+        Action(vecCurMouse);
+    }
+    public override void EndMotion(BaseEventData _data)
+    {
+        base.EndMotion(_data);
     }
     public override void CompleteMission()
     {
