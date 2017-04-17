@@ -68,3 +68,6 @@ TagManager:
   - name: Bullet
     uniqueID: 355757333
     locked: 0
+  - name: CutScene
+    uniqueID: 3994823323
+    locked: 0

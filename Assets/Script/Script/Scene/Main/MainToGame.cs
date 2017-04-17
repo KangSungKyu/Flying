@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
 public class MainToGame : MonoBehaviour {
 
@@ -9,17 +10,36 @@ public class MainToGame : MonoBehaviour {
     public Text playcountNotEnough;
     public Text Play;
     public Text Coin;
+    public GameObject adbtn;
+
+    ShowOptions m_cShowOpts = new ShowOptions();
+    ShowResult m_eShowRet = ShowResult.Failed;
+    int m_nAdCount = 0;
+
 
     private void Awake()
     {
         C_GAMEMANAGER.GetInstance().InitMgr();
         C_GAMEMANAGER.GetInstance().GetDataMgr().InitMgr();
         C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().LoadXML();
+
+        Advertisement.Initialize("1386948", true);
+        m_cShowOpts.resultCallback = OnAdFunc;
     }
     private void Update()
     {
         Play.text = C_GAMEMANAGER.GetInstance().GetPlayCount().ToString() + " / " + C_GAMEMANAGER.GetInstance().GetMaxPlayCount().ToString();
         Coin.text = C_GAMEMANAGER.GetInstance().GetCoin().ToString();
+
+        if (playcountNotEnough.enabled)
+        {
+             adbtn.SetActive(Advertisement.IsReady("rewardedVideo"));
+        }
+    }
+    public void OnAdBtn()
+    {
+        m_nAdCount++;
+        Advertisement.Show("rewardedVideo", m_cShowOpts);
     }
     public void ButtonEvent()
     {
@@ -36,8 +56,8 @@ public class MainToGame : MonoBehaviour {
         if (strC != "" && strP != "" && strL != "")
         {
             int p = C_GAMEMANAGER.GetInstance().GetPlayCount();
-
-            if (p >= C_GAMEMANAGER.GetInstance().GetMaxPlayCount())
+            
+            if (p > 0)
             {
                 C_GAMEMANAGER.GetInstance().ChangeScene("Test");
                 C_GAMEMANAGER.GetInstance().SetPlayCount(p - 1);
@@ -98,4 +118,18 @@ public class MainToGame : MonoBehaviour {
     {
         C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().SaveXML();
     }
+
+    public void OnAdFunc(ShowResult _result)
+    {
+        m_eShowRet = _result;
+
+        if(_result == ShowResult.Finished)
+        {
+            int p = C_GAMEMANAGER.GetInstance().GetPlayCount();
+            C_GAMEMANAGER.GetInstance().SetPlayCount(p+1);
+
+            adbtn.SetActive(false);
+        }
+    }
+
 }

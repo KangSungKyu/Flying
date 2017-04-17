@@ -27,6 +27,8 @@ public class FlyScript : MonoBehaviour {
 
     public GameObject gobjHand;
 
+    Vector2 saveRed;
+
     // Use this for initialization
     void Start()
     {
@@ -39,6 +41,9 @@ public class FlyScript : MonoBehaviour {
 
         GetComponent<BoxCollider2D>().size = new Vector2(C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fColliderScale,
             C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fColliderScale);
+
+        saveRed.x = C_GAMEMANAGER.GetInstance().GetPlayer().SpeedReducer();
+        saveRed.y = C_GAMEMANAGER.GetInstance().GetPlayer().GetGravitySpeed();
     }
 	public void BeginChargeBullet()
     {
@@ -195,6 +200,8 @@ public class FlyScript : MonoBehaviour {
             vecPrevPos = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos();
 
             C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos(transform.position);
+
+            Debug.Log(vMove);
         }
 
         if(C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < -C_GAMEMANAGER.GetInstance().GetCMHeight())
@@ -236,14 +243,30 @@ public class FlyScript : MonoBehaviour {
 
             float deg = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(Vector2.right, pos));
 
-            if (tog < -10.0f &&
-                C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < 100.0f)
+            if (pos.y < 0.0f)
+                deg = -deg;
+
+            if (-10.0f > deg
+                 && C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < 100.0f)
             {
                 float fSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed();
                 float fVSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed();
+                float add = 1.0f;
 
-                C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fSpeed - fSpeed * 0.45f * Time.deltaTime);
-                C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVSpeed - fVSpeed * 0.45f * Time.deltaTime);
+                if (fSpeed > 100.0f || fVSpeed > 100.0f)
+                    add = 4.0f;
+
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentSpeed(fSpeed - fSpeed * 0.05f * add * Time.deltaTime);
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetVerticalSpeed(fVSpeed - fVSpeed * 0.15f * add * Time.deltaTime);
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetSpeedReducer(0.0f);
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetGravitySpeed(0.0f);
+            }
+            else
+            {
+                if (C_GAMEMANAGER.GetInstance().GetPlayer().SpeedReducer() <= 0.0f)
+                    C_GAMEMANAGER.GetInstance().GetPlayer().SetSpeedReducer(saveRed.x);
+                if (C_GAMEMANAGER.GetInstance().GetPlayer().GetGravitySpeed() <= 0.0f)
+                    C_GAMEMANAGER.GetInstance().GetPlayer().SetGravitySpeed(saveRed.y);
             }
         }
     }

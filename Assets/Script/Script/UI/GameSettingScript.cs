@@ -330,11 +330,14 @@ public class GameSettingScript : MonoBehaviour {
     }
     IEnumerator FeverTime()
     {
+        GetComponent<CutSceneCtrl>().Fever();
+        
         C_GAMEMANAGER.GetInstance().GetPlayer().SetState(E_PLAYERSTATE.E_PLAYERFEVERTIME);
         float fSpeedBuffer = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed();
         float fVSpeedBuffer = C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed();
         float fSpeed = fSpeedBuffer;
         float fVSpeed = fVSpeedBuffer;
+        
 
         while (C_GAMEMANAGER.GetInstance().GetPlayer().GetWindMeter() > 0)
         {
