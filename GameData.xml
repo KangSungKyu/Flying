@@ -2,7 +2,7 @@
 <GameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <data>
     <Money>10000000</Money>
-    <PlayCount>2</PlayCount>
+    <PlayCount>1</PlayCount>
     <Cash>0</Cash>
     <CharCnt>8</CharCnt>
     <Chars>
@@ -27,11 +27,11 @@
     </Char_Levs>
     <Char_Pcs>
       <int>7</int>
-      <int>2</int>
+      <int>3</int>
       <int>5</int>
       <int>3</int>
       <int>0</int>
-      <int>6</int>
+      <int>7</int>
       <int>3</int>
       <int>3</int>
     </Char_Pcs>
