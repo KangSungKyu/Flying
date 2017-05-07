@@ -23,7 +23,7 @@ public class MainToGame : MonoBehaviour {
         C_GAMEMANAGER.GetInstance().GetDataMgr().InitMgr();
         C_GAMEMANAGER.GetInstance().GetSaveLoadCtr().LoadXML();
 
-        Advertisement.Initialize("1386948", true);
+        Advertisement.Initialize("1399728", true);
         m_cShowOpts.resultCallback = OnAdFunc;
     }
     private void Update()
@@ -31,28 +31,29 @@ public class MainToGame : MonoBehaviour {
         Play.text = C_GAMEMANAGER.GetInstance().GetPlayCount().ToString() + " / " + C_GAMEMANAGER.GetInstance().GetMaxPlayCount().ToString();
         Coin.text = C_GAMEMANAGER.GetInstance().GetCoin().ToString();
 
-        if (playcountNotEnough.enabled)
+        //if (playcountNotEnough.enabled)
         {
-             adbtn.SetActive(Advertisement.IsReady("rewardedVideo"));
+            adbtn.SetActive(playcountNotEnough.enabled && Advertisement.IsReady("rewardedVideo"));
+            //adbtn.SetActive(playcountNotEnough.enabled && Advertisement.IsReady("video"));
         }
     }
     public void OnAdBtn()
     {
         m_nAdCount++;
         Advertisement.Show("rewardedVideo", m_cShowOpts);
+        //Advertisement.Show("video", m_cShowOpts);
     }
     public void ButtonEvent()
     {
         C_GAMEMANAGER.GetInstance().strSelectedCharName = "펭귄";
         C_GAMEMANAGER.GetInstance().strSelectedPlaneName = "종이비행기";
-        C_GAMEMANAGER.GetInstance().strSelectedLaunchName = "선풍기";
+        C_GAMEMANAGER.GetInstance().strSelectedLaunchName = "고릴라";
 
         string strC = C_GAMEMANAGER.GetInstance().strSelectedCharName;
         string strP = C_GAMEMANAGER.GetInstance().strSelectedPlaneName;
         string strL = C_GAMEMANAGER.GetInstance().strSelectedLaunchName;
 
         Debug.Log(strC + " " + strP + " " + strL);
-
         if (strC != "" && strP != "" && strL != "")
         {
             int p = C_GAMEMANAGER.GetInstance().GetPlayCount();
@@ -75,7 +76,7 @@ public class MainToGame : MonoBehaviour {
         {
             youdontSel.enabled = true;
 
-            StartCoroutine(CloseYDSel());
+            StartCoroutine(CloseYDSel()); 
         }
         //*/
     }
@@ -128,8 +129,8 @@ public class MainToGame : MonoBehaviour {
             int p = C_GAMEMANAGER.GetInstance().GetPlayCount();
             C_GAMEMANAGER.GetInstance().SetPlayCount(p+1);
 
-            adbtn.SetActive(false);
+            if(adbtn != null)
+                adbtn.SetActive(false);
         }
     }
-
 }

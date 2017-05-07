@@ -9,7 +9,7 @@ public class CutSceneMoveCtrl : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        loc = this.transform.localPosition;
+        loc = this.transform.position*50.0f;
     }
 	
 	// Update is called once per frame

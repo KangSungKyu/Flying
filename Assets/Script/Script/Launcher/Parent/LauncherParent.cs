@@ -33,9 +33,10 @@ public class LauncherParent : MonoBehaviour
         float fMinDegree = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMinDegree;
 
         float center = 90.0f;
+        float size = 150.0f;
         
-        rightPos = Quaternion.Euler(0.0f, 0.0f, fMinDegree) * Vector2.right * 3.0f + OriginPos;
-        UpPos = Quaternion.Euler(0.0f, 0.0f, fMaxDegree) * Vector2.right * 3.0f + OriginPos;
+        rightPos = Quaternion.Euler(0.0f, 0.0f, fMinDegree) * Vector2.right * size + OriginPos;
+        UpPos = Quaternion.Euler(0.0f, 0.0f, fMaxDegree) * Vector2.right * size + OriginPos;
         myCam = GameObject.Find("Main Camera").GetComponent<Camera>();
 
         Vector3 vecMouseWorld = myCam.ScreenToWorldPoint(Input.mousePosition);
@@ -43,13 +44,13 @@ public class LauncherParent : MonoBehaviour
 
         float fLength = Vector3.Distance(OriginPos, vecMouseWorld);
 
-        if (fLength > 3.0f)
+        if (fLength > size)
         {
             return;
         }
 
         Vector3 vecDir = OriginPos - vecMouseWorld;
-        vecDir = Vector3.Normalize(vecDir) * 3.0f;
+        vecDir = Vector3.Normalize(vecDir) * size;
 
         vecBlueDot = OriginPos + vecDir;
 
@@ -66,14 +67,14 @@ public class LauncherParent : MonoBehaviour
             faimAngle = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMinDegree;
             vecBlueDot = rightPos;
             vecBeforeDot = OriginPos - new Vector3(center - C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMinDegree,
-                C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMinDegree).normalized * 3.0f;
+                C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMinDegree).normalized * size;
         }
         else if (faimAngle > C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree)
         {
             faimAngle = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree;
             vecBlueDot = UpPos;
             vecBeforeDot = OriginPos - new Vector3(center - C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree,
-                C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree).normalized * 3.0f;
+                C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMaxDegree).normalized * size;
         }
     }
 

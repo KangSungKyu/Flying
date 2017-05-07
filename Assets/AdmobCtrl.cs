@@ -1,29 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using GoogleMobileAds.Api;
+using GoogleMobileAds.Api;
 
 public class AdmobCtrl : MonoBehaviour
 {
-    /*
+    //*
+    public string and_banner;
+    public string ios_banner;
+    public string and_inter;
+    public string ios_inter;
+
     BannerView banner = null;
     InterstitialAd inter = null;
     // Use this for initialization
     void Start()
     {
-        inter = new InterstitialAd("ca-app-pub-9973222948315812/2362197480");
-        inter.AdClosed += EventAdClose;
+        RequestBanner();
+        RequestInterstitialAd();
+        ShowBanner();
+    }
 
-        banner = new BannerView("ca-app-pub-9973222948315812/9885464289", AdSize.SmartBanner, AdPosition.Bottom);
-
+    public void RequestBanner()
+    {
+        string str = "";
+#if UNITY_ANDROID
+        str = and_banner;
+#elif UNITY_IOS
+        str = ios_banner;
+#endif
+        banner = new BannerView(str, AdSize.SmartBanner, AdPosition.Top);
         AdRequest.Builder builder = new AdRequest.Builder();
 
         AdRequest req = builder.AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice("3FB7AE355826BE23").Build();
-        //builder.Build();
+        //AdRequest req = builder.Build();
+
+        banner.LoadAd(req);
+    }
+    public void RequestInterstitialAd()
+    {
+        string str = "";
+#if UNITY_ANDROID
+        str = and_inter;
+#elif UNITY_IOS
+        str = ios_inter;
+#endif
+        inter = new InterstitialAd(str);
+        AdRequest.Builder builder = new AdRequest.Builder();
+
+        AdRequest req = builder.AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice("3FB7AE355826BE23").Build();
+        //AdRequest req = builder.Build();
 
         inter.LoadAd(req);
-        banner.LoadAd(req);
-        banner.Show();
+        inter.OnAdClosed += EventAdClose;
     }
 
     // Update is called once per frame
@@ -32,21 +61,29 @@ public class AdmobCtrl : MonoBehaviour
 
     }
 
-    private void OnGUI()
+    public void ShowBanner()
     {
-        if(GUI.Button(new Rect(300,200,300,100),"inter show"))
+        banner.Show();
+    }
+    public void ShowInter()
+    {
+       if(!inter.IsLoaded())
         {
-            inter.Show();
+            RequestInterstitialAd();
+            return;
         }
+        inter.Show();
+    }
+
+    public void OnInter()
+    {
+        ShowInter();
     }
 
     public void EventAdClose(object _sender, System.EventArgs _arg)
     {
-        AdRequest.Builder builder = new AdRequest.Builder();
-
-        AdRequest req = builder.AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice("3FB7AE355826BE23").Build();
-
-        inter.LoadAd(req);
+        inter.Destroy();
+        RequestInterstitialAd();
     }
     //*/
 }

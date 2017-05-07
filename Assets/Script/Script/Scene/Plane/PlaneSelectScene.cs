@@ -163,14 +163,16 @@ public class PlaneSelectScene : MonoBehaviour {
             }
         }
 
-        string str = "";
 
-        if (dicPageBG.TryGetValue(curPage, out str))
+        string str = C_GAMEMANAGER.GetInstance().GetCurSelBG();
+        Sprite spr = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(str);
+
+        if (spr != null)
         {
-            Sprite spr = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(str);
-
-            if (spr != null)
-                sprBG.sprite = spr;
+            sprBG.sprite = spr;
+            Color col = sprBG.color;
+            col.a = 0.3f;
+            iTween.ColorTo(sprBG.gameObject, col, 1.0f);
         }
     }
 

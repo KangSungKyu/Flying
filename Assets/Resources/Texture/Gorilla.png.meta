@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 3fa1a0c3a9d241048b627f572214fafd
-timeCreated: 1490690480
+timeCreated: 1492509347
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Gorilla_Body
     21300002: Gorilla_Arm
+    21300004: Gorilla_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -88,28 +89,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: Gorilla_Arm
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 96
+        width: 216
+        height: 186
+      alignment: 9
+      pivot: {x: 0.8679381, y: 0.827829}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
       name: Gorilla_Body
       rect:
         serializedVersion: 2
-        x: 20
-        y: 1
-        width: 263
-        height: 359
+        x: 266
+        y: 29
+        width: 236
+        height: 346
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Gorilla_Arm
+      name: Gorilla_3
       rect:
         serializedVersion: 2
-        x: 305
-        y: 35
-        width: 277
-        height: 212
-      alignment: 9
-      pivot: {x: 0.8529372, y: 0.20462349}
+        x: 222
+        y: 248
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

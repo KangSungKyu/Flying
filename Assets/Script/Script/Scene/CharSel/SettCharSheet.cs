@@ -23,11 +23,13 @@ public class SettCharSheet : MonoBehaviour {
         dicPage = new Dictionary<int, List<GameObject>>();
         dicPageBG = new Dictionary<int, string>();
         
-        CreateView("펭귄", new Vector2(000.0f, 000.0f),0);
-        CreateView("고양이", new Vector2(1.0f, -1.0f), 0);
-        CreateView("양", new Vector2(-1.0f, 1.0f), 0);
-        CreateView("코끼리", new Vector2(-1.0f, 1.0f), 1);
-        CreateView("판다", new Vector2(1.0f, -1.0f), 1);
+        CreateView("펭귄", new Vector2(000.0f, -2.0f),0);
+        CreateView("고양이", new Vector2(1.0f, -2.0f), 0);
+        CreateView("양", new Vector2(-1.0f, -2.0f), 0);
+        CreateView("코끼리", new Vector2(-1.0f, -2.0f), 1);
+        CreateView("판다", new Vector2(1.0f, -2.0f), 1);
+
+        dicPageBG.Add(0, "CharSel_BG");
         
         SettingCurrentPage(curPage);
 
@@ -170,7 +172,10 @@ public class SettCharSheet : MonoBehaviour {
             Sprite spr = C_GAMEMANAGER.GetInstance().GetSpriteMgr().GetSprite(str);
 
             if (spr != null)
+            {
                 sprBG.sprite = spr;
+                C_GAMEMANAGER.GetInstance().SetCurSelBG(str);
+            }
         }
     }
 

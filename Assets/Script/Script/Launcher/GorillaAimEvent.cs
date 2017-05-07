@@ -20,13 +20,13 @@ public class GorillaAimEvent : LauncherParent {
     {
         base.AimEvent();
 
-        arm.transform.rotation = Quaternion.Euler(0.0f, 0.0f, faimAngle);
+        arm.transform.rotation = Quaternion.Euler(0.0f, 0.0f, faimAngle- 45.0f);
     }
 
     public override void EndAimEvent()
     {
         base.EndAimEvent();
-        player.transform.position = GameObject.Find("GorillaSpot").transform.position;
+        GameObject.FindGameObjectWithTag("Player").transform.position = GameObject.Find("GorillaSpot").transform.position;
     }
 
     public override void LaunchEvent()

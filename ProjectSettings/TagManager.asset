@@ -59,13 +59,13 @@ TagManager:
   - name: Projectile
     uniqueID: 2731259093
     locked: 0
-  - name: Character
+  - name: Bullet
     uniqueID: 3848298803
     locked: 0
   - name: Obstacle
     uniqueID: 2314819517
     locked: 0
-  - name: Bullet
+  - name: Character
     uniqueID: 355757333
     locked: 0
   - name: CutScene

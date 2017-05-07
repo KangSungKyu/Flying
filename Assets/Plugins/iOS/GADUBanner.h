@@ -1,22 +1,9 @@
 // Copyright 2014 Google Inc. All Rights Reserved.
 
-#import <CoreGraphics/CoreGraphics.h>
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import GoogleMobileAds;
 
 #import "GADUTypes.h"
-
-@class GADBannerView;
-@class GADRequest;
-
-/// Positions to place a banner.
-typedef NS_ENUM(NSUInteger, GADAdPosition) {
-  kGADAdPositionTopOfScreen = 0,         ///< Ad positioned at top of screen.
-  kGADAdPositionBottomOfScreen = 1,      ///< Ad positioned at bottom of screen.
-  kGADAdPositionTopLeftOfScreen = 2,     ///< Ad positioned at top left of screen.
-  kGADAdPositionTopRightOfScreen = 3,    ///< Ad positioned at top right of screen.
-  kGADAdPositionBottomLeftOfScreen = 4,  ///< Ad positioned at bottom left of screen.
-  kGADAdPositionBottomRightOfScreen = 5  ///< Ad positioned at bottom right of screen.
-};
 
 /// A wrapper around GADBannerView. Includes the ability to create GADBannerView objects, load them
 /// with ads, and listen for ad events.
@@ -35,6 +22,17 @@ typedef NS_ENUM(NSUInteger, GADAdPosition) {
                                              adUnitID:(NSString *)adUnitID
                                            adPosition:(GADAdPosition)adPosition;
 
+/// Initializes a GADUBanner with specified width and height at the specified point.
+- (id)initWithBannerClientReference:(GADUTypeBannerClientRef *)bannerClient
+                           adUnitID:(NSString *)adUnitID
+                             adSize:(GADAdSize)size
+                   customAdPosition:(CGPoint)customAdPosition;
+
+/// Initializes a full-width GADUBanner with specified width and height at the specified point.
+- (id)initWithSmartBannerSizeAndBannerClientReference:(GADUTypeBannerClientRef *)bannerClient
+                                             adUnitID:(NSString *)adUnitID
+                                     customAdPosition:(CGPoint)customAdPosition;
+
 /// A reference to the Unity banner client.
 @property(nonatomic, assign) GADUTypeBannerClientRef *bannerClient;
 
@@ -49,9 +47,6 @@ typedef NS_ENUM(NSUInteger, GADAdPosition) {
 
 /// The will present screen callback into Unity.
 @property(nonatomic, assign) GADUAdViewWillPresentScreenCallback willPresentCallback;
-
-/// The will dismiss screen callback into Unity.
-@property(nonatomic, assign) GADUAdViewWillDismissScreenCallback willDismissCallback;
 
 /// The did dismiss screen callback into Unity.
 @property(nonatomic, assign) GADUAdViewDidDismissScreenCallback didDismissCallback;

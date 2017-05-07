@@ -122,7 +122,7 @@ public class FlyScript : MonoBehaviour {
                     return;
             }
 
-            BulletInstance.GetComponent<Transform>().position = transform.FindChild("ArrowSpot").position;
+            BulletInstance.GetComponent<Transform>().position = transform.Find("ArrowSpot").position;
             float fDegree = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fBulletDegree;
             Vector3 dir = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealForwardDir();
             float fBulletShotAng = 0.0f;
@@ -162,7 +162,7 @@ public class FlyScript : MonoBehaviour {
                     return;
             }
 
-            ChargeInst.GetComponent<Transform>().position = transform.FindChild("ArrowSpot").position;
+            ChargeInst.GetComponent<Transform>().position = transform.Find("ArrowSpot").position;
             float fDegree = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletDegree;
             Vector3 dir = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealForwardDir();
             float fBulletShotAng = 0.0f;
@@ -196,10 +196,10 @@ public class FlyScript : MonoBehaviour {
         {
             Vector3 vMove = new Vector3(C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed(), C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed(), 0.0f);
 
-            transform.position += vMove*Time.deltaTime;
+            transform.position += vMove*5.0f*Time.deltaTime;
             vecPrevPos = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos();
 
-            C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos(transform.position);
+            C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos(transform.position*0.1f);
 
             Debug.Log(vMove);
         }
@@ -247,10 +247,10 @@ public class FlyScript : MonoBehaviour {
                 deg = -deg;
 
             if (-10.0f > deg
-                 && C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < 100.0f)
+                 && C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < 200.0f)
             {
-                float fSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed();
-                float fVSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed();
+                float fSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed()*5.0f;
+                float fVSpeed = C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed() * 5.0f;
                 float add = 1.0f;
 
                 if (fSpeed > 100.0f || fVSpeed > 100.0f)

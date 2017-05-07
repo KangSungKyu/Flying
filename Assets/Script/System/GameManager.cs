@@ -17,6 +17,7 @@ class C_GAMEMANAGER
     private int m_nMaxPlayCount = 5;
     private int m_nScore = 0;
     private int m_nCash = 0;
+    private string m_strCurSelBG = "CharSel_BG";
 
     bool m_bInit = false;
 
@@ -168,6 +169,14 @@ class C_GAMEMANAGER
     {
         return SaveLoadCtrlM;
     }
+    public void SetCurSelBG(string _name)
+    {
+        m_strCurSelBG = _name;
+    }
+    public string GetCurSelBG()
+    {
+        return m_strCurSelBG;
+    }
 
     public void InitPeaceMeter()
     {
@@ -216,6 +225,46 @@ class C_GAMEMANAGER
         JewelM.SetExchangeJewelCount("에메랄드", 20);
     }
 
+    public bool LoadPrefab(string _name, string _path)
+    {
+        GameObject obj = Resources.Load(_path, typeof(GameObject)) as GameObject;
+
+        if(obj != null)
+        {
+            m_cObjectMgr.InsertObject(_name, obj);
+
+            return true;
+        }
+
+        return false;
+    }
+    public bool LoadSprite(string _name,string _path)
+    {
+        Sprite spr = Resources.Load(_path, typeof(Sprite)) as Sprite;
+
+        if(spr != null)
+        {
+            m_cSpriteMgr.InsertSprite(_name, spr);
+
+            return true;
+        }
+
+        return false;
+    }
+    public bool LoadAllSprite(string _name,string _path,int _idx)
+    {
+        Sprite spr = Resources.LoadAll(_path, typeof(Sprite))[_idx] as Sprite;
+
+        if(spr != null)
+        {
+            m_cSpriteMgr.InsertSprite(_name, spr);
+
+            return true;
+        }
+
+        return false;
+    }
+
     public void InitMgr()
     {
         if (m_bInit == true)
@@ -223,7 +272,7 @@ class C_GAMEMANAGER
 
         InitPeaceMeter();
 
-
+        //*
         m_cObjectMgr.InsertObject("Flying", Resources.Load("FlyingObject", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("Guide", Resources.Load("Prefab/Guid", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("Bullet", Resources.Load("Prefab/Bullet", typeof(GameObject)) as GameObject);
@@ -326,13 +375,13 @@ class C_GAMEMANAGER
         m_cSpriteMgr.InsertSprite("코인", Resources.Load("Texture/CoinIcon", typeof(Sprite)) as Sprite);
 
         //Plane
-        m_cSpriteMgr.InsertSprite("나뭇잎_Plane", Resources.Load("Texture/Leaf1", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("낙옆_Plane", Resources.Load("Texture/Leaf2", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("종이비행기_Plane", Resources.Load("Texture/Paper", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("달_Plane", Resources.Load("Texture/Moon", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("풍선_Plane", Resources.Load("Texture/Balloon", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("민들래씨앗_Plane", Resources.Load("Texture/Flower", typeof(Sprite)) as Sprite);
-        m_cSpriteMgr.InsertSprite("민들래씨앗2_Plane", Resources.Load("Texture/Flower2", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("나뭇잎_Plane", Resources.Load("Texture/Plane/Leaf1", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("낙옆_Plane", Resources.Load("Texture/Plane/Leaf2", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("종이비행기_Plane", Resources.Load("Texture/Plane/Paper", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("달_Plane", Resources.Load("Texture/Plane/Moon", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("풍선_Plane", Resources.Load("Texture/Plane/Balloon", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("민들래씨앗_Plane", Resources.Load("Texture/Plane/Flower", typeof(Sprite)) as Sprite);
+        m_cSpriteMgr.InsertSprite("민들래씨앗2_Plane", Resources.Load("Texture/Plane/Flower2", typeof(Sprite)) as Sprite);
 
 
         //select plane
@@ -350,11 +399,15 @@ class C_GAMEMANAGER
         m_cSpriteMgr.InsertSprite("고릴라_LauncherSel", Resources.Load("Texture/Selected/Launcher/Gorilla_LaunchSel", typeof(Sprite)) as Sprite);
         m_cSpriteMgr.InsertSprite("물로켓_LauncherSel", Resources.Load("Texture/Selected/Launcher/WRocket_LaunchSel", typeof(Sprite)) as Sprite);
 
+        //Select Scene BG
+        m_cSpriteMgr.InsertSprite("CharSel_BG", Resources.Load("Texture/UI/CharSelBG", typeof(Sprite)) as Sprite);
+        //*/
+
         m_cDataMgr.InitMgr();
 
         m_bInit = true;
         
-
+        /*
         C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("다이아", 999999);
         C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("루비", 999999);
         C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("사파이어",999999);
@@ -363,6 +416,7 @@ class C_GAMEMANAGER
         C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("에메랄드", 999999);
         C_GAMEMANAGER.GetInstance().SetCoin(9999999);
         C_GAMEMANAGER.GetInstance().SetPlayCount(999);
+        //*/
     }
     public C_PLAYER GetPlayer()
     {

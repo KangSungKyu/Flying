@@ -25,6 +25,9 @@ typedef NS_ENUM(NSInteger, GADUGender) {
 /// The user's birthday may be used to deliver more relevant ads.
 @property(nonatomic, strong) NSDate *birthday;
 
+/// String that identifies the ad request's origin.
+@property(nonatomic, strong) NSString *requestAgent;
+
 /// The user's gender may be used to deliver more relevant ads.
 @property(nonatomic, assign) GADGender *gender;
 
@@ -32,6 +35,9 @@ typedef NS_ENUM(NSInteger, GADUGender) {
 /// child-directed for purposes of the Children’s Online Privacy Protection Act (COPPA) -
 /// http://business.ftc.gov/privacy-and-security/childrens-privacy.
 @property(nonatomic, assign) BOOL tagForChildDirectedTreatment;
+
+/// GADMediationExtras to be sent up in the ad request.
+@property(nonatomic, strong) NSMutableArray<id<GADAdNetworkExtras>> *mediationExtras;
 
 /// Extra parameters to be sent up in the ad request.
 @property(nonatomic, strong) NSMutableDictionary *extras;

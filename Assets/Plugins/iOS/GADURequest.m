@@ -1,8 +1,5 @@
 // Copyright 2014 Google Inc. All Rights Reserved.
 
-@import Foundation;
-@import GoogleMobileAds;
-
 #import "GADURequest.h"
 
 @implementation GADURequest
@@ -13,6 +10,7 @@
     _testDevices = [[NSMutableArray alloc] init];
     _keywords = [[NSMutableArray alloc] init];
     _extras = [[NSMutableDictionary alloc] init];
+    _mediationExtras = [[NSMutableArray alloc] init];
   }
   return self;
 }
@@ -51,17 +49,25 @@
   [self.extras setValue:value forKey:key];
 }
 
+- (void)setMediationExtras:(id<GADAdNetworkExtras>)mediationExtras {
+  [self.mediationExtras addObject:mediationExtras];
+}
+
 - (GADRequest *)request {
   GADRequest *request = [GADRequest request];
   request.testDevices = self.testDevices;
   request.keywords = self.keywords;
   request.birthday = self.birthday;
   request.gender = self.gender;
-  request.requestAgent = @"unity";
+  request.requestAgent = self.requestAgent;
   [request tagForChildDirectedTreatment:self.tagForChildDirectedTreatment];
   GADExtras *extras = [[GADExtras alloc] init];
   extras.additionalParameters = self.extras;
   [request registerAdNetworkExtras:extras];
+
+  for (id<GADAdNetworkExtras> mediationExtras in self.mediationExtras) {
+    [request registerAdNetworkExtras:mediationExtras];
+  }
   return request;
 }
 
