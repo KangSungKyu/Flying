@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: de98c546653c66a45a37665acb1e07cc
-timeCreated: 1490480747
+guid: 079fc752fa0c5244cbe9c526ad2ce06e
+timeCreated: 1494331655
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -44,7 +44,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 4
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -106,13 +106,13 @@ TextureImporter:
       name: Elepha_Hand
       rect:
         serializedVersion: 2
-        x: 192
-        y: 288
+        x: 197
+        y: 293
         width: 26
         height: 49
       alignment: 9
       pivot: {x: 0.5, y: 0.9}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 2}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
@@ -133,7 +133,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 194
-        y: 50
+        y: 43
         width: 25
         height: 49
       alignment: 9

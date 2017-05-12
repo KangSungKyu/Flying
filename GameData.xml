@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <GameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <data>
-    <Money>10000000</Money>
-    <PlayCount>0</PlayCount>
+    <Money>9999999</Money>
+    <PlayCount>931</PlayCount>
     <Cash>0</Cash>
     <CharCnt>8</CharCnt>
     <Chars>
       <boolean>true</boolean>
-      <boolean>true</boolean>
-      <boolean>true</boolean>
-      <boolean>true</boolean>
-      <boolean>true</boolean>
-      <boolean>true</boolean>
-      <boolean>true</boolean>
-      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
     </Chars>
     <Char_Levs>
-      <int>2</int>
+      <int>1</int>
       <int>1</int>
       <int>1</int>
       <int>1</int>
@@ -27,13 +27,13 @@
     </Char_Levs>
     <Char_Pcs>
       <int>0</int>
-      <int>2</int>
-      <int>5</int>
-      <int>3</int>
       <int>0</int>
-      <int>6</int>
-      <int>4</int>
-      <int>3</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
+      <int>0</int>
     </Char_Pcs>
     <PlaneCnt>6</PlaneCnt>
     <Planes>
@@ -95,10 +95,10 @@
       <string>에메랄드</string>
     </Jewel_Name>
     <Jewel_Cnt>
-      <int>999769</int>
       <int>999999</int>
-      <int>999654</int>
-      <int>999654</int>
+      <int>999999</int>
+      <int>999999</int>
+      <int>999999</int>
       <int>999999</int>
       <int>999999</int>
     </Jewel_Cnt>

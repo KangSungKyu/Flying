@@ -53,26 +53,36 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 32, y: 17.75}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.58316857, y: -0.037078455}
-      - {x: 0.47737622, y: 0.105545014}
-      - {x: 0.20665227, y: 0.11489026}
-      - {x: 0.17, y: 0.285}
-      - {x: 0.089999996, y: 0.355}
-      - {x: -0.036138035, y: 0.3804648}
-      - {x: -0.1405451, y: 0.3465843}
-      - {x: -0.25660017, y: 0.1855731}
-      - {x: -0.37, y: 0.195}
-      - {x: -0.64, y: -0.055}
-      - {x: -0.6284157, y: -0.25029802}
-      - {x: -0.4042079, y: -0.3297529}
-      - {x: 0.09502684, y: -0.36472613}
-      - {x: 0.41207838, y: -0.32975292}
-      - {x: 0.61, y: -0.305}
-      - {x: 0.64, y: -0.285}
-      - {x: 0.5937137, y: -0.097129345}
+    - - {x: 13.790046, y: 0.4488747}
+      - {x: 11.449107, y: 2.1963964}
+      - {x: 8.269262, y: 1.9729507}
+      - {x: 4.552738, y: 3.6399696}
+      - {x: 2.4251943, y: 8.378849}
+      - {x: -2.885718, y: 8.403149}
+      - {x: -5.452403, y: 4.835444}
+      - {x: -9.046007, y: 4.287586}
+      - {x: -11.644298, y: 0.4388501}
+      - {x: -14.859146, y: -1.4777983}
+      - {x: -15.698074, y: -6.6301336}
+      - {x: -10.933959, y: -7.777189}
+      - {x: -4.7163706, y: -8.877911}
+      - {x: 6.104224, y: -8.705054}
+      - {x: 15.847084, y: -6.853466}
+      - {x: 15.880932, y: -3.9444427}
+      - {x: 14.192507, y: -1.8975184}
 --- !u!114 &114334824948539608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,8 +128,13 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1980147779
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a0f841c842ca2b14694c792e15887ab4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0

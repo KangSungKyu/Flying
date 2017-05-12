@@ -10,6 +10,8 @@ class C_GAMEMANAGER
     private C_PLAYER m_cPlayer;
     private C_DATAMANAGER m_cDataMgr;
     private C_SPRITEMANAGER m_cSpriteMgr;
+    private C_ANIMATIONMANAGER m_cAniMgr;
+    private C_ANIMATORMANAGER m_cAtrMgr;
     private int m_nKey;
     private float m_fCheckMaxHeight = 10.0f;
     private int m_nCoin = 0;
@@ -45,6 +47,8 @@ class C_GAMEMANAGER
         m_sScene = new S_SCENEDATA();
         m_cPlayer = new C_PLAYER();
         m_cSpriteMgr = new C_SPRITEMANAGER();
+        m_cAniMgr = new C_ANIMATIONMANAGER();
+        m_cAtrMgr = new C_ANIMATORMANAGER();
 
         CharPeaceM = new PeaceMeter();
         PlanePeaceM = new PeaceMeter();
@@ -71,6 +75,14 @@ class C_GAMEMANAGER
     public C_SPRITEMANAGER GetSpriteMgr()
     {
         return m_cSpriteMgr;
+    }
+    public C_ANIMATIONMANAGER GetAnimationMgr()
+    {
+        return m_cAniMgr;
+    }
+    public C_ANIMATORMANAGER GetAnimatorMgr()
+    {
+        return m_cAtrMgr;
     }
     public C_DATAMANAGER GetDataMgr()
     {
@@ -264,6 +276,32 @@ class C_GAMEMANAGER
 
         return false;
     }
+    public bool LoadAnimator(string _name,string _path)
+    {
+        Animator animtor = Resources.Load(_path, typeof(Animator)) as Animator;
+
+        if (animtor != null)
+        {
+            m_cAtrMgr.InsertAnimator(_name, animtor);
+
+            return true;
+        }
+
+        return false;
+    }
+    public bool LoadAnimation(string _name, string _path)
+    {
+        Animation anim = Resources.Load(_path, typeof(Animation)) as Animation;
+
+        if (anim != null)
+        {
+            m_cAniMgr.InsertAnimation(_name, anim);
+
+            return true;
+        }
+
+        return false;
+    }
 
     public void InitMgr()
     {
@@ -274,7 +312,6 @@ class C_GAMEMANAGER
 
         //*
         m_cObjectMgr.InsertObject("Flying", Resources.Load("FlyingObject", typeof(GameObject)) as GameObject);
-        m_cObjectMgr.InsertObject("Guide", Resources.Load("Prefab/Guid", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("Bullet", Resources.Load("Prefab/Bullet", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("Box_OB", Resources.Load("Prefab/Obstacle", typeof(GameObject)) as GameObject);
         m_cObjectMgr.InsertObject("Cloud", Resources.Load("Prefab/Cloud", typeof(GameObject)) as GameObject);
@@ -403,11 +440,21 @@ class C_GAMEMANAGER
         m_cSpriteMgr.InsertSprite("CharSel_BG", Resources.Load("Texture/UI/CharSelBG", typeof(Sprite)) as Sprite);
         //*/
 
+        //attack obs
+        m_cObjectMgr.InsertObject("DrunkBird",Resources.Load("Prefab/DrunkBird",typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("Alian", Resources.Load("Prefab/Alian", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("Dust", Resources.Load("Prefab/Dust", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("Virus", Resources.Load("Prefab/Virus", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("Virus_Weapon", Resources.Load("Prefab/Virus_Weapon", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("Meteo", Resources.Load("Prefab/Meteo", typeof(GameObject)) as GameObject);
+        m_cObjectMgr.InsertObject("Spanor", Resources.Load("Prefab/Spanor", typeof(GameObject)) as GameObject);
+
+
         m_cDataMgr.InitMgr();
 
         m_bInit = true;
         
-        /*
+        //*
         C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("다이아", 999999);
         C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("루비", 999999);
         C_GAMEMANAGER.GetInstance().GetJewelMeter().SetCurrentJewelCount("사파이어",999999);

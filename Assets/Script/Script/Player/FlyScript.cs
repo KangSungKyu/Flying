@@ -138,7 +138,7 @@ public class FlyScript : MonoBehaviour {
             Vector3 vAdd = new Vector3(C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed(), C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed(),0.0f);
             
             BulletInstance.transform.rotation = Quaternion.Euler(0.0f, 0.0f, transform.eulerAngles.z + fBulletShotAng + fDegree);
-            BulletInstance.GetComponent<Rigidbody2D>().velocity = (dir.normalized * C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fBulletSpeed)+vAdd;
+            BulletInstance.GetComponent<Rigidbody2D>().velocity = (dir.normalized * C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fBulletSpeed*50.0f)+vAdd;
 
             int b = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentBulletCount();
 
@@ -178,7 +178,7 @@ public class FlyScript : MonoBehaviour {
             Vector3 vAdd = new Vector3(C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed(), C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed(), 0.0f);
 
             ChargeInst.transform.rotation = Quaternion.Euler(0.0f, 0.0f, transform.eulerAngles.z + fBulletShotAng + fDegree);
-            ChargeInst.GetComponent<Rigidbody2D>().velocity = dir.normalized * C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletSpeed+vAdd;
+            ChargeInst.GetComponent<Rigidbody2D>().velocity = (dir.normalized * C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletSpeed * 50.0f) + vAdd;
 
             if (ChargeInst.name.Equals("Chicken_Bullet_Charge(Clone)"))
                 ChargeInst.GetComponent<ChickenChargeMovement>().Movement();
@@ -196,7 +196,7 @@ public class FlyScript : MonoBehaviour {
         {
             Vector3 vMove = new Vector3(C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentSpeed(), C_GAMEMANAGER.GetInstance().GetPlayer().GetVerticalSpeed(), 0.0f);
 
-            transform.position += vMove*5.0f*Time.deltaTime;
+            transform.position += vMove*1.0f*Time.deltaTime;
             vecPrevPos = C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos();
 
             C_GAMEMANAGER.GetInstance().GetPlayer().SetRealPos(transform.position*0.1f);

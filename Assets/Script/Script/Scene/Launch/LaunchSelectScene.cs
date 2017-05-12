@@ -22,8 +22,8 @@ public class LaunchSelectScene : MonoBehaviour {
         dicPage = new Dictionary<int, List<GameObject>>();
         dicPageBG = new Dictionary<int, string>();
 
-        CreateView("새총", new Vector2(-2.580f, 1.000f), 0);
-        CreateView("투석기", new Vector2(-1.180f, 1.000f), 0);
+        CreateView("투석기", new Vector2(-2.580f, 1.000f), 0);
+        CreateView("새총", new Vector2(-1.180f, 1.000f), 0);
         CreateView("고릴라", new Vector2(-2.580f, 1.000f), 1);
         CreateView("공룡", new Vector2(-1.180f, 1.000f), 1);
         CreateView("물로켓", new Vector2(-2.580f, 1.000f), 2);
@@ -96,6 +96,9 @@ public class LaunchSelectScene : MonoBehaviour {
 
         Vector2 dir = (end - start).normalized;
 
+        if (Vector2.Distance(end, start) < 5.0f)
+            return;
+        
         Debug.Log(dir.y);
 
         if (dir.y > 0.0f)

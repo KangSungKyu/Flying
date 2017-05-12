@@ -1,12 +1,12 @@
 fileFormatVersion: 2
 guid: ff48360daf675e641901a8355867ed3b
-timeCreated: 1490480594
+timeCreated: 1494331515
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Panda_Char
     21300002: Panda_Hand
-    21300004: Panda_ChaSel
+    21300004: Panda_CharSel
     21300006: Panda_Leg
   serializedVersion: 4
   mipmaps:
@@ -44,7 +44,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 4
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -116,7 +116,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Panda_ChaSel
+      name: Panda_CharSel
       rect:
         serializedVersion: 2
         x: 24
@@ -137,7 +137,7 @@ TextureImporter:
         width: 34
         height: 55
       alignment: 9
-      pivot: {x: 0.4, y: 0.9}
+      pivot: {x: 0.35, y: 0.9}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

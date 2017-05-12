@@ -122,6 +122,9 @@ public class PlaneSelectScene : MonoBehaviour {
 
         Vector2 dir = (end - start).normalized;
 
+        if (Vector2.Distance(end, start) < 5.0f)
+            return;
+
         Debug.Log(dir.y);
 
         if (dir.y > 0.0f)

@@ -33,7 +33,7 @@ public class LauncherParent : MonoBehaviour
         float fMinDegree = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fMinDegree;
 
         float center = 90.0f;
-        float size = 150.0f;
+        float size = 60.0f;
         
         rightPos = Quaternion.Euler(0.0f, 0.0f, fMinDegree) * Vector2.right * size + OriginPos;
         UpPos = Quaternion.Euler(0.0f, 0.0f, fMaxDegree) * Vector2.right * size + OriginPos;

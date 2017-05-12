@@ -153,7 +153,7 @@ public class GameSettingScript : MonoBehaviour {
 
         OriginPos = player.transform.position;
         C_GAMEMANAGER.GetInstance().GetPlayer().SetState(E_PLAYERSTATE.E_PLAYERATTACH);
-        float size = 150.0f;
+        float size = 60.0f;
         fLauchPower = 0.0f;
 
         gobjLaunch.GetComponent<LauncherParent>().SetOriginPos(OriginPos);
