@@ -19,13 +19,19 @@ public class DinoAimEvent : LauncherParent {
     public override void AimEvent()
     {
         base.AimEvent();
+
+        if (leg != null)
+        {
+            Vector3 sc = leg.transform.localScale;
+            sc.x += (fLauchPower) * Time.deltaTime;
+            sc.y += (fLauchPower) * Time.deltaTime;
+            leg.transform.localScale = sc;
+            //iTween.ScaleAdd(leg, new Vector3(0.25f, 0.25f, 1.0f), 2.0f);
+        }
     }
     public override void EndAimEvent()
     {
         base.EndAimEvent();
-
-        if(leg != null)
-            iTween.ScaleAdd(leg, new Vector3(0.25f, 0.25f, 1.0f), 2.0f);
     }
 
     public override void LaunchEvent()

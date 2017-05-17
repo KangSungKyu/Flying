@@ -90,9 +90,24 @@ public class FlyScript : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
        if(col.tag == "Launcher")
-        {
+       {
             
-        }
+       }
+       else if(col.gameObject.tag == "Obstacle")
+       {
+           float dmg = col.gameObject.GetComponent<AttackObsCtrl>().fAttack;
+
+           float hp = C_GAMEMANAGER.GetInstance().GetPlayer().GetCurrentHP();
+
+           hp = Mathf.Max(hp-dmg, 0.0f);
+
+           C_GAMEMANAGER.GetInstance().GetPlayer().SetCurrentHP((int)hp);
+
+           if(hp <= 0.0f)
+           {
+                C_GAMEMANAGER.GetInstance().GetPlayer().SetState(E_PLAYERSTATE.E_PLAYERDIE);
+           }
+       }
     }
     void OnCollisionEnter2D(Collision2D col)
     {

@@ -6,6 +6,7 @@ public class PanAimEvent : LauncherParent {
 
     GameObject head;
     GameObject head2;
+    GameObject spot;
     // Use this for initialization
     void Start () {
 
@@ -18,10 +19,12 @@ public class PanAimEvent : LauncherParent {
         {
             head = GameObject.Find("Pan_Head");
             head2 = GameObject.Find("Pan_Head2");
+            spot = GameObject.Find("PanSpot");
         }
 
         head.transform.Rotate(new Vector3(0.0f, -1080.0f*Time.deltaTime*(fLauchPower+1.0f), 0.0f));
         head2.transform.Rotate(new Vector3(0.0f, -1080.0f * Time.deltaTime * (fLauchPower+1.0f), 0.0f));
+        player.transform.position = spot.transform.position;
     }
     override public void AimEvent()
     {

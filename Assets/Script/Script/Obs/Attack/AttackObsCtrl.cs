@@ -8,6 +8,7 @@ public class AttackObsCtrl : MonoBehaviour {
     public float fHP = 20.0f;
     public float fMaxHP = 20.0f;
     public float fSpeed = 10.0f;
+    public float fAttack = 5.0f;
 
     AttackObsParent Ctrl;
 
@@ -55,6 +56,21 @@ public class AttackObsCtrl : MonoBehaviour {
             Ctrl.Init(this.gameObject);
             Ctrl.SettingAction();
             Ctrl.BeginAction();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "PlayerAttack")
+        {
+            float dmg = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fBulletPower;
+
+            if(other.gameObject.name.IndexOf("_Charge") != 0)
+            {
+                dmg = C_GAMEMANAGER.GetInstance().GetPlayer().GetPlayerStats().m_fChargeBulletPower;
+            }
+
+            fHP = Mathf.Max(fHP - dmg,0.0f);
         }
     }
 }

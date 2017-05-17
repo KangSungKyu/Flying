@@ -1,12 +1,13 @@
 fileFormatVersion: 2
-guid: e5160fb403adb1348bf2ec1c9347cdf0
-timeCreated: 1494857282
+guid: 06b991b98119cf742a5b975d0219d38f
+timeCreated: 1494755351
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Dino_Body
-    21300002: Dino_Leg
-    21300004: Dino_1
+    21300000: Pig_Char
+    21300002: Pig_Hand
+    21300004: Pig_CharSel
+    21300006: Pig_Leg
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -43,7 +44,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 4
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -89,41 +90,54 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dino_Body
+      name: Pig_Char
       rect:
         serializedVersion: 2
-        x: 34
-        y: 79
-        width: 382
-        height: 361
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Dino_1
-      rect:
-        serializedVersion: 2
-        x: 418
-        y: 332
-        width: 4
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Dino_Leg
-      rect:
-        serializedVersion: 2
-        x: 459
-        y: 70
-        width: 96
-        height: 116
+        x: 23
+        y: 245
+        width: 140
+        height: 178
       alignment: 9
-      pivot: {x: 0.3047422, y: 0.8819463}
+      pivot: {x: 0.55, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pig_Hand
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 295
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0.9}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pig_CharSel
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 34
+        width: 140
+        height: 179
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pig_Leg
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 35
+        width: 27
+        height: 53
+      alignment: 9
+      pivot: {x: 0.5, y: 0.9}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

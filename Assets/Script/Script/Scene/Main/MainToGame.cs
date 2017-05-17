@@ -45,9 +45,9 @@ public class MainToGame : MonoBehaviour {
     }
     public void ButtonEvent()
     {
-        C_GAMEMANAGER.GetInstance().strSelectedCharName = "펭귄";
+        C_GAMEMANAGER.GetInstance().strSelectedCharName = "고양이";
         C_GAMEMANAGER.GetInstance().strSelectedPlaneName = "종이비행기";
-        C_GAMEMANAGER.GetInstance().strSelectedLaunchName = "고릴라";
+        C_GAMEMANAGER.GetInstance().strSelectedLaunchName = "공룡";
 
         string strC = C_GAMEMANAGER.GetInstance().strSelectedCharName;
         string strP = C_GAMEMANAGER.GetInstance().strSelectedPlaneName;

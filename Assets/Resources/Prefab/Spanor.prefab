@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4695193294718622}
   - component: {fileID: 114133076180456140}
+  - component: {fileID: 60112097178255630}
   m_Layer: 0
   m_Name: Spanor
   m_TagString: Untagged
@@ -70,6 +71,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &60112097178255630
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1430960489237016}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.3475895, y: 0.19903278}
+      - {x: -0.78482056, y: 0.6263809}
+      - {x: -1.0559464, y: 0.51341057}
+      - {x: -1.118473, y: 0.24616337}
+      - {x: -0.9470196, y: -0.019443512}
+      - {x: -0.48199844, y: -0.053388596}
+      - {x: 1.0562725, y: -0.7334547}
+      - {x: 1.1475201, y: -0.4768362}
 --- !u!114 &114133076180456140
 MonoBehaviour:
   m_ObjectHideFlags: 1

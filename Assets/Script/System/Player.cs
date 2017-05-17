@@ -42,6 +42,7 @@ public class C_PLAYER
         SetIHaveChar("판다", false);
         SetIHaveChar("고양이", false);
         SetIHaveChar("코끼리", false);
+        SetIHaveChar("원숭이", false);
 
         SetIHaveLaunch("새총", true);
         SetIHaveLaunch("투석기", false);
@@ -65,6 +66,7 @@ public class C_PLAYER
         SetCharLevel("치킨", 1);
         SetCharLevel("판다", 1);
         SetCharLevel("코끼리", 1);
+        SetCharLevel("원숭이", 1);
 
         SetPlaneLevel("종이비행기", 1);
         SetPlaneLevel("나뭇잎", 1);
