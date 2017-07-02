@@ -786,6 +786,11 @@ The newly built NavMeshData, or null if the NavMeshData was empty or an error oc
         <para>The agent type ID the NavMesh will be baked for.</para>
       </summary>
     </member>
+    <member name="P:UnityEngine.AI.NavMeshBuildSettings.minRegionArea">
+      <summary>
+        <para>The approximate minimum area of individual NavMesh regions.</para>
+      </summary>
+    </member>
     <member name="P:UnityEngine.AI.NavMeshBuildSettings.overrideTileSize">
       <summary>
         <para>Enables overriding the default tile size. See Also: tileSize.</para>
@@ -11723,7 +11728,7 @@ See Also: CanvasRenderer.SetMaterialCount, CanvasRenderer.SetTexture.</para>
       </summary>
       <param name="name">Name of kernel function.</param>
       <returns>
-        <para>Kernel index, or -1 if not found.</para>
+        <para>The Kernel index, or logs a "FindKernel failed" error message if the kernel is not found.</para>
       </returns>
     </member>
     <member name="M:UnityEngine.ComputeShader.GetKernelThreadGroupSizes(System.Int32,System.UInt32&amp;,System.UInt32&amp;,System.UInt32&amp;)">
@@ -18232,6 +18237,21 @@ The destination texture format should be uncompressed and correspond to a suppor
       <param name="layer"> to use.</param>
       <param name="camera">If null (default), the mesh will be drawn in all cameras. Otherwise it will be drawn in the given camera only.</param>
     </member>
+    <member name="M:UnityEngine.Graphics.DrawMeshInstanced(UnityEngine.Mesh,System.Int32,UnityEngine.Material,System.Collections.Generic.List`1&lt;UnityEngine.Matrix4x4&gt;,UnityEngine.MaterialPropertyBlock,UnityEngine.Rendering.ShadowCastingMode,System.Boolean,System.Int32,UnityEngine.Camera)">
+      <summary>
+        <para>Draw the same mesh multiple times using GPU instancing.</para>
+      </summary>
+      <param name="mesh">The Mesh to draw.</param>
+      <param name="submeshIndex">Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.</param>
+      <param name="material">Material to use.</param>
+      <param name="matrices">The array of object transformation matrices.</param>
+      <param name="count">The number of instances to be drawn.</param>
+      <param name="properties">Additional material properties to apply. See MaterialPropertyBlock.</param>
+      <param name="castShadows">Should the mesh cast shadows?</param>
+      <param name="receiveShadows">Should the mesh receive shadows?</param>
+      <param name="layer"> to use.</param>
+      <param name="camera">If null (default), the mesh will be drawn in all cameras. Otherwise it will be drawn in the given camera only.</param>
+    </member>
     <member name="M:UnityEngine.Graphics.DrawMeshInstancedIndirect(UnityEngine.Mesh,System.Int32,UnityEngine.Material,UnityEngine.Bounds,UnityEngine.ComputeBuffer,System.Int32,UnityEngine.MaterialPropertyBlock,UnityEngine.Rendering.ShadowCastingMode,System.Boolean,System.Int32,UnityEngine.Camera)">
       <summary>
         <para>Draw the same mesh multiple times using GPU instancing.</para>
@@ -18305,6 +18325,66 @@ The destination texture format should be uncompressed and correspond to a suppor
       <param name="argsOffset">Byte offset where in the buffer the draw arguments are.</param>
     </member>
     <member name="M:UnityEngine.Graphics.DrawTexture(UnityEngine.Rect,UnityEngine.Texture,UnityEngine.Material)">
+      <summary>
+        <para>Draw a texture in screen coordinates.</para>
+      </summary>
+      <param name="screenRect">Rectangle on the screen to use for the texture. In pixel coordinates with (0,0) in the upper-left corner.</param>
+      <param name="texture">Texture to draw.</param>
+      <param name="sourceRect">Region of the texture to use. In normalized coordinates with (0,0) in the bottom-left corner.</param>
+      <param name="leftBorder">Number of pixels from the left that are not affected by scale.</param>
+      <param name="rightBorder">Number of pixels from the right that are not affected by scale.</param>
+      <param name="topBorder">Number of pixels from the top that are not affected by scale.</param>
+      <param name="bottomBorder">Number of pixels from the bottom that are not affected by scale.</param>
+      <param name="color">Color that modulates the output. The neutral value is (0.5, 0.5, 0.5, 0.5). Set as vertex color for the shader.</param>
+      <param name="mat">Custom Material that can be used to draw the texture. If null is passed, a default material with the Internal-GUITexture.shader is used.</param>
+      <param name="pass">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</param>
+    </member>
+    <member name="M:UnityEngine.Graphics.DrawTexture(UnityEngine.Rect,UnityEngine.Texture,UnityEngine.Material,System.Int32)">
+      <summary>
+        <para>Draw a texture in screen coordinates.</para>
+      </summary>
+      <param name="screenRect">Rectangle on the screen to use for the texture. In pixel coordinates with (0,0) in the upper-left corner.</param>
+      <param name="texture">Texture to draw.</param>
+      <param name="sourceRect">Region of the texture to use. In normalized coordinates with (0,0) in the bottom-left corner.</param>
+      <param name="leftBorder">Number of pixels from the left that are not affected by scale.</param>
+      <param name="rightBorder">Number of pixels from the right that are not affected by scale.</param>
+      <param name="topBorder">Number of pixels from the top that are not affected by scale.</param>
+      <param name="bottomBorder">Number of pixels from the bottom that are not affected by scale.</param>
+      <param name="color">Color that modulates the output. The neutral value is (0.5, 0.5, 0.5, 0.5). Set as vertex color for the shader.</param>
+      <param name="mat">Custom Material that can be used to draw the texture. If null is passed, a default material with the Internal-GUITexture.shader is used.</param>
+      <param name="pass">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</param>
+    </member>
+    <member name="M:UnityEngine.Graphics.DrawTexture(UnityEngine.Rect,UnityEngine.Texture,System.Int32,System.Int32,System.Int32,System.Int32,UnityEngine.Material,System.Int32)">
+      <summary>
+        <para>Draw a texture in screen coordinates.</para>
+      </summary>
+      <param name="screenRect">Rectangle on the screen to use for the texture. In pixel coordinates with (0,0) in the upper-left corner.</param>
+      <param name="texture">Texture to draw.</param>
+      <param name="sourceRect">Region of the texture to use. In normalized coordinates with (0,0) in the bottom-left corner.</param>
+      <param name="leftBorder">Number of pixels from the left that are not affected by scale.</param>
+      <param name="rightBorder">Number of pixels from the right that are not affected by scale.</param>
+      <param name="topBorder">Number of pixels from the top that are not affected by scale.</param>
+      <param name="bottomBorder">Number of pixels from the bottom that are not affected by scale.</param>
+      <param name="color">Color that modulates the output. The neutral value is (0.5, 0.5, 0.5, 0.5). Set as vertex color for the shader.</param>
+      <param name="mat">Custom Material that can be used to draw the texture. If null is passed, a default material with the Internal-GUITexture.shader is used.</param>
+      <param name="pass">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</param>
+    </member>
+    <member name="M:UnityEngine.Graphics.DrawTexture(UnityEngine.Rect,UnityEngine.Texture,UnityEngine.Rect,System.Int32,System.Int32,System.Int32,System.Int32,UnityEngine.Material,System.Int32)">
+      <summary>
+        <para>Draw a texture in screen coordinates.</para>
+      </summary>
+      <param name="screenRect">Rectangle on the screen to use for the texture. In pixel coordinates with (0,0) in the upper-left corner.</param>
+      <param name="texture">Texture to draw.</param>
+      <param name="sourceRect">Region of the texture to use. In normalized coordinates with (0,0) in the bottom-left corner.</param>
+      <param name="leftBorder">Number of pixels from the left that are not affected by scale.</param>
+      <param name="rightBorder">Number of pixels from the right that are not affected by scale.</param>
+      <param name="topBorder">Number of pixels from the top that are not affected by scale.</param>
+      <param name="bottomBorder">Number of pixels from the bottom that are not affected by scale.</param>
+      <param name="color">Color that modulates the output. The neutral value is (0.5, 0.5, 0.5, 0.5). Set as vertex color for the shader.</param>
+      <param name="mat">Custom Material that can be used to draw the texture. If null is passed, a default material with the Internal-GUITexture.shader is used.</param>
+      <param name="pass">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</param>
+    </member>
+    <member name="M:UnityEngine.Graphics.DrawTexture(UnityEngine.Rect,UnityEngine.Texture,UnityEngine.Rect,System.Int32,System.Int32,System.Int32,System.Int32,UnityEngine.Color,UnityEngine.Material,System.Int32)">
       <summary>
         <para>Draw a texture in screen coordinates.</para>
       </summary>
@@ -27812,6 +27892,16 @@ Only usable on Android, Windows Phone or Windows Tablets.</para>
         <para>Choose how textures are applied to Lines and Trails.</para>
       </summary>
     </member>
+    <member name="F:UnityEngine.LineTextureMode.DistributePerSegment">
+      <summary>
+        <para>Map the texture once along the entire length of the line, assuming all vertices are evenly spaced.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.LineTextureMode.RepeatPerSegment">
+      <summary>
+        <para>Repeat the texture along the line, repeating at a rate of once per line segment. To adjust the tiling rate, use Material.SetTextureScale.</para>
+      </summary>
+    </member>
     <member name="F:UnityEngine.LineTextureMode.Stretch">
       <summary>
         <para>Map the texture once along the entire length of the line.</para>
@@ -27819,7 +27909,7 @@ Only usable on Android, Windows Phone or Windows Tablets.</para>
     </member>
     <member name="F:UnityEngine.LineTextureMode.Tile">
       <summary>
-        <para>Repeat the texture along the line. To set the tiling rate, use Material.SetTextureScale.</para>
+        <para>Repeat the texture along the line, based on its length in world units. To set the tiling rate, use Material.SetTextureScale.</para>
       </summary>
     </member>
     <member name="T:UnityEngine.LocationInfo">
@@ -33442,6 +33532,11 @@ The Player ID is always 1, because only one Editor can be connected.</param>
         <para>The numeric HTTP response code returned by the server, such as 200, 404 or 500. (Read Only)</para>
       </summary>
     </member>
+    <member name="P:UnityEngine.Networking.UnityWebRequest.timeout">
+      <summary>
+        <para>Sets UnityWebRequest to attempt to abort after the number of seconds in timeout have passed.</para>
+      </summary>
+    </member>
     <member name="P:UnityEngine.Networking.UnityWebRequest.uploadedBytes">
       <summary>
         <para>Returns the number of bytes of body data the system has uploaded to the remote server. (Read Only)</para>
@@ -37854,6 +37949,16 @@ The position stream is always enabled, and any attempts to remove it will be ign
     <member name="T:UnityEngine.ParticleSystemTrailTextureMode">
       <summary>
         <para>Choose how textures are applied to Particle Trails.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.ParticleSystemTrailTextureMode.DistributePerSegment">
+      <summary>
+        <para>Map the texture once along the entire length of the trail, assuming all vertices are evenly spaced.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.ParticleSystemTrailTextureMode.RepeatPerSegment">
+      <summary>
+        <para>Repeat the texture along the trail, repeating at a rate of once per trail segment. To adjust the tiling rate, use Material.SetTextureScale.</para>
       </summary>
     </member>
     <member name="F:UnityEngine.ParticleSystemTrailTextureMode.Stretch">
@@ -43641,7 +43746,11 @@ See Also: ReflectionProbeTimeSlicingMode.</para>
     </member>
     <member name="M:UnityEngine.Rendering.CommandBuffer.DrawMeshInstanced(UnityEngine.Mesh,System.Int32,UnityEngine.Material,System.Int32,UnityEngine.Matrix4x4[],System.Int32,UnityEngine.MaterialPropertyBlock)">
       <summary>
-        <para>Add a "draw mesh with instancing" command.</para>
+        <para>Add a "draw mesh with instancing" command.
+
+The command will not immediately fail and throw an exception if Material.enableInstancing is false, but it will log an error and skips rendering each time the command is being executed if such a condition is detected.
+
+InvalidOperationException will be thrown if the current platform doesn't support this API (i.e. if GPU instancing is not available). See SystemInfo.supportsInstancing.</para>
       </summary>
       <param name="mesh">The Mesh to draw.</param>
       <param name="submeshIndex">Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.</param>
@@ -45607,14 +45716,14 @@ Updating a probe's cubemap is a costly operation. Unity needs to render the enti
     </member>
     <member name="M:UnityEngine.RenderTexture.DiscardContents">
       <summary>
-        <para>Discards the contents of the RenderTexture.</para>
+        <para>Hint the GPU driver that the contents of the RenderTexture will not be used.</para>
       </summary>
       <param name="discardColor">Should the colour buffer be discarded?</param>
       <param name="discardDepth">Should the depth buffer be discarded?</param>
     </member>
     <member name="M:UnityEngine.RenderTexture.DiscardContents(System.Boolean,System.Boolean)">
       <summary>
-        <para>Discards the contents of the RenderTexture.</para>
+        <para>Hint the GPU driver that the contents of the RenderTexture will not be used.</para>
       </summary>
       <param name="discardColor">Should the colour buffer be discarded?</param>
       <param name="discardDepth">Should the depth buffer be discarded?</param>
@@ -45751,6 +45860,11 @@ Updating a probe's cubemap is a costly operation. Unity needs to render the enti
         <para>Scalar (R) render texture format, 32 bit floating point.</para>
       </summary>
     </member>
+    <member name="F:UnityEngine.RenderTextureFormat.RG16">
+      <summary>
+        <para>Two channel (RG) render texture format, 8 bits per channel.</para>
+      </summary>
+    </member>
     <member name="F:UnityEngine.RenderTextureFormat.RG32">
       <summary>
         <para>Two color (RG) render texture format, 16 bits per channel, fixed point, unsigned normalized.</para>
@@ -45764,6 +45878,11 @@ Updating a probe's cubemap is a costly operation. Unity needs to render the enti
     <member name="F:UnityEngine.RenderTextureFormat.RGB565">
       <summary>
         <para>Color render texture format.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.RenderTextureFormat.RGBAUShort">
+      <summary>
+        <para>Four channel (RGBA) render texture format, 16 bit unsigned integer per channel.</para>
       </summary>
     </member>
     <member name="F:UnityEngine.RenderTextureFormat.RGFloat">
@@ -45829,7 +45948,7 @@ Updating a probe's cubemap is a costly operation. Unity needs to render the enti
     </member>
     <member name="M:UnityEngine.RequireComponent.#ctor(System.Type,System.Type)">
       <summary>
-        <para>Require a two components.</para>
+        <para>Require two components.</para>
       </summary>
       <param name="requiredComponent"></param>
       <param name="requiredComponent2"></param>
@@ -52155,9 +52274,19 @@ Returns NULL if there is no associated alpha texture for the source sprite. This
         <para>A 16 bit color texture format that only has a red channel.</para>
       </summary>
     </member>
+    <member name="F:UnityEngine.TextureFormat.R8">
+      <summary>
+        <para>Scalar (R) render texture format, 8 bit fixed point.</para>
+      </summary>
+    </member>
     <member name="F:UnityEngine.TextureFormat.RFloat">
       <summary>
         <para>Scalar (R) texture format, 32 bit floating point.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.TextureFormat.RG16">
+      <summary>
+        <para>Two color (RG) texture format, 8-bits per channel.</para>
       </summary>
     </member>
     <member name="F:UnityEngine.TextureFormat.RGB24">
@@ -54494,7 +54623,7 @@ Rotation of the tree on X-Z plane (in radians).</para>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.canSetSkipOnDrop">
       <summary>
-        <para>Determines whether the player skips frames to catch up with current time. (Read Only)</para>
+        <para>Determines whether the VideoPlayer skips frames to catch up with current time. (Read Only)</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.canSetTime">
@@ -54504,17 +54633,17 @@ Rotation of the tree on X-Z plane (in radians).</para>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.canSetTimeSource">
       <summary>
-        <para>Whether the time source followed by the video player can be changed. (Read Only)</para>
+        <para>Whether the time source followed by the VideoPlayer can be changed. (Read Only)</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.canStep">
       <summary>
-        <para>Returns true if the player can step forwards into the video content. (Read Only)</para>
+        <para>Returns true if the VideoPlayer can step forward through the video content. (Read Only)</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.clip">
       <summary>
-        <para>The clip being played by the player.</para>
+        <para>The clip being played by the VideoPlayer.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.controlledAudioTrackCount">
@@ -54536,7 +54665,7 @@ The actual number of audio tracks cannot be known in advance when playing URLs, 
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.frame">
       <summary>
-        <para>The frame index currently being displayed by the player.</para>
+        <para>The frame index currently being displayed by the VideoPlayer.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.frameCount">
@@ -54546,7 +54675,7 @@ The actual number of audio tracks cannot be known in advance when playing URLs, 
     </member>
     <member name="?:UnityEngine.Video.VideoPlayer.frameDropped(UnityEngine.Video.VideoPlayer/EventHandler)">
       <summary>
-        <para>Invoked when playback detects it does not keep up with the time source.</para>
+        <para>[NOT YET IMPLEMENTED] Invoked when the video decoder does not produce a frame as per the time source during playback.</para>
       </summary>
       <param name="value"></param>
     </member>
@@ -54563,7 +54692,7 @@ The actual number of audio tracks cannot be known in advance when playing URLs, 
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.isLooping">
       <summary>
-        <para>Deterimes whether the player restarts from the beginning without when it reaches the end of the clip.</para>
+        <para>Determines whether the VideoPlayer restarts from the beginning when it reaches the end of the clip.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.isPlaying">
@@ -54573,12 +54702,12 @@ The actual number of audio tracks cannot be known in advance when playing URLs, 
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.isPrepared">
       <summary>
-        <para>Whether the player has successfully prepared the content to be played. (Read Only)</para>
+        <para>Whether the VideoPlayer has successfully prepared the content to be played. (Read Only)</para>
       </summary>
     </member>
     <member name="?:UnityEngine.Video.VideoPlayer.loopPointReached(UnityEngine.Video.VideoPlayer/EventHandler)">
       <summary>
-        <para>Invoked when the player reaches the end of the content to play.</para>
+        <para>Invoked when the VideoPlayer reaches the end of the content to play.</para>
       </summary>
       <param name="value"></param>
     </member>
@@ -54594,7 +54723,7 @@ The actual number of audio tracks cannot be known in advance when playing URLs, 
     </member>
     <member name="?:UnityEngine.Video.VideoPlayer.prepareCompleted(UnityEngine.Video.VideoPlayer/EventHandler)">
       <summary>
-        <para>Invoked when the player preparation is complete.</para>
+        <para>Invoked when the VideoPlayer preparation is complete.</para>
       </summary>
       <param name="value"></param>
     </member>
@@ -54616,12 +54745,12 @@ The actual number of audio tracks cannot be known in advance when playing URLs, 
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.skipOnDrop">
       <summary>
-        <para>Whether the player is allowed to skip frames to catch up with current time.</para>
+        <para>Whether the VideoPlayer is allowed to skip frames to catch up with current time.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.source">
       <summary>
-        <para>The source that the player uses for playback.</para>
+        <para>The source that the VideoPlayer uses for playback.</para>
       </summary>
     </member>
     <member name="?:UnityEngine.Video.VideoPlayer.started(UnityEngine.Video.VideoPlayer/EventHandler)">
@@ -54662,22 +54791,22 @@ The actual number of audio tracks cannot be known in advance when playing URLs, 
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.time">
       <summary>
-        <para>The player current time in seconds.</para>
+        <para>The VideoPlayer current time in seconds.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.timeSource">
       <summary>
-        <para>The clock that the player follows to derive its current time.</para>
+        <para>[NOT YET IMPLEMENTED] The source used used by the VideoPlayer to derive its current time.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.url">
       <summary>
-        <para>The file or HTTP URL that the player will read content from.</para>
+        <para>The file or HTTP URL that the VideoPlayer will read content from.</para>
       </summary>
     </member>
     <member name="P:UnityEngine.Video.VideoPlayer.waitForFirstFrame">
       <summary>
-        <para>Determines whether the player will wait for the first frame to be loaded into the texture before starting playback when Video.VideoPlayer.playOnAwake is on.</para>
+        <para>Determines whether the VideoPlayer will wait for the first frame to be loaded into the texture before starting playback when Video.VideoPlayer.playOnAwake is on.</para>
       </summary>
     </member>
     <member name="M:UnityEngine.Video.VideoPlayer.EnableAudioTrack(System.UInt16,System.Boolean)">
@@ -54691,21 +54820,21 @@ The actual number of audio tracks cannot be known in advance when playing URLs, 
       <summary>
         <para>Delegate type for VideoPlayer events that contain an error message.</para>
       </summary>
-      <param name="source">The player that is emitting the event.</param>
+      <param name="source">The VideoPlayer that is emitting the event.</param>
       <param name="message">Message describing the error just encountered.</param>
     </member>
     <member name="T:UnityEngine.Video.VideoPlayer.EventHandler">
       <summary>
         <para>Delegate type for all parameter-less events emitted by VideoPlayers.</para>
       </summary>
-      <param name="source">The player that is emitting the event.</param>
+      <param name="source">The VideoPlayer that is emitting the event.</param>
     </member>
     <member name="T:UnityEngine.Video.VideoPlayer.FrameReadyEventHandler">
       <summary>
         <para>Delegate type for VideoPlayer events that carry a frame number.</para>
       </summary>
-      <param name="source">The player that is emitting the event.</param>
-      <param name="frameNum">The frame the player is now at.</param>
+      <param name="source">The VideoPlayer that is emitting the event.</param>
+      <param name="frameNum">The frame the VideoPlayer is now at.</param>
       <param name="frameIdx"></param>
     </member>
     <member name="M:UnityEngine.Video.VideoPlayer.GetAudioChannelCount(System.UInt16)">

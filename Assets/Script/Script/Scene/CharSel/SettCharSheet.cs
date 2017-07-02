@@ -30,6 +30,8 @@ public class SettCharSheet : MonoBehaviour {
         CreateView("판다", new Vector2(1.0f, -2.0f), 1);
         CreateView("돼지", new Vector2(-1.0f, -2.0f), 2);
         CreateView("원숭이", new Vector2(1.0f, -2.0f), 2);
+        CreateView("치킨", new Vector2(-1.0f, -2.0f), 3);
+        CreateView("사자", new Vector2(1.0f, -2.0f), 3);
 
         dicPageBG.Add(0, "CharSel_BG");
         

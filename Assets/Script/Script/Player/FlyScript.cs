@@ -261,6 +261,7 @@ public class FlyScript : MonoBehaviour {
             if (pos.y < 0.0f)
                 deg = -deg;
 
+            /*
             if (-10.0f > deg
                  && C_GAMEMANAGER.GetInstance().GetPlayer().GetRealPos().y < 200.0f)
             {
@@ -283,6 +284,7 @@ public class FlyScript : MonoBehaviour {
                 if (C_GAMEMANAGER.GetInstance().GetPlayer().GetGravitySpeed() <= 0.0f)
                     C_GAMEMANAGER.GetInstance().GetPlayer().SetGravitySpeed(saveRed.y);
             }
+            //*/
         }
     }
     

@@ -34,29 +34,37 @@ public class C_PLAYER
         m_dicPlaneLevel = new Dictionary<string, int>();
         m_dicLaunchLevel = new Dictionary<string, int>();
 
+        bool isTest = true;
+
+#if UNITY_EDITOR
+        isTest = true;
+#else
+        isTest = true;
+#endif
+
         SetIHaveChar("펭귄", true);
-        SetIHaveChar("치킨", false);
-        SetIHaveChar("돼지", false);
-        SetIHaveChar("양", false);
-        SetIHaveChar("사자", false);
-        SetIHaveChar("판다", false);
-        SetIHaveChar("고양이", false);
-        SetIHaveChar("코끼리", false);
-        SetIHaveChar("원숭이", false);
+        SetIHaveChar("치킨", isTest);
+        SetIHaveChar("돼지", isTest);
+        SetIHaveChar("양", isTest);
+        SetIHaveChar("사자", isTest);
+        SetIHaveChar("판다", isTest);
+        SetIHaveChar("고양이", isTest);
+        SetIHaveChar("코끼리", isTest);
+        SetIHaveChar("원숭이", isTest);
 
         SetIHaveLaunch("새총", true);
-        SetIHaveLaunch("투석기", false);
-        SetIHaveLaunch("선풍기", false);
+        SetIHaveLaunch("투석기", isTest);
+        SetIHaveLaunch("선풍기", isTest);
         SetIHaveLaunch("고릴라", false);
-        SetIHaveLaunch("공룡", false);
-        SetIHaveLaunch("물로켓", false);
+        SetIHaveLaunch("공룡", isTest);
+        SetIHaveLaunch("물로켓", isTest);
 
         SetIHavePlane("종이비행기", true);
-        SetIHavePlane("나뭇잎", false);
-        SetIHavePlane("낙옆", false);
-        SetIHavePlane("달", false);
-        SetIHavePlane("풍선", false);
-        SetIHavePlane("민들래씨앗", false);
+        SetIHavePlane("나뭇잎", isTest);
+        SetIHavePlane("낙옆", isTest);
+        SetIHavePlane("달", isTest);
+        SetIHavePlane("풍선", isTest);
+        SetIHavePlane("민들래씨앗", isTest);
 
         SetCharLevel("펭귄", 1);
         SetCharLevel("고양이", 1);
